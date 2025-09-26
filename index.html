@@ -45,20 +45,25 @@
     <!-- Main Container -->
     <div class="container mx-auto px-4 py-8 md:py-12">
       <!-- Header -->
-      <header class="text-center mb-8 md:mb-12">
+      <header class="text-center mb-4 md:mb-12">
         <h1
           class="text-4xl md:text-5xl font-bold text-white mb-2"
           data-key="appTitle"
         >
-          Sprach-Lern App
+          Trovl
         </h1>
         <p class="text-lg md:text-xl text-slate-400" data-key="appSubtitle">
           Lerne neue Vokabeln direkt im Kontext.
         </p>
       </header>
 
+      <!-- Hide Menu Button -->
+      <div class="flex justify-start mb-4">
+        <button id="toggle-menu-btn" class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded shadow transition">᎒</button>
+      </div>
       <!-- Controls Card -->
       <div
+        id="controls-card"
         class="bg-slate-800/50 border border-slate-700 rounded-xl shadow-lg p-6 mb-8 md:mb-12 controls-card sticky top-4 z-10"
       >
         <div
@@ -70,7 +75,7 @@
               for="ui-lang-select"
               class="block mb-2 text-sm font-medium text-slate-300"
               data-key="uiLanguageLabel"
-              >UI Sprache</label
+              >Menu Sprache</label
             >
             <select
               id="ui-lang-select"
@@ -185,7 +190,7 @@
       const content = {
         booking_flight: {
           base: {
-            de: '"Dieses Jahr," erklärte ich, "werde ich endlich eine große Reise machen! "Meine Augen schweiften über den Globus, während ich von Abenteuern träumte. Der erste Schritt war natürlich die Wahl einer geeigneten {airline} oder eines {carrier}. Ich wollte eine mit gutem Ruf und idealerweise einem vernünftigen {airfare}. Ich suchte nicht irgendeine Reise; ich wollte ein internationales Abenteuer. "Kein {domestic_flight} dieses Mal für mich," murmelte ich und stellte mir ferne Länder vor. Ich rief eine Vergleichswebsite auf und filterte nach {international_flights}. Die Preise schwankten stark. Einige Fluggesellschaften boten verlockende Angebote für ein {one_way_ticket}, aber ich wusste, dass ich irgendwann zurückkehren musste, also war ein {round_trip_ticket} unerlässlich. Ich fand ein tolles Angebot, das ein {e_ticket} beinhaltete, was praktisch war - kein Papier, das man verlieren konnte! Nach ein wenig Recherche und Überprüfung der Bewertungen für meinen gewählten {carrier} klickte ich zuversichtlich auf „Buchen“. Die Aufregung stieg, als ich mir meine bevorstehende Reise vorstellte, da ich wusste, dass ich meine Passage zu einem weit entfernten Ziel gesichert hatte.',
+            de: '"Dieses Jahr," erklärte ich, "werde ich endlich eine große Reise machen! "Meine Augen schweiften über den Globus, während ich von Abenteuern träumte. Der erste Schritt war natürlich die Wahl einer geeigneten {airline} oder eines {carrier}. Ich wollte eine mit gutem Ruf und idealerweise einem vernünftigen {airfare}. Ich suchte nicht irgendeine Reise; ich wollte ein internationales Abenteuer. "Kein {domestic_flight} dieses Mal für mich," murmelte ich und stellte mir ferne Länder vor. <br><br>Ich rief eine Vergleichswebsite auf und filterte nach {international_flights}. Die Preise schwankten stark. Einige Fluggesellschaften boten verlockende Angebote für ein {one_way_ticket}, aber ich wusste, dass ich irgendwann zurückkehren musste, also war ein {round_trip_ticket} unerlässlich. Ich fand ein tolles Angebot, das ein {e_ticket} beinhaltete, was praktisch war - kein Papier, das man verlieren konnte! <br><br>Nach ein wenig Recherche und Überprüfung der Bewertungen für meinen gewählten {carrier} klickte ich zuversichtlich auf „Buchen“. Die Aufregung stieg, als ich mir meine bevorstehende Reise vorstellte, da ich wusste, dass ich meine Passage zu einem weit entfernten Ziel gesichert hatte.',
             en: '"This year," I declared, "I\'m finally going on a big trip!" My eyes scanned the globe, dreaming of adventure. The first step, of course, was choosing an {airline} or {carrier}. I wanted one with a good reputation and, ideally, a reasonable {airfare}. I wasn\'t just looking for any trip; I wanted an international adventure. "No {domestic_flight} for me this time," I muttered, imagining distant lands. I pulled up a comparison website, filtering for {international_flights}. The prices varied wildly. Some airlines offered tempting deals for a {one_way_ticket}, but I knew I\'d eventually need to return, so a {round_trip_ticket} was essential. I found a great deal that included an {e_ticket}, which was convenient - no paper to lose! After a bit more research and checking reviews for my chosen {carrier}, I confidently clicked "book." The excitement bubbled as I imagined my upcoming journey, knowing I had secured my passage to a far-off destination.',
             es: '"Este año", declaré, "¡finalmente voy a hacer un gran viaje!" Mis ojos escanearon el globo, soñando con aventuras. El primer paso, por supuesto, era elegir una {airline} o {carrier}. Quería una con buena reputación e, idealmente, una {airfare} razonable. No estaba buscando cualquier viaje; quería una aventura {international flight}. "Esta vez no voy a tomar un {domestic_flight}", murmuré, imaginando tierras lejanas. Abrí un sitio web de comparación, filtrando por {international_flights}. Los precios variaban enormemente. Algunas aerolíneas ofrecían ofertas tentadoras para un {one_way_ticket}, pero sabía que eventualmente necesitaría regresar, así que un {round_trip_ticket} era esencial. Encontré una gran oferta que incluía un {e_ticket}, lo cual era conveniente, ¡nada de papel que perder! Después de investigar un poco más y revisar las reseñas de mi {carrier} elegido, hice clic en "reservar" con confianza. La emoción burbujeó mientras imaginaba mi próximo viaje, sabiendo que había asegurado mi pasaje a un destino lejano.',
             fr: "\"Cette année\", ai-je déclaré, \"je vais enfin faire un grand voyage !\" Mes yeux ont balayé le globe, rêvant d'aventure. La première étape, bien sûr, était de choisir une {airline} ou un {carrier}. J'en voulais une avec une bonne réputation et, idéalement, un {airfare} raisonnable. Je ne cherchais pas n'importe quel voyage ; je voulais une aventure en {international flight}. \"Pas de {domestic_flight} pour moi cette fois\", ai-je murmuré, imaginant des terres lointaines. J'ai ouvert un site web de comparaison, filtrant par {international_flights}. Les prix variaient énormément. Certaines compagnies aériennes offraient des offres alléchantes pour un {one_way_ticket}, mais je savais que j'aurais finalement besoin de revenir, donc un {round_trip_ticket} était essentiel. J'ai trouvé une excellente offre qui incluait un {e_ticket}, ce qui était pratique - pas de papier à perdre ! Après quelques recherches supplémentaires et vérifications des avis pour mon {carrier} choisi, j'ai cliqué sur \"réserver\" avec confiance. L'excitation bouillonnait alors que j'imaginais mon voyage à venir, sachant que j'avais sécurisé mon passage vers une destination lointaine.",
@@ -569,9 +574,8 @@
       // --- UI TEXT TRANSLATIONS ---
       const uiTranslations = {
         de: {
-          appTitle: "Sprach-Lern App",
           appSubtitle: "Lerne neue Vokabeln direkt im Kontext.",
-          uiLanguageLabel: "UI Sprache",
+          uiLanguageLabel: "App Sprache",
           topicLabel: "Thema",
           yourLanguageLabel: "Deine Sprache",
           targetLanguageLabel: "Zielsprache",
@@ -585,9 +589,8 @@
           topicPrefix: "Thema: ",
         },
         en: {
-          appTitle: "Language Learning App",
           appSubtitle: "Learn new vocabulary in context.",
-          uiLanguageLabel: "UI Language",
+          uiLanguageLabel: "App Language",
           topicLabel: "Topic",
           yourLanguageLabel: "Your Language",
           targetLanguageLabel: "Target Language",
@@ -600,9 +603,8 @@
           topicPrefix: "Topic: ",
         },
         es: {
-          appTitle: "Aplicación de Aprendizaje de Idiomas",
           appSubtitle: "Aprende nuevo vocabulario en contexto.",
-          uiLanguageLabel: "Idioma de la UI",
+          uiLanguageLabel: "Idioma de la aplicación",
           topicLabel: "Tema",
           yourLanguageLabel: "Tu Idioma",
           targetLanguageLabel: "Idioma Objetivo",
@@ -616,9 +618,8 @@
           topicPrefix: "Tema: ",
         },
         fr: {
-          appTitle: "Application d'apprentissage des langues",
           appSubtitle: "Apprenez du nouveau vocabulaire en contexte.",
-          uiLanguageLabel: "Langue de l'interface",
+          uiLanguageLabel: "Langue de l'application",
           topicLabel: "Sujet",
           yourLanguageLabel: "Votre langue",
           targetLanguageLabel: "Langue cible",
@@ -632,9 +633,8 @@
           topicPrefix: "Sujet : ",
         },
         it: {
-          appTitle: "App per l'apprendimento delle lingue",
           appSubtitle: "Impara nuovo vocabolario nel contesto.",
-          uiLanguageLabel: "Lingua UI",
+          uiLanguageLabel: "Lingua dell'app",
           topicLabel: "Argomento",
           yourLanguageLabel: "La tua lingua",
           targetLanguageLabel: "Lingua di destinazione",
@@ -648,9 +648,8 @@
           topicPrefix: "Argomento: ",
         },
         cs: {
-          appTitle: "Aplikace pro výuku jazyků",
           appSubtitle: "Učte se novou slovní zásobu v kontextu.",
-          uiLanguageLabel: "Jazyk uživatelského rozhraní",
+          uiLanguageLabel: "Jazyk aplikace",
           topicLabel: "Téma",
           yourLanguageLabel: "Váš jazyk",
           targetLanguageLabel: "Cílový jazyk",
@@ -883,7 +882,18 @@
         generateText(); // Generate content based on initial selections
       }
 
-      document.addEventListener("DOMContentLoaded", initializeApp);
+      document.addEventListener("DOMContentLoaded", function() {
+        initializeApp();
+        // Hide/show menu logic
+        const controlsCard = document.getElementById('controls-card');
+        const toggleMenuBtn = document.getElementById('toggle-menu-btn');
+        let menuVisible = true;
+        toggleMenuBtn.onclick = function() {
+          menuVisible = !menuVisible;
+          controlsCard.style.display = menuVisible ? '' : 'none';
+          toggleMenuBtn.textContent = menuVisible ? '᎒' : '᎒';
+        };
+      });
     </script>
   </body>
 </html>
