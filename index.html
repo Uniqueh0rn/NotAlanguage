@@ -19,6 +19,26 @@
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
       }
+      .soundwave {
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 4px;
+        width: 22px;
+        height: 18px;
+      }
+      .soundwave rect {
+        fill: #38bdf8;
+        opacity: 0.7;
+        animation: wave 1s infinite linear;
+      }
+      .soundwave rect:nth-child(2) { animation-delay: 0.2s; }
+      .soundwave rect:nth-child(3) { animation-delay: 0.4s; }
+      .soundwave rect:nth-child(4) { animation-delay: 0.6s; }
+      .soundwave rect:nth-child(5) { animation-delay: 0.8s; }
+      @keyframes wave {
+        0%, 100% { height: 6px; y: 12px; }
+        50% { height: 18px; y: 0px; }
+      }
     </style>
   </head>
   <body class="bg-slate-900 text-white antialiased">
@@ -773,7 +793,17 @@
         }
 
         topicTitle.textContent = `${uiTranslations[currentUILang].topicPrefix}${topicNames[selectedTopic][currentUILang]}`;
-        learningText.innerHTML = mixedLangText;
+
+        // Add playback button for learning text
+  learningText.innerHTML = `<span id="learning-text-content">${mixedLangText}</span><br><br><button id="play-learning-text" title="Play" class="ml-2 px-2 py-1 rounded bg-blue-600 hover:bg-blue-700 text-white flex items-center"><svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' viewBox='0 0 24 24'><path fill='currentColor' d='M8 5v14l11-7z'/></svg><span class="soundwave" style="display:none"><svg width="22" height="18" viewBox="0 0 22 18"><rect x="1" width="3" height="6" y="12"/><rect x="6" width="3" height="6" y="12"/><rect x="11" width="3" height="6" y="12"/><rect x="16" width="3" height="6" y="12"/></svg></span></button>`;
+
+        // Add event listener for learning text playback
+        const playLearningBtn = document.getElementById("play-learning-text");
+        const soundwaveLearning = playLearningBtn.querySelector('.soundwave');
+        playLearningBtn.onclick = function() {
+          const text = document.getElementById("learning-text-content").innerText;
+          speakText(text, selectedTargetLang, soundwaveLearning);
+        };
 
         // Display native and target language titles using the UI language's translation of the language name
         nativeLangTitle.textContent = `${uiTranslations[currentUILang].originalTextTitle} (${languageDisplayNames[currentUILang][selectedNativeLang]})`;
@@ -783,16 +813,45 @@
         targetLangFullText.innerHTML = fullTargetText;
 
         vocabList.innerHTML = "";
-        learnedWords.forEach((word) => {
+        learnedWords.forEach((word, idx) => {
           const item = document.createElement("div");
-          item.className =
-            "flex justify-between items-center bg-slate-700/50 p-3 rounded-md";
+          item.className = "flex justify-between items-center bg-slate-700/50 p-3 rounded-md";
+
+          //TODO: svg in project folder. no internet needed
           item.innerHTML = `
-                    <span class="font-medium text-blue-300">${word.target}</span>
-                    <span class="text-slate-400">${word.native}</span>
-                `;
+            <span class="font-medium text-blue-300 flex items-center">
+              ${word.target}
+              <button title="Play" class="ml-2 px-1 py-0.5 rounded bg-blue-600 hover:bg-blue-700 text-white play-vocab flex items-center" data-idx="${idx}">
+                <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 24 24'><path fill='currentColor' d='M8 5v14l11-7z'/></svg>
+                <span class="soundwave" style="display:none"><svg width="22" height="18" viewBox="0 0 22 18"><rect x="1" width="3" height="6" y="12"/><rect x="6" width="3" height="6" y="12"/><rect x="11" width="3" height="6" y="12"/><rect x="16" width="3" height="6" y="12"/></svg></span>
+              </button>
+            </span>
+            <span class="text-slate-400">${word.native}</span>
+          `;
           vocabList.appendChild(item);
         });
+
+        // Add event listeners for vocab playback
+        vocabList.querySelectorAll('.play-vocab').forEach(btn => {
+          const soundwave = btn.querySelector('.soundwave');
+          btn.onclick = function() {
+            const idx = btn.getAttribute('data-idx');
+            const word = learnedWords[idx].target;
+            speakText(word, selectedTargetLang, soundwave);
+          };
+        });
+      // --- WEB SPEECH API ---
+      function speakText(text, lang, soundwaveEl) {
+        if (!window.speechSynthesis) return;
+        const utter = new window.SpeechSynthesisUtterance(text);
+        utter.lang = lang;
+        window.speechSynthesis.cancel(); // Stop any current speech
+        if (soundwaveEl) soundwaveEl.style.display = 'inline-block';
+        utter.onend = utter.onerror = function() {
+          if (soundwaveEl) soundwaveEl.style.display = 'none';
+        };
+        window.speechSynthesis.speak(utter);
+      }
       }
 
       function initializeApp() {
