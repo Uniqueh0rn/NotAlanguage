@@ -1,331 +1,830 @@
 <!DOCTYPE html>
 <html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Interaktive Sprach-Lern App</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-        .controls-card {
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-        }
+      body {
+        font-family: "Inter", sans-serif;
+      }
+      .controls-card {
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+      }
     </style>
-</head>
-<body class="bg-slate-900 text-white antialiased">
-
+  </head>
+  <body class="bg-slate-900 text-white antialiased">
     <!-- Main Container -->
     <div class="container mx-auto px-4 py-8 md:py-12">
+      <!-- Header -->
+      <header class="text-center mb-8 md:mb-12">
+        <h1
+          class="text-4xl md:text-5xl font-bold text-white mb-2"
+          data-key="appTitle"
+        >
+          Sprach-Lern App
+        </h1>
+        <p class="text-lg md:text-xl text-slate-400" data-key="appSubtitle">
+          Lerne neue Vokabeln direkt im Kontext.
+        </p>
+      </header>
 
-        <!-- Header -->
-        <header class="text-center mb-8 md:mb-12">
-            <h1 class="text-4xl md:text-5xl font-bold text-white mb-2">Sprach-Lern App</h1>
-            <p class="text-lg md:text-xl text-slate-400">Lerne neue Vokabeln direkt im Kontext.</p>
-        </header>
-
-        <!-- Controls Card -->
-        <div class="bg-slate-800/50 border border-slate-700 rounded-xl shadow-lg p-6 mb-8 md:mb-12 controls-card sticky top-4 z-10">
-            <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-4 items-end">
-                <!-- Topic Selection -->
-                <div>
-                    <label for="topic-select" class="block mb-2 text-sm font-medium text-slate-300">Thema</label>
-                    <select id="topic-select" class="bg-slate-700 border border-slate-600 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                        <!-- Options will be populated by JS -->
-                    </select>
-                </div>
-                <!-- Native Language Selection -->
-                <div>
-                    <label for="native-lang-select" class="block mb-2 text-sm font-medium text-slate-300">Deine Sprache</label>
-                    <select id="native-lang-select" class="bg-slate-700 border border-slate-600 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                        <!-- Options will be populated by JS -->
-                    </select>
-                </div>
-                <!-- Target Language Selection -->
-                <div>
-                    <label for="target-lang-select" class="block mb-2 text-sm font-medium text-slate-300">Zielsprache</label>
-                    <select id="target-lang-select" class="bg-slate-700 border border-slate-600 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                        <!-- Options will be populated by JS -->
-                    </select>
-                </div>
-                <!-- Random Theme Button -->
-                <button id="random-btn" class="w-full bg-slate-600 hover:bg-slate-700 focus:ring-4 focus:ring-slate-800 font-medium rounded-lg text-sm px-5 py-2.5 transition-colors duration-200">
-                    Zufall
-                </button>
-                <!-- Generate Button -->
-                <button id="generate-btn" class="w-full bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 transition-colors duration-200">
-                    Generieren
-                </button>
-            </div>
-            <p id="error-message" class="text-red-400 text-center mt-4 text-sm"></p>
+      <!-- Controls Card -->
+      <div
+        class="bg-slate-800/50 border border-slate-700 rounded-xl shadow-lg p-6 mb-8 md:mb-12 controls-card sticky top-4 z-10"
+      >
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end"
+        >
+          <!-- UI Language Selection -->
+          <div>
+            <label
+              for="ui-lang-select"
+              class="block mb-2 text-sm font-medium text-slate-300"
+              data-key="uiLanguageLabel"
+              >UI Sprache</label
+            >
+            <select
+              id="ui-lang-select"
+              class="bg-slate-700 border border-slate-600 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            >
+              <!-- Options will be populated by JS -->
+            </select>
+          </div>
+          <!-- Topic Selection -->
+          <div>
+            <label
+              for="topic-select"
+              class="block mb-2 text-sm font-medium text-slate-300"
+              data-key="topicLabel"
+              >Thema</label
+            >
+            <select
+              id="topic-select"
+              class="bg-slate-700 border border-slate-600 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            >
+              <!-- Options will be populated by JS -->
+            </select>
+          </div>
+          <!-- Native Language Selection -->
+          <div>
+            <label
+              for="native-lang-select"
+              class="block mb-2 text-sm font-medium text-slate-300"
+              data-key="yourLanguageLabel"
+              >Deine Sprache</label
+            >
+            <select
+              id="native-lang-select"
+              class="bg-slate-700 border border-slate-600 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            >
+              <!-- Options will be populated by JS -->
+            </select>
+          </div>
+          <!-- Target Language Selection -->
+          <div>
+            <label
+              for="target-lang-select"
+              class="block mb-2 text-sm font-medium text-slate-300"
+              data-key="targetLanguageLabel"
+              >Zielsprache</label
+            >
+            <select
+              id="target-lang-select"
+              class="bg-slate-700 border border-slate-600 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            >
+              <!-- Options will be populated by JS -->
+            </select>
+          </div>
         </div>
+        <p id="error-message" class="text-red-400 text-center mt-4 text-sm"></p>
+      </div>
 
-        <!-- Content Display -->
-        <main id="content-display">
-            <h2 id="topic-title" class="text-2xl font-bold text-center mb-6"></h2>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <!-- Left Column: Learning Text & Vocab List -->
-                <div class="space-y-8">
-                    <div class="bg-slate-800 p-6 rounded-lg border border-slate-700">
-                        <h3 class="text-xl font-semibold mb-3">Lerntext</h3>
-                        <p id="learning-text" class="text-slate-300 leading-relaxed text-lg"></p>
-                    </div>
-                    <div class="bg-slate-800 p-6 rounded-lg border border-slate-700">
-                        <h3 class="text-xl font-semibold mb-3">Vokabelliste</h3>
-                        <div id="vocab-list" class="space-y-2"></div>
-                    </div>
-                </div>
-                <!-- Right Column: Full Texts -->
-                <div class="space-y-8">
-                    <div class="bg-slate-800 p-6 rounded-lg border border-slate-700">
-                        <h3 id="native-lang-title" class="text-xl font-semibold mb-3"></h3>
-                        <p id="native-lang-full-text" class="text-slate-300 leading-relaxed"></p>
-                    </div>
-                    <div class="bg-slate-800 p-6 rounded-lg border border-slate-700">
-                        <h3 id="target-lang-title" class="text-xl font-semibold mb-3"></h3>
-                        <p id="target-lang-full-text" class="text-slate-300 leading-relaxed"></p>
-                    </div>
-                </div>
+      <!-- Content Display -->
+      <main id="content-display">
+        <h2 id="topic-title" class="text-2xl font-bold text-center mb-6"></h2>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <!-- Left Column: Learning Text & Vocab List -->
+          <div class="space-y-8">
+            <div class="bg-slate-800 p-6 rounded-lg border border-slate-700">
+              <h3
+                class="text-xl font-semibold mb-3"
+                data-key="learningTextTitle"
+              >
+                Lerntext
+              </h3>
+              <p
+                id="learning-text"
+                class="text-slate-300 leading-relaxed text-lg"
+              ></p>
             </div>
-        </main>
+            <div class="bg-slate-800 p-6 rounded-lg border border-slate-700">
+              <h3 class="text-xl font-semibold mb-3" data-key="vocabListTitle">
+                Vokabelliste
+              </h3>
+              <div id="vocab-list" class="space-y-2"></div>
+            </div>
+          </div>
+          <!-- Right Column: Full Texts -->
+          <div class="space-y-8">
+            <div class="bg-slate-800 p-6 rounded-lg border border-slate-700">
+              <h3
+                id="native-lang-title"
+                class="text-xl font-semibold mb-3"
+              ></h3>
+              <p
+                id="native-lang-full-text"
+                class="text-slate-300 leading-relaxed"
+              ></p>
+            </div>
+            <div class="bg-slate-800 p-6 rounded-lg border border-slate-700">
+              <h3
+                id="target-lang-title"
+                class="text-xl font-semibold mb-3"
+              ></h3>
+              <p
+                id="target-lang-full-text"
+                class="text-slate-300 leading-relaxed"
+              ></p>
+            </div>
+          </div>
+        </div>
+      </main>
     </div>
 
     <script>
-        // --- DATA STORE ---
-        const content = {
-            airport: {
-                base: {
-                    de: "Am {airport} angekommen, gehe ich zuerst zum {check_in_counter}, um mein {luggage} aufzugeben. Danach gehe ich durch die {security_control}. Schließlich warte ich am {gate} auf das {boarding}. Mein {flight} hat die Nummer LH2023.",
-                    en: "Arriving at the {airport}, I first go to the {check_in_counter} to drop off my {luggage}. After that, I go through {security_control}. Finally, I wait at the {gate} for {boarding}. My {flight} number is LH2023.",
-                    es: "Al llegar al {airport}, primero voy al {check_in_counter} para dejar mi {luggage}. Después, paso por el {security_control}. Finalmente, espero en la {gate} para el {boarding}. Mi número de {flight} es LH2023.",
-                    fr: "En arrivant à l'{airport}, je vais d'abord au {check_in_counter} pour enregistrer mes {luggage}. Ensuite, je passe le {security_control}. Finalement, j'attends à la {gate} pour l'{boarding}. Mon {flight} porte le numéro LH2023.",
-                    it: "Arrivato all'{airport}, vado prima al {check_in_counter} per registrare il mio {luggage}. Dopodiché, passo attraverso il {security_control}. Infine, aspetto al {gate} per l'{boarding}. Il mio {flight} ha il numero LH2023."
-                },
-                vocab: {
-                    airport: { de: "Flughafen", en: "airport", es: "aeropuerto", fr: "aéroport", it: "aeroporto" },
-                    check_in_counter: { de: "Check-in-Schalter", en: "check-in counter", es: "mostrador de facturación", fr: "comptoir d'enregistrement", it: "banco del check-in" },
-                    luggage: { de: "Gepäck", en: "luggage", es: "equipaje", fr: "bagages", it: "bagaglio" },
-                    security_control: { de: "Sicherheitskontrolle", en: "security control", es: "control de seguridad", fr: "contrôle de sécurité", it: "controllo di sicurezza" },
-                    gate: { de: "Gate", en: "gate", es: "puerta de embarque", fr: "porte d'embarquement", it: "gate" },
-                    boarding: { de: "Boarding", en: "boarding", es: "embarque", fr: "embarquement", it: "imbarco" },
-                    flight: { de: "Flug", en: "flight", es: "vuelo", fr: "vol", it: "volo" }
-                }
+      // --- DATA STORE ---
+      const content = {
+        booking_flight: {
+          base: {
+            de: '"Dieses Jahr," erklärte ich, "werde ich endlich eine große Reise machen! "Meine Augen schweiften über den Globus, während ich von Abenteuern träumte. Der erste Schritt war natürlich die Wahl einer geeigneten {airline} oder eines {carrier}. Ich wollte eine mit gutem Ruf und idealerweise einem vernünftigen {airfare}. Ich suchte nicht irgendeine Reise; ich wollte ein internationales Abenteuer. "Kein {domestic_flight} dieses Mal für mich," murmelte ich und stellte mir ferne Länder vor. Ich rief eine Vergleichswebsite auf und filterte nach {international_flights}. Die Preise schwankten stark. Einige Fluggesellschaften boten verlockende Angebote für ein {one_way_ticket}, aber ich wusste, dass ich irgendwann zurückkehren musste, also war ein {round_trip_ticket} unerlässlich. Ich fand ein tolles Angebot, das ein {e_ticket} beinhaltete, was praktisch war - kein Papier, das man verlieren konnte! Nach ein wenig Recherche und Überprüfung der Bewertungen für meinen gewählten {carrier} klickte ich zuversichtlich auf „Buchen“. Die Aufregung stieg, als ich mir meine bevorstehende Reise vorstellte, da ich wusste, dass ich meine Passage zu einem weit entfernten Ziel gesichert hatte.',
+            en: '"This year," I declared, "I\'m finally going on a big trip!" My eyes scanned the globe, dreaming of adventure. The first step, of course, was choosing an {airline} or {carrier}. I wanted one with a good reputation and, ideally, a reasonable {airfare}. I wasn\'t just looking for any trip; I wanted an international adventure. "No {domestic_flight} for me this time," I muttered, imagining distant lands. I pulled up a comparison website, filtering for {international_flights}. The prices varied wildly. Some airlines offered tempting deals for a {one_way_ticket}, but I knew I\'d eventually need to return, so a {round_trip_ticket} was essential. I found a great deal that included an {e_ticket}, which was convenient - no paper to lose! After a bit more research and checking reviews for my chosen {carrier}, I confidently clicked "book." The excitement bubbled as I imagined my upcoming journey, knowing I had secured my passage to a far-off destination.',
+            es: '"Este año", declaré, "¡finalmente voy a hacer un gran viaje!" Mis ojos escanearon el globo, soñando con aventuras. El primer paso, por supuesto, era elegir una {airline} o {carrier}. Quería una con buena reputación e, idealmente, una {airfare} razonable. No estaba buscando cualquier viaje; quería una aventura {international flight}. "Esta vez no voy a tomar un {domestic_flight}", murmuré, imaginando tierras lejanas. Abrí un sitio web de comparación, filtrando por {international_flights}. Los precios variaban enormemente. Algunas aerolíneas ofrecían ofertas tentadoras para un {one_way_ticket}, pero sabía que eventualmente necesitaría regresar, así que un {round_trip_ticket} era esencial. Encontré una gran oferta que incluía un {e_ticket}, lo cual era conveniente, ¡nada de papel que perder! Después de investigar un poco más y revisar las reseñas de mi {carrier} elegido, hice clic en "reservar" con confianza. La emoción burbujeó mientras imaginaba mi próximo viaje, sabiendo que había asegurado mi pasaje a un destino lejano.',
+            fr: "\"Cette année\", ai-je déclaré, \"je vais enfin faire un grand voyage !\" Mes yeux ont balayé le globe, rêvant d'aventure. La première étape, bien sûr, était de choisir une {airline} ou un {carrier}. J'en voulais une avec une bonne réputation et, idéalement, un {airfare} raisonnable. Je ne cherchais pas n'importe quel voyage ; je voulais une aventure en {international flight}. \"Pas de {domestic_flight} pour moi cette fois\", ai-je murmuré, imaginant des terres lointaines. J'ai ouvert un site web de comparaison, filtrant par {international_flights}. Les prix variaient énormément. Certaines compagnies aériennes offraient des offres alléchantes pour un {one_way_ticket}, mais je savais que j'aurais finalement besoin de revenir, donc un {round_trip_ticket} était essentiel. J'ai trouvé une excellente offre qui incluait un {e_ticket}, ce qui était pratique - pas de papier à perdre ! Après quelques recherches supplémentaires et vérifications des avis pour mon {carrier} choisi, j'ai cliqué sur \"réserver\" avec confiance. L'excitation bouillonnait alors que j'imaginais mon voyage à venir, sachant que j'avais sécurisé mon passage vers une destination lointaine.",
+            it: '"Quest\'anno," ho dichiarato, "farò finalmente un grande viaggio!" I miei occhi hanno scrutato il globo, sognando l\'avventura. Il primo passo, ovviamente, è stato scegliere una {airline} o un {carrier}. Ne volevo una con una buona reputazione e, idealmente, una {airfare} ragionevole. Non stavo cercando un viaggio qualsiasi; volevo un\'avventura {international flight}. "Niente {domestic_flight} per me questa volta," ho mormorato, immaginando terre lontane. Ho aperto un sito web di confronto, filtrando per {international_flights}. I prezzi variavano enormemente. Alcune compagnie aeree offrivano offerte allettanti per un {one_way_ticket}, ma sapevo che alla fine avrei dovuto tornare, quindi un {round_trip_ticket} era essenziale. Ho trovato un\'ottima offerta che includeva un {e_ticket}, il che era comodo - niente carta da perdere! Dopo qualche ricerca in più e aver controllato le recensioni per il mio {carrier} scelto, ho cliccato su "prenota" con fiducia. L\'eccitazione ribolliva mentre immaginavo il mio prossimo viaggio, sapendo di aver assicurato il mio passaggio verso una destinazione lontana.',
+            cs: '"Letos," prohlásil jsem, "konečně pojedu na velký výlet!" Mé oči přelétly po glóbu a snily o dobrodružství. Prvním krokem bylo samozřejmě vybrat si {airline} nebo {carrier}. Chtěl jsem takovou s dobrou pověstí a ideálně s rozumným {airfare}. Nehledal jsem jen nějaký výlet; chtěl jsem mezinárodní dobrodružství. "Tentokrát žádný {domestic_flight} pro mě," zamumlal jsem si a představoval si vzdálené země. Otevřel jsem si srovnávací web a filtroval podle {international_flights}. Ceny se divoce lišily. Některé letecké společnosti nabízely lákavé nabídky na {one_way_ticket}, ale věděl jsem, že se budu muset nakonec vrátit, takže {round_trip_ticket} byl nezbytný. Našel jsem skvělou nabídku, která zahrnovala {e_ticket}, což bylo pohodlné - žádný papír, který bych mohl ztratit! Po dalším výzkumu a kontrole recenzí mého vybraného {carrier} jsem s jistotou klikl na "rezervovat". Vzrušení stoupalo, když jsem si představoval svou nadcházející cestu, věděl jsem, že mám zajištěný průchod do daleké destinace.',
+          },
+          vocab: {
+            airline: {
+              de: "Fluggesellschaft",
+              en: "airline",
+              es: "aerolínea",
+              fr: "compagnie aérienne",
+              it: "compagnia aerea",
+              cs: "letecká společnost",
             },
-            restaurant: {
-                base: {
-                    de: "Guten Abend, wir haben eine {reservation} für zwei Personen. Könnten wir bitte die {menu} haben? Als {starter} nehme ich den Salat und als {main_course} das Schnitzel. Zum Trinken hätte ich gerne ein stilles {water}.",
-                    en: "Good evening, we have a {reservation} for two. Could we have the {menu}, please? For a {starter}, I'll have the salad, and for the {main_course}, the Schnitzel. I would like a still {water} to drink.",
-                    es: "Buenas noches, tenemos una {reservation} para dos. ¿Podríamos ver el {menu}, por favor? De {starter}, tomaré la ensalada y de {main_course}, el Schnitzel. Para beber, quisiera un {water} sin gas.",
-                    fr: "Bonsoir, nous avons une {reservation} pour deux personnes. Pourrions-nous avoir le {menu}, s'il vous plaît ? En {starter}, je prendrai la salade et en {main_course} le Schnitzel. Pour boire, je voudrais une {water} plate.",
-                    it: "Buonasera, abbiamo una {reservation} per due persone. Potremmo avere il {menu}, per favore? Come {starter}, prenderò l'insalata e come {main_course} la cotoletta. Da bere, vorrei un'{water} naturale."
-                },
-                vocab: {
-                    reservation: { de: "Reservierung", en: "reservation", es: "reserva", fr: "réservation", it: "prenotazione" },
-                    menu: { de: "Speisekarte", en: "menu", es: "menú", fr: "menu", it: "menu" },
-                    starter: { de: "Vorspeise", en: "starter", es: "entrante", fr: "entrée", it: "antipasto" },
-                    main_course: { de: "Hauptgericht", en: "main course", es: "plato principal", fr: "plat principal", it: "piatto principale" },
-                    water: { de: "Wasser", en: "water", es: "agua", fr: "eau", it: "acqua" }
-                }
+            carrier: {
+              de: "Fluggesellschaft",
+              en: "carrier",
+              es: "aerolínea",
+              fr: "compagnie aérienne",
+              it: "compagnia aerea",
+              cs: "dopravce",
             },
-            job_interview: {
-                base: {
-                    de: "Vielen Dank für die Einladung zum {interview}. Meine größte {strength} ist meine Fähigkeit, im {team} zu arbeiten. Ich habe fünf Jahre {experience} in diesem Bereich. Wann kann ich mit einer {feedback} von Ihnen rechnen?",
-                    en: "Thank you for the invitation to the {interview}. My greatest {strength} is my ability to work in a {team}. I have five years of {experience} in this field. When can I expect to hear {feedback} from you?",
-                    es: "Gracias por la invitación a la {interview}. Mi mayor {strength} es mi capacidad para trabajar en {team}. Tengo cinco años de {experience} en este campo. ¿Cuándo puedo esperar {feedback} de su parte?",
-                    fr: "Merci pour l'invitation à l'{interview}. Ma plus grande {strength} est ma capacité à travailler en {team}. J'ai cinq ans d'{experience} dans ce domaine. Quand puis-je espérer un {feedback} de votre part ?",
-                    it: "Grazie per l'invito al {interview}. La mia più grande {strength} è la mia capacità di lavorare in {team}. Ho cinque anni di {experience} in questo campo. Quando posso aspettarmi un vostro {feedback}?"
-                },
-                vocab: {
-                    interview: { de: "Vorstellungsgespräch", en: "interview", es: "entrevista", fr: "entretien", it: "colloquio" },
-                    strength: { de: "Stärke", en: "strength", es: "fortaleza", fr: "force", it: "punto di forza" },
-                    team: { de: "Team", en: "team", es: "equipo", fr: "équipe", it: "squadra" },
-                    experience: { de: "Erfahrung", en: "experience", es: "experiencia", fr: "expérience", it: "esperienza" },
-                    feedback: { de: "Rückmeldung", en: "feedback", es: "respuesta", fr: "retour", it: "riscontro" }
-                }
+            airfare: {
+              de: "Flugpreis",
+              en: "airfare",
+              es: "tarifa aérea",
+              fr: "tarif aérien",
+              it: "tariffa aerea",
+              cs: "letecké jízdné",
             },
-            shopping: {
-                base: {
-                    de: "Entschuldigung, ich suche ein {shirt}. Haben Sie das auch in einer anderen {color}? Ich würde gerne mit {credit_card} bezahlen. Können Sie mir bitte eine {bag} geben?",
-                    en: "Excuse me, I'm looking for a {shirt}. Do you have this in a different {color}? I would like to pay with a {credit_card}. Could you please give me a {bag}?",
-                    es: "Disculpe, estoy buscando una {shirt}. ¿La tiene en otro {color}? Me gustaría pagar con {credit_card}. ¿Puede darme una {bag}, por favor?",
-                    fr: "Excusez-moi, je cherche une {shirt}. L'avez-vous dans une autre {color} ? Je voudrais payer par {credit_card}. Pouvez-vous me donner un {bag}, s'il vous plaît ?",
-                    it: "Mi scusi, sto cercando una {shirt}. Ce l'ha in un altro {color}? Vorrei pagare con la {credit_card}. Può darmi una {bag}, per favore?"
-                },
-                vocab: {
-                    shirt: { de: "Hemd", en: "shirt", es: "camisa", fr: "chemise", it: "camicia" },
-                    color: { de: "Farbe", en: "color", es: "color", fr: "couleur", it: "colore" },
-                    credit_card: { de: "Kreditkarte", en: "credit card", es: "tarjeta de crédito", fr: "carte de crédit", it: "carta di credito" },
-                    bag: { de: "Tüte", en: "bag", es: "bolsa", fr: "sac", it: "borsa" }
-                }
+            domestic_flight: {
+              de: "Inlandsflug",
+              en: "domestic flight",
+              es: "vuelo nacional",
+              fr: "vol intérieur",
+              it: "volo nazionale",
+              cs: "vnitrostátní let",
             },
-            directions: {
-                base: {
-                    de: "Können Sie mir helfen? Ich suche den {train_station}. Gehen Sie einfach {straight_on}, dann die zweite Straße {left}. Die {bank} ist an der Ecke, direkt gegenüber vom {park}.",
-                    en: "Can you help me? I'm looking for the {train_station}. Just go {straight_on}, then take the second street on the {left}. The {bank} is on the corner, directly across from the {park}.",
-                    es: "¿Puede ayudarme? Busco la {train_station}. Siga {straight_on}, luego tome la segunda calle a la {left}. El {bank} está en la esquina, justo enfrente del {park}.",
-                    fr: "Pouvez-vous m'aider ? Je cherche la {train_station}. Allez {straight_on}, puis prenez la deuxième rue à {left}. La {bank} est au coin, juste en face du {park}.",
-                    it: "Può aiutarmi? Sto cercando la {train_station}. Vada {straight_on}, poi prenda la seconda strada a {left}. La {bank} è all'angolo, proprio di fronte al {park}."
-                },
-                vocab: {
-                    train_station: { de: "Bahnhof", en: "train station", es: "estación de tren", fr: "gare", it: "stazione ferroviaria" },
-                    straight_on: { de: "geradeaus", en: "straight on", es: "todo recto", fr: "tout droit", it: "dritto" },
-                    left: { de: "links", en: "left", es: "izquierda", fr: "gauche", it: "sinistra" },
-                    bank: { de: "Bank", en: "bank", es: "banco", fr: "banque", it: "banca" },
-                    park: { de: "Park", en: "park", es: "parque", fr: "parc", it: "parco" }
-                }
+            international_flights: {
+              de: "Internationale Flüge",
+              en: "international flights",
+              es: "vuelos internacionales",
+              fr: "vols internationaux",
+              it: "voli internazionali",
+              cs: "mezinárodní lety",
             },
-            hotel_checkin: {
-                base: {
-                    de: "Guten Tag, ich habe eine {booking} auf den Namen Schmidt. Hier ist mein {passport}. Wann gibt es {breakfast}? Ich hätte gerne den {key} für mein Zimmer.",
-                    en: "Hello, I have a {booking} under the name Schmidt. Here is my {passport}. What time is {breakfast}? I would like the {key} for my room, please.",
-                    es: "Hola, tengo una {booking} a nombre de Schmidt. Aquí está mi {passport}. ¿A qué hora es el {breakfast}? Quisiera la {key} de mi habitación, por favor.",
-                    fr: "Bonjour, j'ai une {booking} au nom de Schmidt. Voici mon {passport}. À quelle heure est le {breakfast} ? Je voudrais la {key} de ma chambre, s'il vous plaît.",
-                    it: "Buongiorno, ho una {booking} a nome Schmidt. Ecco il mio {passport}. A che ora è la {breakfast}? Vorrei la {key} per la mia camera, per favore."
-                },
-                vocab: {
-                    booking: { de: "Reservierung", en: "booking", es: "reserva", fr: "réservation", it: "prenotazione" },
-                    passport: { de: "Reisepass", en: "passport", es: "pasaporte", fr: "passeport", it: "passaporto" },
-                    breakfast: { de: "Frühstück", en: "breakfast", es: "desayuno", fr: "petit-déjeuner", it: "colazione" },
-                    key: { de: "Schlüssel", en: "key", es: "llave", fr: "clé", it: "chiave" }
-                }
-            }
-        };
+            one_way_ticket: {
+              de: "Einfaches Ticket",
+              en: "one-way ticket",
+              es: "billete de ida",
+              fr: "billet aller simple",
+              it: "biglietto di sola andata",
+              cs: "jednosměrná jízdenka",
+            },
+            round_trip_ticket: {
+              de: "Boarding",
+              en: "boarding",
+              es: "embarque",
+              fr: "embarquement",
+              it: "imbarco",
+              cs: "nástup",
+            },
+            e_ticket: {
+              de: "E-Ticket",
+              en: "e-ticket",
+              es: "billete electrónico",
+              fr: "billet électronique",
+              it: "e-ticket",
+              cs: "elektronická jízdenka",
+            },
+          },
+        },
+        restaurant: {
+          base: {
+            de: "Guten Abend, wir haben eine {reservation} für zwei Personen. Könnten wir bitte die {menu} haben? Als {starter} nehme ich den Salat und als {main_course} das Schnitzel. Zum Trinken hätte ich gerne ein stilles {water}.",
+            en: "Good evening, we have a {reservation} for two. Could we have the {menu}, please? For a {starter}, I'll have the salad, and for the {main_course}, the Schnitzel. I would like a still {water} to drink.",
+            es: "Buenas noches, tenemos una {reservation} para dos. ¿Podríamos ver el {menu}, por favor? De {starter}, tomaré la ensalada y de {main_course}, el Schnitzel. Para beber, quisiera un {water} sin gas.",
+            fr: "Bonsoir, nous avons une {reservation} pour deux personnes. Pourrions-nous avoir le {menu}, s'il vous plaît ? En {starter}, je prendrai la salade et en {main_course} le Schnitzel. Pour boire, je voudrais une {water} plate.",
+            it: "Buonasera, abbiamo una {reservation} per due persone. Potremmo avere il {menu}, per favore? Come {starter}, prenderò l'insalata e come {main_course} la cotoletta. Da bere, vorrei un'{water} naturale.",
+          },
+          vocab: {
+            reservation: {
+              de: "Reservierung",
+              en: "reservation",
+              es: "reserva",
+              fr: "réservation",
+              it: "prenotazione",
+            },
+            menu: {
+              de: "Speisekarte",
+              en: "menu",
+              es: "menú",
+              fr: "menu",
+              it: "menu",
+            },
+            starter: {
+              de: "Vorspeise",
+              en: "starter",
+              es: "entrante",
+              fr: "entrée",
+              it: "antipasto",
+            },
+            main_course: {
+              de: "Hauptgericht",
+              en: "main course",
+              es: "plato principal",
+              fr: "plat principal",
+              it: "piatto principale",
+            },
+            water: {
+              de: "Wasser",
+              en: "water",
+              es: "agua",
+              fr: "eau",
+              it: "acqua",
+            },
+          },
+        },
+        job_interview: {
+          base: {
+            de: "Vielen Dank für die Einladung zum {interview}. Meine größte {strength} ist meine Fähigkeit, im {team} zu arbeiten. Ich habe fünf Jahre {experience} in diesem Bereich. Wann kann ich mit einer {feedback} von Ihnen rechnen?",
+            en: "Thank you for the invitation to the {interview}. My greatest {strength} is my ability to work in a {team}. I have five years of {experience} in this field. When can I expect to hear {feedback} from you?",
+            es: "Gracias por la invitación a la {interview}. Mi mayor {strength} es mi capacidad para trabajar en {team}. Tengo cinco años de {experience} en este campo. ¿Cuándo puedo esperar {feedback} de su parte?",
+            fr: "Merci pour l'invitation à l'{interview}. Ma plus grande {strength} est ma capacité à travailler en {team}. J'ai cinq ans d'{experience} dans ce domaine. Quand puis-je espérer un {feedback} de votre part ?",
+            it: "Grazie per l'invito al {interview}. La mia più grande {strength} è la mia capacità di lavorare in {team}. Ho cinque anni di {experience} in questo campo. Quando posso aspettarmi un vostro {feedback}?",
+          },
+          vocab: {
+            interview: {
+              de: "Vorstellungsgespräch",
+              en: "interview",
+              es: "entrevista",
+              fr: "entretien",
+              it: "colloquio",
+            },
+            strength: {
+              de: "Stärke",
+              en: "strength",
+              es: "fortaleza",
+              fr: "force",
+              it: "punto di forza",
+            },
+            team: {
+              de: "Team",
+              en: "team",
+              es: "equipo",
+              fr: "équipe",
+              it: "squadra",
+            },
+            experience: {
+              de: "Erfahrung",
+              en: "experience",
+              es: "experiencia",
+              fr: "expérience",
+              it: "esperienza",
+            },
+            feedback: {
+              de: "Rückmeldung",
+              en: "feedback",
+              es: "respuesta",
+              fr: "retour",
+              it: "riscontro",
+            },
+          },
+        },
+        shopping: {
+          base: {
+            de: "Entschuldigung, ich suche ein {shirt}. Haben Sie das auch in einer anderen {color}? Ich würde gerne mit {credit_card} bezahlen. Können Sie mir bitte eine {bag} geben?",
+            en: "Excuse me, I'm looking for a {shirt}. Do you have this in a different {color}? I would like to pay with a {credit_card}. Could you please give me a {bag}?",
+            es: "Disculpe, estoy buscando una {shirt}. ¿La tiene en otro {color}? Me gustaría pagar con {credit_card}. ¿Puede darme una {bag}, por favor?",
+            fr: "Excusez-moi, je cherche eine {shirt}. L'avez-vous dans une autre {color} ? Je voudrais payer par {credit_card}. Pouvez-vous me donner un {bag}, s'il vous plaît ?",
+            it: "Mi scusi, sto cercando una {shirt}. Ce l'ha in un altro {color}? Vorrei pagare con la {credit_card}. Può darmi una {bag}, per favore?",
+          },
+          vocab: {
+            shirt: {
+              de: "Hemd",
+              en: "shirt",
+              es: "camisa",
+              fr: "chemise",
+              it: "camicia",
+            },
+            color: {
+              de: "Farbe",
+              en: "color",
+              es: "color",
+              fr: "couleur",
+              it: "colore",
+            },
+            credit_card: {
+              de: "Kreditkarte",
+              en: "credit card",
+              es: "tarjeta de crédito",
+              fr: "carte de crédit",
+              it: "carta di credito",
+            },
+            bag: { de: "Tüte", en: "bag", es: "bolsa", fr: "sac", it: "borsa" },
+          },
+        },
+        directions: {
+          base: {
+            de: "Können Sie mir helfen? Ich suche den {train_station}. Gehen Sie einfach {straight_on}, dann die zweite Straße {left}. Die {bank} ist an der Ecke, direkt gegenüber vom {park}.",
+            en: "Can you help me? I'm looking for the {train_station}. Just go {straight_on}, then take the second street on the {left}. The {bank} is on the corner, directly across from the {park}.",
+            es: "¿Puede ayudarme? Busco la {train_station}. Siga {straight_on}, luego tome la segunda calle a la {left}. El {bank} está en la esquina, justo enfrente del {park}.",
+            fr: "Pouvez-vous m'aider ? Je cherche la {train_station}. Allez {straight_on}, puis prenez la deuxième rue à {left}. La {bank} est au coin, juste en face du {park}.",
+            it: "Può aiutarmi? Sto cercando la {train_station}. Vada {straight_on}, poi prenda la seconda strada a {left}. La {bank} è all'angolo, proprio di fronte al {park}.",
+          },
+          vocab: {
+            train_station: {
+              de: "Bahnhof",
+              en: "train station",
+              es: "estación de tren",
+              fr: "gare",
+              it: "stazione ferroviaria",
+            },
+            straight_on: {
+              de: "geradeaus",
+              en: "straight on",
+              es: "todo recto",
+              fr: "tout droit",
+              it: "dritto",
+            },
+            left: {
+              de: "links",
+              en: "left",
+              es: "izquierda",
+              fr: "gauche",
+              it: "sinistra",
+            },
+            bank: {
+              de: "Bank",
+              en: "bank",
+              es: "banco",
+              fr: "banque",
+              it: "banca",
+            },
+            park: {
+              de: "Park",
+              en: "park",
+              es: "parque",
+              fr: "parc",
+              it: "parco",
+            },
+          },
+        },
+        hotel_checkin: {
+          base: {
+            de: "Guten Tag, ich habe eine {booking} auf den Namen Schmidt. Hier ist mein {passport}. Wann gibt es {breakfast}? Ich hätte gerne den {key} für mein Zimmer.",
+            en: "Hello, I have a {booking} under the name Schmidt. Here is my {passport}. What time is {breakfast}? I would like the {key} for my room, please.",
+            es: "Hola, tengo una {booking} a nombre de Schmidt. Aquí está mi {passport}. ¿A qué hora es el {breakfast}? Quisiera la {key} de mi habitación, por favor.",
+            fr: "Bonjour, j'ai une {booking} au nom de Schmidt. Voici mon {passport}. À quelle heure est le {breakfast} ? Je voudrais la {key} de ma chambre, s'il vous plaît.",
+            it: "Buongiorno, ho una {booking} a nome Schmidt. Ecco il mio {passport}. A che ora è la {breakfast}? Vorrei la {key} per la mia camera, per favore.",
+          },
+          vocab: {
+            booking: {
+              de: "Reservierung",
+              en: "booking",
+              es: "reserva",
+              fr: "réservation",
+              it: "prenotazione",
+            },
+            passport: {
+              de: "Reisepass",
+              en: "passport",
+              es: "pasaporte",
+              fr: "passeport",
+              it: "passaporto",
+            },
+            breakfast: {
+              de: "Frühstück",
+              en: "breakfast",
+              es: "desayuno",
+              fr: "petit-déjeuner",
+              it: "colazione",
+            },
+            key: {
+              de: "Schlüssel",
+              en: "key",
+              es: "llave",
+              fr: "clé",
+              it: "chiave",
+            },
+          },
+        },
+      };
 
-        // --- DISPLAY NAMES ---
-        const topicNames = {
-            airport: "Am Flughafen",
-            restaurant: "Im Restaurant",
-            job_interview: "Beim Vorstellungsgespräch",
-            shopping: "Beim Einkaufen",
-            directions: "Wegbeschreibung",
-            hotel_checkin: "Hotel-Check-in"
-        };
-        const languageNames = {
-            de: "Deutsch",
-            en: "Englisch",
-            es: "Spanisch",
-            fr: "Französisch",
-            it: "Italienisch"
-        };
+      // --- DISPLAY NAMES ---
+      const topicNames = {
+        booking_flight: {
+          de: "Flug buchen",
+          en: "Booking a Flight",
+          es: "Reservar un Vuelo",
+          fr: "Réserver un Vol",
+          it: "Prenotare un Volo",
+          cs: "Rezervace Létadla",
+        },
+        restaurant: {
+          de: "Im Restaurant",
+          en: "At the Restaurant",
+          es: "En el Restaurante",
+          fr: "Au restaurant",
+          it: "Al Ristorante",
+        },
+        job_interview: {
+          de: "Beim Vorstellungsgespräch",
+          en: "Job Interview",
+          es: "En la Entrevista de Trabajo",
+          fr: "Entretien d'embauche",
+          it: "Colloquio di Lavoro",
+        },
+        shopping: {
+          de: "Beim Einkaufen",
+          en: "Shopping",
+          es: "De Compras",
+          fr: "Faire du shopping",
+          it: "Fare Shopping",
+        },
+        directions: {
+          de: "Wegbeschreibung",
+          en: "Directions",
+          es: "Indicaciones",
+          fr: "Indications",
+          it: "Indicazioni Stradali",
+        },
+        hotel_checkin: {
+          de: "Hotel-Check-in",
+          en: "Hotel Check-in",
+          es: "Check-in del Hotel",
+          fr: "Enregistrement à l'hôtel",
+          it: "Check-in in Hotel",
+        },
+      };
+      // This object now holds the *display names* of the languages themselves,
+      // translated into each UI language.
+      const languageDisplayNames = {
+        de: {
+          de: "Deutsch",
+          en: "Englisch",
+          es: "Spanisch",
+          fr: "Französisch",
+          it: "Italienisch",
+          cs: "Tschechisch",
+        },
+        en: {
+          de: "German",
+          en: "English",
+          es: "Spanish",
+          fr: "French",
+          it: "Italian",
+          cs: "Czech",},
+        es: {
+          de: "Alemán",
+          en: "Inglés",
+          es: "Español",
+          fr: "Francés",
+          it: "Italiano",
+          cs: "Checo",},
+        fr: {
+          de: "Allemand",
+          en: "Anglais",
+          es: "Espagnol",
+          fr: "Français",
+          it: "Italien",
+          cs: "Tchèque",
+        },
+        it: {
+          de: "Tedesco",
+          en: "Inglese",
+          es: "Spagnolo",
+          fr: "Francese",
+          it: "Italiano",
+          cs: "Ceco",},
+        cs: {
+          de: "Němčina",
+          en: "Angličtina",
+          es: "Španělština",
+          fr: "Francouzština",
+          it: "Italština",
+          cs: "Čeština",},
+      };
 
-        // --- DOM ELEMENTS ---
-        const topicSelect = document.getElementById('topic-select');
-        const nativeLangSelect = document.getElementById('native-lang-select');
-        const targetLangSelect = document.getElementById('target-lang-select');
-        const generateBtn = document.getElementById('generate-btn');
-        const randomBtn = document.getElementById('random-btn');
-        const errorMessage = document.getElementById('error-message');
-        
-        const topicTitle = document.getElementById('topic-title');
-        const learningText = document.getElementById('learning-text');
-        const vocabList = document.getElementById('vocab-list');
-        const nativeLangTitle = document.getElementById('native-lang-title');
-        const nativeLangFullText = document.getElementById('native-lang-full-text');
-        const targetLangTitle = document.getElementById('target-lang-title');
-        const targetLangFullText = document.getElementById('target-lang-full-text');
+      // --- UI TEXT TRANSLATIONS ---
+      const uiTranslations = {
+        de: {
+          appTitle: "Sprach-Lern App",
+          appSubtitle: "Lerne neue Vokabeln direkt im Kontext.",
+          uiLanguageLabel: "UI Sprache",
+          topicLabel: "Thema",
+          yourLanguageLabel: "Deine Sprache",
+          targetLanguageLabel: "Zielsprache",
+          errorMessageSameLanguage:
+            "Bitte wählen Sie zwei unterschiedliche Sprachen aus.",
+          errorTitle: "Fehler",
+          learningTextTitle: "Lerntext",
+          vocabListTitle: "Vokabelliste",
+          originalTextTitle: "Originaltext",
+          translationTextTitle: "Übersetzung",
+          topicPrefix: "Thema: ",
+        },
+        en: {
+          appTitle: "Language Learning App",
+          appSubtitle: "Learn new vocabulary in context.",
+          uiLanguageLabel: "UI Language",
+          topicLabel: "Topic",
+          yourLanguageLabel: "Your Language",
+          targetLanguageLabel: "Target Language",
+          errorMessageSameLanguage: "Please select two different languages.",
+          errorTitle: "Error",
+          learningTextTitle: "Learning Text",
+          vocabListTitle: "Vocabulary List",
+          originalTextTitle: "Original Text",
+          translationTextTitle: "Translation",
+          topicPrefix: "Topic: ",
+        },
+        es: {
+          appTitle: "Aplicación de Aprendizaje de Idiomas",
+          appSubtitle: "Aprende nuevo vocabulario en contexto.",
+          uiLanguageLabel: "Idioma de la UI",
+          topicLabel: "Tema",
+          yourLanguageLabel: "Tu Idioma",
+          targetLanguageLabel: "Idioma Objetivo",
+          errorMessageSameLanguage:
+            "Por favor, seleccione dos idiomas diferentes.",
+          errorTitle: "Error",
+          learningTextTitle: "Texto de Aprendizaje",
+          vocabListTitle: "Lista de Vocabulario",
+          originalTextTitle: "Texto Original",
+          translationTextTitle: "Traducción",
+          topicPrefix: "Tema: ",
+        },
+        fr: {
+          appTitle: "Application d'apprentissage des langues",
+          appSubtitle: "Apprenez du nouveau vocabulaire en contexte.",
+          uiLanguageLabel: "Langue de l'interface",
+          topicLabel: "Sujet",
+          yourLanguageLabel: "Votre langue",
+          targetLanguageLabel: "Langue cible",
+          errorMessageSameLanguage:
+            "Veuillez sélectionner deux langues différentes.",
+          errorTitle: "Erreur",
+          learningTextTitle: "Texte d'apprentissage",
+          vocabListTitle: "Liste de vocabulaire",
+          originalTextTitle: "Texte original",
+          translationTextTitle: "Traduction",
+          topicPrefix: "Sujet : ",
+        },
+        it: {
+          appTitle: "App per l'apprendimento delle lingue",
+          appSubtitle: "Impara nuovo vocabolario nel contesto.",
+          uiLanguageLabel: "Lingua UI",
+          topicLabel: "Argomento",
+          yourLanguageLabel: "La tua lingua",
+          targetLanguageLabel: "Lingua di destinazione",
+          errorMessageSameLanguage:
+            "Si prega di selezionare due lingue diverse.",
+          errorTitle: "Errore",
+          learningTextTitle: "Testo di apprendimento",
+          vocabListTitle: "Lista di vocaboli",
+          originalTextTitle: "Testo originale",
+          translationTextTitle: "Traduzione",
+          topicPrefix: "Argomento: ",
+        },
+        cs: {
+          appTitle: "Aplikace pro výuku jazyků",
+          appSubtitle: "Učte se novou slovní zásobu v kontextu.",
+          uiLanguageLabel: "Jazyk uživatelského rozhraní",
+          topicLabel: "Téma",
+          yourLanguageLabel: "Váš jazyk",
+          targetLanguageLabel: "Cílový jazyk",
+          errorMessageSameLanguage: "Vyberte prosím dva různé jazyky.",
+          errorTitle: "Chyba",
+          learningTextTitle: "Učební text",
+          vocabListTitle: "Seznam slovní zásoby",
+          originalTextTitle: "Originální text",
+          translationTextTitle: "Překlad",
+          topicPrefix: "Téma: ",
+        },
+      };
 
-        // --- FUNCTIONS ---
+      // --- DOM ELEMENTS ---
+      const uiLangSelect = document.getElementById("ui-lang-select"); // New UI language select
+      const topicSelect = document.getElementById("topic-select");
+      const nativeLangSelect = document.getElementById("native-lang-select");
+      const targetLangSelect = document.getElementById("target-lang-select");
+      const errorMessage = document.getElementById("error-message");
 
-        function populateSelect(selectElement, data, selectedValue) {
-            selectElement.innerHTML = '';
-            for (const key in data) {
-                const option = document.createElement('option');
-                option.value = key;
-                option.textContent = data[key];
-                if (key === selectedValue) {
-                    option.selected = true;
-                }
-                selectElement.appendChild(option);
-            }
+      const topicTitle = document.getElementById("topic-title");
+      const learningText = document.getElementById("learning-text");
+      const vocabList = document.getElementById("vocab-list");
+      const nativeLangTitle = document.getElementById("native-lang-title");
+      const nativeLangFullText = document.getElementById(
+        "native-lang-full-text"
+      );
+      const targetLangTitle = document.getElementById("target-lang-title");
+      const targetLangFullText = document.getElementById(
+        "target-lang-full-text"
+      );
+
+      // --- FUNCTIONS ---
+
+      function populateSelect(selectElement, data, selectedValue) {
+        selectElement.innerHTML = "";
+        const currentUILang = uiLangSelect.value || "en"; // Get current UI language
+
+        for (const key in data) {
+          const option = document.createElement("option");
+          option.value = key;
+
+          if (selectElement.id === "topic-select") {
+            option.textContent = data[key][currentUILang];
+          } else if (
+            selectElement.id === "native-lang-select" ||
+            selectElement.id === "target-lang-select"
+          ) {
+            // For native and target language dropdowns, display the language name in the current UI language
+            option.textContent = languageDisplayNames[currentUILang][key];
+          } else if (selectElement.id === "ui-lang-select") {
+            // For UI language dropdown, display the language name in its own language
+            option.textContent = data[key][key]; // e.g., Deutsch for 'de', English for 'en'
+          } else {
+            option.textContent = data[key];
+          }
+
+          if (key === selectedValue) {
+            option.selected = true;
+          }
+          selectElement.appendChild(option);
+        }
+      }
+
+      function updateUIText(lang) {
+        const translations = uiTranslations[lang];
+        if (!translations) return;
+
+        // Update elements with data-key attribute
+        document.querySelectorAll("[data-key]").forEach((element) => {
+          const key = element.getAttribute("data-key");
+          if (translations[key]) {
+            element.textContent = translations[key];
+          }
+        });
+
+        // Re-populate all selects to update their display names based on the new UI language
+        populateSelect(uiLangSelect, languageDisplayNames, uiLangSelect.value); // Use languageDisplayNames for UI select
+        populateSelect(topicSelect, topicNames, topicSelect.value);
+        populateSelect(
+          nativeLangSelect,
+          languageDisplayNames,
+          nativeLangSelect.value
+        ); // Use languageDisplayNames for native select
+        populateSelect(
+          targetLangSelect,
+          languageDisplayNames,
+          targetLangSelect.value
+        ); // Use languageDisplayNames for target select
+
+        // Re-generate the main content to update dynamic titles and error messages
+        generateText();
+      }
+
+      function generateText() {
+        const selectedTopic = topicSelect.value;
+        const selectedNativeLang = nativeLangSelect.value;
+        const selectedTargetLang = targetLangSelect.value;
+        const currentUILang = uiLangSelect.value || "en"; // Get current UI language
+
+        if (selectedNativeLang === selectedTargetLang) {
+          errorMessage.textContent =
+            uiTranslations[currentUILang].errorMessageSameLanguage;
+          topicTitle.textContent = uiTranslations[currentUILang].errorTitle;
+          learningText.textContent = "";
+          vocabList.innerHTML = "";
+          nativeLangFullText.textContent = "";
+          targetLangFullText.textContent = "";
+          nativeLangTitle.textContent = "";
+          targetLangTitle.textContent = "";
+          return;
+        } else {
+          errorMessage.textContent = "";
         }
 
-        function generateText() {
-            const selectedTopic = topicSelect.value;
-            const selectedNativeLang = nativeLangSelect.value;
-            const selectedTargetLang = targetLangSelect.value;
-            
-            if (selectedNativeLang === selectedTargetLang) {
-                errorMessage.textContent = 'Bitte wählen Sie zwei unterschiedliche Sprachen aus.';
-                topicTitle.textContent = 'Fehler';
-                learningText.textContent = '';
-                vocabList.innerHTML = '';
-                nativeLangFullText.textContent = '';
-                targetLangFullText.textContent = '';
-                nativeLangTitle.textContent = '';
-                targetLangTitle.textContent = '';
-                return;
-            } else {
-                errorMessage.textContent = '';
-            }
+        const topicData = content[selectedTopic];
+        const vocabulary = topicData.vocab;
 
-            const topicData = content[selectedTopic];
-            const vocabulary = topicData.vocab;
+        let mixedLangText = topicData.base[selectedNativeLang];
+        let fullNativeText = topicData.base[selectedNativeLang];
+        let fullTargetText = topicData.base[selectedTargetLang];
 
-            let mixedLangText = topicData.base[selectedNativeLang];
-            let fullNativeText = topicData.base[selectedNativeLang];
-            let fullTargetText = topicData.base[selectedTargetLang];
-            
-            const learnedWords = [];
+        const learnedWords = [];
 
-            for (const key in vocabulary) {
-                const nativeWord = vocabulary[key][selectedNativeLang];
-                const targetWord = vocabulary[key][selectedTargetLang];
-                learnedWords.push({ target: targetWord, native: nativeWord });
-                
-                const placeholder = new RegExp(`\\{${key}\\}`, 'g');
-                
-                const replacementSpan = `<strong class="text-blue-400 font-semibold">${targetWord}</strong>`;
-                mixedLangText = mixedLangText.replace(placeholder, replacementSpan);
+        for (const key in vocabulary) {
+          const nativeWord = vocabulary[key][selectedNativeLang];
+          const targetWord = vocabulary[key][selectedTargetLang];
+          learnedWords.push({ target: targetWord, native: nativeWord });
 
-                fullNativeText = fullNativeText.replace(placeholder, nativeWord);
-                fullTargetText = fullTargetText.replace(placeholder, targetWord);
-            }
-            
-            topicTitle.textContent = `Thema: ${topicNames[selectedTopic]}`;
-            learningText.innerHTML = mixedLangText;
+          const placeholder = new RegExp(`\\{${key}\\}`, "g");
 
-            nativeLangTitle.textContent = `Originaltext (${languageNames[selectedNativeLang]})`;
-            nativeLangFullText.textContent = fullNativeText;
-            
-            targetLangTitle.textContent = `Übersetzung (${languageNames[selectedTargetLang]})`;
-            targetLangFullText.textContent = fullTargetText;
+          const replacementSpan = `<strong class="text-blue-400 font-semibold">${targetWord}</strong>`;
+          const replacementNative = `<strong class="text-blue-400 font-semibold">${nativeWord}</strong>`;
+          const replacementTranslation = `<strong class="text-blue-400 font-semibold">${targetWord}</strong>`;
 
-            vocabList.innerHTML = '';
-            learnedWords.forEach(word => {
-                const item = document.createElement('div');
-                item.className = 'flex justify-between items-center bg-slate-700/50 p-3 rounded-md';
-                item.innerHTML = `
+          mixedLangText = mixedLangText.replace(placeholder, replacementSpan);
+
+          fullNativeText = fullNativeText.replace(placeholder, replacementNative);
+          fullTargetText = fullTargetText.replace(placeholder, replacementTranslation);
+        }
+
+        topicTitle.textContent = `${uiTranslations[currentUILang].topicPrefix}${topicNames[selectedTopic][currentUILang]}`;
+        learningText.innerHTML = mixedLangText;
+
+        // Display native and target language titles using the UI language's translation of the language name
+        nativeLangTitle.textContent = `${uiTranslations[currentUILang].originalTextTitle} (${languageDisplayNames[currentUILang][selectedNativeLang]})`;
+        nativeLangFullText.innerHTML = fullNativeText;
+
+        targetLangTitle.textContent = `${uiTranslations[currentUILang].translationTextTitle} (${languageDisplayNames[currentUILang][selectedTargetLang]})`;
+        targetLangFullText.innerHTML = fullTargetText;
+
+        vocabList.innerHTML = "";
+        learnedWords.forEach((word) => {
+          const item = document.createElement("div");
+          item.className =
+            "flex justify-between items-center bg-slate-700/50 p-3 rounded-md";
+          item.innerHTML = `
                     <span class="font-medium text-blue-300">${word.target}</span>
                     <span class="text-slate-400">${word.native}</span>
                 `;
-                vocabList.appendChild(item);
-            });
-        }
+          vocabList.appendChild(item);
+        });
+      }
 
-        function selectRandomTopic() {
-            const topics = Object.keys(topicNames);
-            const randomIndex = Math.floor(Math.random() * topics.length);
-            const randomTopic = topics[randomIndex];
-            topicSelect.value = randomTopic;
-            generateText();
-        }
+      function initializeApp() {
+        // New languageDisplayNames object to hold translated language names
+        // This object now holds the *display names* of the languages themselves,
+        // translated into each UI language.
+        // This was moved outside initializeApp to be a global const.
 
-        function initializeApp() {
-            populateSelect(topicSelect, topicNames, 'airport');
-            populateSelect(nativeLangSelect, languageNames, 'de');
-            populateSelect(targetLangSelect, languageNames, 'en');
-            generateBtn.addEventListener('click', generateText);
-            randomBtn.addEventListener('click', selectRandomTopic);
-            generateText();
-        }
+        // Populate UI language select first
+        populateSelect(uiLangSelect, languageDisplayNames, "en"); // Default UI to English
 
-        document.addEventListener('DOMContentLoaded', initializeApp);
+        // Add event listener for UI language change
+        uiLangSelect.addEventListener("change", () =>
+          updateUIText(uiLangSelect.value)
+        );
+
+        // Populate other selects (topic names will now use the selected UI language)
+        populateSelect(topicSelect, topicNames, "booking_flight");
+        populateSelect(nativeLangSelect, languageDisplayNames, "en");
+        populateSelect(targetLangSelect, languageDisplayNames, "de");
+
+        // Add event listeners for topic, native, and target language changes
+        topicSelect.addEventListener("change", generateText);
+        nativeLangSelect.addEventListener("change", generateText);
+        targetLangSelect.addEventListener("change", generateText);
+
+        // Initial generation and UI text update
+        updateUIText(uiLangSelect.value); // Apply initial UI language
+        generateText(); // Generate content based on initial selections
+      }
+
+      document.addEventListener("DOMContentLoaded", initializeApp);
     </script>
-</body>
+  </body>
 </html>
-
