@@ -31,13 +31,28 @@
         opacity: 0.7;
         animation: wave 1s infinite linear;
       }
-      .soundwave rect:nth-child(2) { animation-delay: 0.2s; }
-      .soundwave rect:nth-child(3) { animation-delay: 0.4s; }
-      .soundwave rect:nth-child(4) { animation-delay: 0.6s; }
-      .soundwave rect:nth-child(5) { animation-delay: 0.8s; }
+      .soundwave rect:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .soundwave rect:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+      .soundwave rect:nth-child(4) {
+        animation-delay: 0.6s;
+      }
+      .soundwave rect:nth-child(5) {
+        animation-delay: 0.8s;
+      }
       @keyframes wave {
-        0%, 100% { height: 6px; y: 12px; }
-        50% { height: 18px; y: 0px; }
+        0%,
+        100% {
+          height: 6px;
+          y: 12px;
+        }
+        50% {
+          height: 18px;
+          y: 0px;
+        }
       }
     </style>
   </head>
@@ -53,13 +68,18 @@
           Trovl
         </h1>
         <p class="text-lg md:text-xl text-slate-400" data-key="appSubtitle">
-          Lerne neue Vokabeln direkt im Kontext.
+          Travel the word.
         </p>
       </header>
 
       <!-- Hide Menu Button -->
       <div class="flex justify-start mb-4">
-        <button id="toggle-menu-btn" class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded shadow transition">᎒</button>
+        <button
+          id="toggle-menu-btn"
+          class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded shadow transition"
+        >
+          ᎒
+        </button>
       </div>
       <!-- Controls Card -->
       <div
@@ -188,31 +208,22 @@
     <script>
       // --- DATA STORE ---
       const content = {
+        // --- Book a flight ---
         booking_flight: {
           base: {
-            de: '"Dieses Jahr," erklärte ich, "werde ich endlich eine große Reise machen! "Meine Augen schweiften über den Globus, während ich von Abenteuern träumte. Der erste Schritt war natürlich die Wahl einer geeigneten {airline} oder eines {carrier}. Ich wollte eine mit gutem Ruf und idealerweise einem vernünftigen {airfare}. Ich suchte nicht irgendeine Reise; ich wollte ein internationales Abenteuer. "Kein {domestic_flight} dieses Mal für mich," murmelte ich und stellte mir ferne Länder vor. <br><br>Ich rief eine Vergleichswebsite auf und filterte nach {international_flights}. Die Preise schwankten stark. Einige Fluggesellschaften boten verlockende Angebote für ein {one_way_ticket}, aber ich wusste, dass ich irgendwann zurückkehren musste, also war ein {round_trip_ticket} unerlässlich. Ich fand ein tolles Angebot, das ein {e_ticket} beinhaltete, was praktisch war - kein Papier, das man verlieren konnte! <br><br>Nach ein wenig Recherche und Überprüfung der Bewertungen für meinen gewählten {carrier} klickte ich zuversichtlich auf „Buchen“. Die Aufregung stieg, als ich mir meine bevorstehende Reise vorstellte, da ich wusste, dass ich meine Passage zu einem weit entfernten Ziel gesichert hatte.',
-            en: '"This year," I declared, "I\'m finally going on a big trip!" My eyes scanned the globe, dreaming of adventure. The first step, of course, was choosing an {airline} or {carrier}. I wanted one with a good reputation and, ideally, a reasonable {airfare}. I wasn\'t just looking for any trip; I wanted an international adventure. "No {domestic_flight} for me this time," I muttered, imagining distant lands. I pulled up a comparison website, filtering for {international_flights}. The prices varied wildly. Some airlines offered tempting deals for a {one_way_ticket}, but I knew I\'d eventually need to return, so a {round_trip_ticket} was essential. I found a great deal that included an {e_ticket}, which was convenient - no paper to lose! After a bit more research and checking reviews for my chosen {carrier}, I confidently clicked "book." The excitement bubbled as I imagined my upcoming journey, knowing I had secured my passage to a far-off destination.',
-            es: '"Este año", declaré, "¡finalmente voy a hacer un gran viaje!" Mis ojos escanearon el globo, soñando con aventuras. El primer paso, por supuesto, era elegir una {airline} o {carrier}. Quería una con buena reputación e, idealmente, una {airfare} razonable. No estaba buscando cualquier viaje; quería una aventura {international flight}. "Esta vez no voy a tomar un {domestic_flight}", murmuré, imaginando tierras lejanas. Abrí un sitio web de comparación, filtrando por {international_flights}. Los precios variaban enormemente. Algunas aerolíneas ofrecían ofertas tentadoras para un {one_way_ticket}, pero sabía que eventualmente necesitaría regresar, así que un {round_trip_ticket} era esencial. Encontré una gran oferta que incluía un {e_ticket}, lo cual era conveniente, ¡nada de papel que perder! Después de investigar un poco más y revisar las reseñas de mi {carrier} elegido, hice clic en "reservar" con confianza. La emoción burbujeó mientras imaginaba mi próximo viaje, sabiendo que había asegurado mi pasaje a un destino lejano.',
-            fr: "\"Cette année\", ai-je déclaré, \"je vais enfin faire un grand voyage !\" Mes yeux ont balayé le globe, rêvant d'aventure. La première étape, bien sûr, était de choisir une {airline} ou un {carrier}. J'en voulais une avec une bonne réputation et, idéalement, un {airfare} raisonnable. Je ne cherchais pas n'importe quel voyage ; je voulais une aventure en {international flight}. \"Pas de {domestic_flight} pour moi cette fois\", ai-je murmuré, imaginant des terres lointaines. J'ai ouvert un site web de comparaison, filtrant par {international_flights}. Les prix variaient énormément. Certaines compagnies aériennes offraient des offres alléchantes pour un {one_way_ticket}, mais je savais que j'aurais finalement besoin de revenir, donc un {round_trip_ticket} était essentiel. J'ai trouvé une excellente offre qui incluait un {e_ticket}, ce qui était pratique - pas de papier à perdre ! Après quelques recherches supplémentaires et vérifications des avis pour mon {carrier} choisi, j'ai cliqué sur \"réserver\" avec confiance. L'excitation bouillonnait alors que j'imaginais mon voyage à venir, sachant que j'avais sécurisé mon passage vers une destination lointaine.",
-            it: '"Quest\'anno," ho dichiarato, "farò finalmente un grande viaggio!" I miei occhi hanno scrutato il globo, sognando l\'avventura. Il primo passo, ovviamente, è stato scegliere una {airline} o un {carrier}. Ne volevo una con una buona reputazione e, idealmente, una {airfare} ragionevole. Non stavo cercando un viaggio qualsiasi; volevo un\'avventura {international flight}. "Niente {domestic_flight} per me questa volta," ho mormorato, immaginando terre lontane. Ho aperto un sito web di confronto, filtrando per {international_flights}. I prezzi variavano enormemente. Alcune compagnie aeree offrivano offerte allettanti per un {one_way_ticket}, ma sapevo che alla fine avrei dovuto tornare, quindi un {round_trip_ticket} era essenziale. Ho trovato un\'ottima offerta che includeva un {e_ticket}, il che era comodo - niente carta da perdere! Dopo qualche ricerca in più e aver controllato le recensioni per il mio {carrier} scelto, ho cliccato su "prenota" con fiducia. L\'eccitazione ribolliva mentre immaginavo il mio prossimo viaggio, sapendo di aver assicurato il mio passaggio verso una destinazione lontana.',
-            cs: '"Letos," prohlásil jsem, "konečně pojedu na velký výlet!" Mé oči přelétly po glóbu a snily o dobrodružství. Prvním krokem bylo samozřejmě vybrat si {airline} nebo {carrier}. Chtěl jsem takovou s dobrou pověstí a ideálně s rozumným {airfare}. Nehledal jsem jen nějaký výlet; chtěl jsem mezinárodní dobrodružství. "Tentokrát žádný {domestic_flight} pro mě," zamumlal jsem si a představoval si vzdálené země. Otevřel jsem si srovnávací web a filtroval podle {international_flights}. Ceny se divoce lišily. Některé letecké společnosti nabízely lákavé nabídky na {one_way_ticket}, ale věděl jsem, že se budu muset nakonec vrátit, takže {round_trip_ticket} byl nezbytný. Našel jsem skvělou nabídku, která zahrnovala {e_ticket}, což bylo pohodlné - žádný papír, který bych mohl ztratit! Po dalším výzkumu a kontrole recenzí mého vybraného {carrier} jsem s jistotou klikl na "rezervovat". Vzrušení stoupalo, když jsem si představoval svou nadcházející cestu, věděl jsem, že mám zajištěný průchod do daleké destinace.',
+            en: "To book a flight, first choose an {airline_carrier}. Consider factors like {airfare}, routes, and service.<br><br>Decide on your travel type: a {one_way_ticket} for a single journey or a {round_trip_ticket} for a return journey. Specify if it's a {domestic_flight} within a country or an {international_flight} between countries.<br><br>Upon successful booking and payment, you will receive an {e_ticket}, which serves as your proof of purchase and contains all flight details.<br><br>",
+            de: "Um einen Flug zu buchen, wählen Sie zunächst eine {airline_carrier}. Berücksichtigen Sie Faktoren wie {airfare}, Routen und Service.<br><br>Entscheiden Sie sich für Ihren Reisetyp: ein {one_way_ticket} für eine einfache Reise oder ein {round_trip_ticket} für eine Hin- und Rückreise. Geben Sie an, ob es sich um einen {domestic_flight} innerhalb eines Landes oder einen {international_flight} zwischen Ländern handelt.<br><br>Nach erfolgreicher Buchung und Bezahlung erhalten Sie ein {e_ticket}, das als Kaufnachweis dient und alle Flugdaten enthält.<br><br>",
+            es: "Para reservar un vuelo, primero elija una {airline_carrier}. Considere factores como la {airfare}, las rutas y el servicio.<br><br>Decida su tipo de viaje: un {one_way_ticket} para un solo trayecto o un {round_trip_ticket} para un viaje de ida y vuelta. Especifique si es un {domestic_flight} dentro de un país o un {international_flight} entre países.<br><br>Tras una reserva y pago exitosos, recibirá un {e_ticket}, que sirve como comprobante de compra y contiene todos los detalles del vuelo.<br><br>",
+            fr: "Pour réserver un vol, choisissez d'abord une {airline_carrier}. Prenez en compte des facteurs tels que le {airfare}, les itinéraires et le service.<br><br>Décidez de votre type de voyage : un {one_way_ticket} pour un aller simple ou un {round_trip_ticket} pour un aller-retour. Précisez s'il s'agit d'un {domestic_flight} à l'intérieur d'un pays ou d'un {international_flight} entre des pays.<br><br>Après une réservation et un paiement réussis, vous recevrez un {e_ticket}, qui sert de preuve d'achat et contient tous les détails du vol.<br><br>",
+            it: "Per prenotare un volo, scegli prima una {airline_carrier}. Considera fattori come il {airfare}, le rotte e il servizio.<br><br>Decidi il tipo di viaggio: un {one_way_ticket} per un viaggio di sola andata o un {round_trip_ticket} per un viaggio di andata e ritorno. Specifica se si tratta di un {domestic_flight} all'interno di un paese o di un {international_flight} tra paesi.<br><br>Dopo una prenotazione e un pagamento riusciti, riceverai un {e_ticket}, che funge da prova d'acquisto e contiene tutti i dettagli del volo.<br><br>",
           },
           vocab: {
-            airline: {
+            airline_carrier: {
               de: "Fluggesellschaft",
               en: "airline",
               es: "aerolínea",
               fr: "compagnie aérienne",
               it: "compagnia aerea",
-              cs: "letecká společnost",
-            },
-            carrier: {
-              de: "Fluggesellschaft",
-              en: "carrier",
-              es: "aerolínea",
-              fr: "compagnie aérienne",
-              it: "compagnia aerea",
-              cs: "dopravce",
             },
             airfare: {
               de: "Flugpreis",
@@ -220,23 +231,6 @@
               es: "tarifa aérea",
               fr: "tarif aérien",
               it: "tariffa aerea",
-              cs: "letecké jízdné",
-            },
-            domestic_flight: {
-              de: "Inlandsflug",
-              en: "domestic flight",
-              es: "vuelo nacional",
-              fr: "vol intérieur",
-              it: "volo nazionale",
-              cs: "vnitrostátní let",
-            },
-            international_flights: {
-              de: "Internationale Flüge",
-              en: "international flights",
-              es: "vuelos internacionales",
-              fr: "vols internationaux",
-              it: "voli internazionali",
-              cs: "mezinárodní lety",
             },
             one_way_ticket: {
               de: "Einfaches Ticket",
@@ -244,15 +238,27 @@
               es: "billete de ida",
               fr: "billet aller simple",
               it: "biglietto di sola andata",
-              cs: "jednosměrná jízdenka",
             },
             round_trip_ticket: {
-              de: "Boarding",
-              en: "boarding",
-              es: "embarque",
-              fr: "embarquement",
-              it: "imbarco",
-              cs: "nástup",
+              de: "Rückflugticket",
+              en: "round-trip ticket",
+              es: "billete de ida y vuelta",
+              fr: "billet aller-retour",
+              it: "biglietto di andata e ritorno",
+            },
+            domestic_flight: {
+              en: "domestic flight",
+              de: "Inlandsflug",
+              es: "vuelo nacional",
+              fr: "vol intérieur",
+              it: "volo nazionale",
+            },
+            international_flight: {
+              de: "Internationaler Flug",
+              en: "international flight",
+              es: "vuelo internacional",
+              fr: "vol international",
+              it: "volo internazionale",
             },
             e_ticket: {
               de: "E-Ticket",
@@ -260,10 +266,136 @@
               es: "billete electrónico",
               fr: "billet électronique",
               it: "e-ticket",
-              cs: "elektronická jízdenka",
             },
           },
         },
+
+        // --- At the airport ---
+        airport: {
+          base: {
+            en: "At the airport {terminal}, travelers proceed to the {check_in_counter_desk} to {check_in} for their flights. They present {ID_identification} and receive a {boarding_pass}.<br><br>{luggage_baggage} is either {checked_baggage} or a {carry_on_bag}. Passengers must adhere to the {baggage_allowance} to avoid {overweight_oversized} fees.<br><br>After check-in, everyone goes through {security_check_screening} to ensure no {prohibited_items} are brought on board. International travel requires passing through {passport_control} and {customs}, where passengers may need to {declare} certain goods.<br><br>",
+            de: "Am {terminal} gehen Reisende zum {check_in_counter_desk}, um für ihre Flüge einzuchecken. Sie legen ihren {ID_identification} vor und erhalten eine {boarding_pass}.<br><br>{luggage_baggage} ist entweder {checked_baggage} oder ein {carry_on_bag}. Passagiere müssen die {baggage_allowance} einhalten, um Gebühren für {overweight_oversized} zu vermeiden.<br><br>Nach dem Check-in geht jeder durch die {security_check_screening}, um sicherzustellen, dass keine {prohibited_items} an Bord gebracht werden. Internationale Reisen erfordern das Passieren der {passport_control} und des {customs}, wo Passagiere bestimmte Waren möglicherweise {declare} müssen.<br><br>",
+            es: "En el aeropuerto {terminal}, los viajeros se dirigen al {check_in_counter_desk} para {check_in} sus vuelos. Presentan su {ID_identification} y reciben una {boarding_pass}.<br><br>{luggage_baggage} es ya sea {checked_baggage} o una {carry_on_bag}. Los pasajeros deben adherirse a la {baggage_allowance} para evitar tarifas por {overweight_oversized}.<br><br>Después del check-in, todos pasan por el {security_check_screening} para asegurar que no se lleven a bordo {prohibited_items}. Los viajes internacionales requieren pasar por el {passport_control} y la {customs}, donde los pasajeros pueden necesitar {declare} ciertos bienes.<br><br>",
+            fr: "À l'aéroport {terminal}, les voyageurs se dirigent vers le {check_in_counter_desk} pour {check_in} leurs vols. Ils présentent leur {ID_identification} et reçoivent une {boarding_pass}.<br><br>{luggage_baggage} est soit {checked_baggage} soit un {carry_on_bag}. Les passagers doivent respecter la {baggage_allowance} pour éviter les frais de {overweight_oversized}.<br><br>Après l'enregistrement, tout le monde passe par le {security_check_screening} pour s'assurer qu'aucun {prohibited_items} n'est embarqué. Les voyages internationaux nécessitent de passer par le {passport_control} et la {customs}, où les passagers peuvent devoir {declare} certains biens.<br><br>",
+            it: "All'aeroporto {terminal}, i viaggiatori si recano al {check_in_counter_desk} per {check_in} i loro voli. Presentano il loro {ID_identification} e ricevono una {boarding_pass}.<br><br>{luggage_baggage} è o {checked_baggage} o un {carry_on_bag}. I passeggeri devono rispettare la {baggage_allowance} per evitare tariffe per {overweight_oversized}.<br><br>Dopo il check-in, tutti passano attraverso il {security_check_screening} per assicurarsi che non vengano portati a bordo {prohibited_items}. I viaggi internazionali richiedono di passare attraverso il {passport_control} e la {customs}, dove i passeggeri potrebbero dover {declare} determinati beni.<br><br>",
+          },
+        },
+        vocab: {
+          terminal: {
+            de: "Terminal",
+            en: "terminal",
+            es: "terminal",
+            fr: "terminal",
+            it: "terminale",
+          },
+          check_in_counter_desk: {
+            de: "Check-in-Schalter",
+            en: "check-in counter/desk",
+            es: "mostrador de facturación",
+            fr: "comptoir d'enregistrement",
+            it: "banco del check-in",
+          },
+          check_in: {
+            de: "einchecken",
+            en: "checking in",
+            es: "facturar",
+            fr: "enregistrement",
+            it: "check-in",
+          },
+          ID_identification: {
+            de: "Ausweis",
+            en: "ID/identification",
+            es: "identificación",
+            fr: "carte d'identité/identification",
+            it: "carta d'identità/identificazione",
+          },
+          boarding_pass: {
+            de: "Boardingpass",
+            en: "boarding pass",
+            es: "tarjeta de embarque",
+            fr: "carte d'embarquement",
+            it: "carta d'imbarco",
+          },
+          checking: {
+            de: "einchecken",
+            en: "checking",
+            es: "facturando",
+            fr: "enregistrement",
+            it: "check-in",
+          },
+          luggage_baggage: {
+            de: "Gepäck",
+            en: "luggage/baggage",
+            es: "equipaje",
+            fr: "bagages",
+            it: "bagaglio",
+          },
+          checked_baggage: {
+            de: "aufgegebenes Gepäck",
+            en: "checked baggage",
+            es: "equipaje facturado",
+            fr: "bagages enregistrés",
+            it: "bagaglio registrato",
+          },
+          carry_on_bag: {
+            de: "Handgepäck",
+            en: "carry-on bag",
+            es: "equipaje de mano",
+            fr: "bagage à main",
+            it: "bagaglio a mano",
+          },
+          baggage_allowance: {
+            de: "Freigepäck",
+            en: "baggage allowance",
+            es: "franquicia de equipaje",
+            fr: "franchise de bagages",
+            it: "franchigia bagaglio",
+          },
+          overweight_oversized: {
+            de: "Übergewicht/Übergröße",
+            en: "overweight/oversized",
+            es: "sobrecarga/sobredimensionado",
+            fr: "surdimensionné/surpoids",
+            it: "sovrappeso/sovradimensionato",
+          },
+          security_check_screening: {
+            de: "Sicherheitskontrolle",
+            en: "security check/screening",
+            es: "control de seguridad",
+            fr: "contrôle de sécurité",
+            it: "controllo di sicurezza",
+          },
+          prohibited_items: {
+            de: "verbotene Gegenstände",
+            en: "prohibited items",
+            es: "objetos prohibidos",
+            fr: "objets interdits",
+            it: "oggetti proibiti",
+          },
+          passport_control: {
+            de: "Passkontrolle",
+            en: "passport control",
+            es: "control de pasaportes",
+            fr: "contrôle des passeports",
+            it: "controllo passaporti",
+          },
+          customs: {
+            de: "Zoll",
+            en: "customs",
+            es: "aduana",
+            fr: "douane",
+            it: "dogana",
+          },
+          declare: {
+            de: "anmelden",
+            en: "declare",
+            es: "declarar",
+            fr: "déclarer",
+            it: "dichiarare",
+          },
+        },
+
+        // --- At the restaurant ---
         restaurant: {
           base: {
             de: "Guten Abend, wir haben eine {reservation} für zwei Personen. Könnten wir bitte die {menu} haben? Als {starter} nehme ich den Salat und als {main_course} das Schnitzel. Zum Trinken hätte ich gerne ein stilles {water}.",
@@ -484,7 +616,13 @@
           es: "Reservar un Vuelo",
           fr: "Réserver un Vol",
           it: "Prenotare un Volo",
-          cs: "Rezervace Létadla",
+        },
+        airport: {
+          de: "Am Flughafen",
+          en: "At the Airport",
+          es: "En el Aeropuerto",
+          fr: "À l'aéroport",
+          it: "All'Aeroporto",
         },
         restaurant: {
           de: "Im Restaurant",
@@ -531,7 +669,6 @@
           es: "Spanisch",
           fr: "Französisch",
           it: "Italienisch",
-          cs: "Tschechisch",
         },
         en: {
           de: "German",
@@ -539,21 +676,20 @@
           es: "Spanish",
           fr: "French",
           it: "Italian",
-          cs: "Czech",},
+        },
         es: {
           de: "Alemán",
           en: "Inglés",
           es: "Español",
           fr: "Francés",
           it: "Italiano",
-          cs: "Checo",},
+        },
         fr: {
           de: "Allemand",
           en: "Anglais",
           es: "Espagnol",
           fr: "Français",
           it: "Italien",
-          cs: "Tchèque",
         },
         it: {
           de: "Tedesco",
@@ -561,20 +697,12 @@
           es: "Spagnolo",
           fr: "Francese",
           it: "Italiano",
-          cs: "Ceco",},
-        cs: {
-          de: "Němčina",
-          en: "Angličtina",
-          es: "Španělština",
-          fr: "Francouzština",
-          it: "Italština",
-          cs: "Čeština",},
+        },
       };
 
       // --- UI TEXT TRANSLATIONS ---
       const uiTranslations = {
         de: {
-          appSubtitle: "Lerne neue Vokabeln direkt im Kontext.",
           uiLanguageLabel: "App Sprache",
           topicLabel: "Thema",
           yourLanguageLabel: "Deine Sprache",
@@ -586,10 +714,8 @@
           vocabListTitle: "Vokabelliste",
           originalTextTitle: "Originaltext",
           translationTextTitle: "Übersetzung",
-          topicPrefix: "Thema: ",
         },
         en: {
-          appSubtitle: "Learn new vocabulary in context.",
           uiLanguageLabel: "App Language",
           topicLabel: "Topic",
           yourLanguageLabel: "Your Language",
@@ -600,10 +726,8 @@
           vocabListTitle: "Vocabulary List",
           originalTextTitle: "Original Text",
           translationTextTitle: "Translation",
-          topicPrefix: "Topic: ",
         },
         es: {
-          appSubtitle: "Aprende nuevo vocabulario en contexto.",
           uiLanguageLabel: "Idioma de la aplicación",
           topicLabel: "Tema",
           yourLanguageLabel: "Tu Idioma",
@@ -615,10 +739,8 @@
           vocabListTitle: "Lista de Vocabulario",
           originalTextTitle: "Texto Original",
           translationTextTitle: "Traducción",
-          topicPrefix: "Tema: ",
         },
         fr: {
-          appSubtitle: "Apprenez du nouveau vocabulaire en contexte.",
           uiLanguageLabel: "Langue de l'application",
           topicLabel: "Sujet",
           yourLanguageLabel: "Votre langue",
@@ -630,10 +752,8 @@
           vocabListTitle: "Liste de vocabulaire",
           originalTextTitle: "Texte original",
           translationTextTitle: "Traduction",
-          topicPrefix: "Sujet : ",
         },
         it: {
-          appSubtitle: "Impara nuovo vocabolario nel contesto.",
           uiLanguageLabel: "Lingua dell'app",
           topicLabel: "Argomento",
           yourLanguageLabel: "La tua lingua",
@@ -645,21 +765,6 @@
           vocabListTitle: "Lista di vocaboli",
           originalTextTitle: "Testo originale",
           translationTextTitle: "Traduzione",
-          topicPrefix: "Argomento: ",
-        },
-        cs: {
-          appSubtitle: "Učte se novou slovní zásobu v kontextu.",
-          uiLanguageLabel: "Jazyk aplikace",
-          topicLabel: "Téma",
-          yourLanguageLabel: "Váš jazyk",
-          targetLanguageLabel: "Cílový jazyk",
-          errorMessageSameLanguage: "Vyberte prosím dva různé jazyky.",
-          errorTitle: "Chyba",
-          learningTextTitle: "Učební text",
-          vocabListTitle: "Seznam slovní zásoby",
-          originalTextTitle: "Originální text",
-          translationTextTitle: "Překlad",
-          topicPrefix: "Téma: ",
         },
       };
 
@@ -683,7 +788,6 @@
       );
 
       // --- FUNCTIONS ---
-
       function populateSelect(selectElement, data, selectedValue) {
         selectElement.innerHTML = "";
         const currentUILang = uiLangSelect.value || "en"; // Get current UI language
@@ -787,34 +891,83 @@
 
           mixedLangText = mixedLangText.replace(placeholder, replacementSpan);
 
-          fullNativeText = fullNativeText.replace(placeholder, replacementNative);
-          fullTargetText = fullTargetText.replace(placeholder, replacementTranslation);
+          fullNativeText = fullNativeText.replace(
+            placeholder,
+            replacementNative
+          );
+          fullTargetText = fullTargetText.replace(
+            placeholder,
+            replacementTranslation
+          );
         }
 
-        topicTitle.textContent = `${uiTranslations[currentUILang].topicPrefix}${topicNames[selectedTopic][currentUILang]}`;
+        topicTitle.textContent = `${topicNames[selectedTopic][currentUILang]}`;
+
+        // Add tooltips to 'to learn' words in learning text
+        let tooltipMixedLangText = topicData.base[selectedNativeLang];
+        for (const key in vocabulary) {
+          const nativeWord = vocabulary[key][selectedNativeLang];
+          const targetWord = vocabulary[key][selectedTargetLang];
+          tooltipMixedLangText = tooltipMixedLangText.replace(
+            new RegExp(`\\{${key}\\}`, "g"),
+            `<strong class="text-blue-400 font-semibold" title="${nativeWord}">${targetWord}</strong>`
+          );
+        }
 
         // Add playback button for learning text
-  learningText.innerHTML = `<span id="learning-text-content">${mixedLangText}</span><br><br><button id="play-learning-text" title="Play" class="ml-2 px-2 py-1 rounded bg-blue-600 hover:bg-blue-700 text-white flex items-center"><svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' viewBox='0 0 24 24'><path fill='currentColor' d='M8 5v14l11-7z'/></svg><span class="soundwave" style="display:none"><svg width="22" height="18" viewBox="0 0 22 18"><rect x="1" width="3" height="6" y="12"/><rect x="6" width="3" height="6" y="12"/><rect x="11" width="3" height="6" y="12"/><rect x="16" width="3" height="6" y="12"/></svg></span></button>`;
+        learningText.innerHTML = `<span id="learning-text-content">${tooltipMixedLangText}</span><button id="play-learning-text" title="Play" class="ml-2 px-2 py-1 rounded bg-blue-600 hover:bg-blue-700 text-white flex items-center"><svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' viewBox='0 0 24 24'><path fill='currentColor' d='M8 5v14l11-7z'/></svg><span class="soundwave" style="display:none"><svg width="22" height="18" viewBox="0 0 22 18"><rect x="1" width="3" height="6" y="12"/><rect x="6" width="3" height="6" y="12"/><rect x="11" width="3" height="6" y="12"/><rect x="16" width="3" height="6" y="12"/></svg></span></button>`;
 
         // Add event listener for learning text playback
         const playLearningBtn = document.getElementById("play-learning-text");
-        const soundwaveLearning = playLearningBtn.querySelector('.soundwave');
-        playLearningBtn.onclick = function() {
-          const text = document.getElementById("learning-text-content").innerText;
-          speakText(text, selectedTargetLang, soundwaveLearning);
+        const soundwaveLearning = playLearningBtn.querySelector(".soundwave");
+        playLearningBtn.onclick = function () {
+          const text = document.getElementById(
+            "learning-text-content"
+          ).innerText;
+          togglePlayStop(playLearningBtn, true);
+          speakText(text, selectedTargetLang, soundwaveLearning, function () {
+            togglePlayStop(playLearningBtn, false);
+          });
         };
 
         // Display native and target language titles using the UI language's translation of the language name
         nativeLangTitle.textContent = `${uiTranslations[currentUILang].originalTextTitle} (${languageDisplayNames[currentUILang][selectedNativeLang]})`;
-        nativeLangFullText.innerHTML = fullNativeText;
+        // Add playback button for native text
+        nativeLangFullText.innerHTML = `<span id="native-lang-full-text-content">${fullNativeText}</span><button id="play-native-lang-text" title="Play" class="ml-2 px-2 py-1 rounded bg-blue-600 hover:bg-blue-700 text-white flex items-center"><svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' viewBox='0 0 24 24'><path fill='currentColor' d='M8 5v14l11-7z'/></svg><span class="soundwave" style="display:none"><svg width="22" height="18" viewBox="0 0 22 18"><rect x="1" width="3" height="6" y="12"/><rect x="6" width="3" height="6" y="12"/><rect x="11" width="3" height="6" y="12"/><rect x="16" width="3" height="6" y="12"/></svg></span></button>`;
 
         targetLangTitle.textContent = `${uiTranslations[currentUILang].translationTextTitle} (${languageDisplayNames[currentUILang][selectedTargetLang]})`;
-        targetLangFullText.innerHTML = fullTargetText;
+        // Add playback button for translated text
+        targetLangFullText.innerHTML = `<span id="target-lang-full-text-content">${fullTargetText}</span><button id="play-target-lang-text" title="Play" class="ml-2 px-2 py-1 rounded bg-blue-600 hover:bg-blue-700 text-white flex items-center"><svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' viewBox='0 0 24 24'><path fill='currentColor' d='M8 5v14l11-7z'/></svg><span class="soundwave" style="display:none"><svg width="22" height="18" viewBox="0 0 22 18"><rect x="1" width="3" height="6" y="12"/><rect x="6" width="3" height="6" y="12"/><rect x="11" width="3" height="6" y="12"/><rect x="16" width="3" height="6" y="12"/></svg></span></button>`;
+        // Add event listeners for native and translated text playback
+        const playNativeBtn = document.getElementById("play-native-lang-text");
+        const soundwaveNative = playNativeBtn.querySelector(".soundwave");
+        playNativeBtn.onclick = function () {
+          const text = document.getElementById(
+            "native-lang-full-text-content"
+          ).innerText;
+          togglePlayStop(playNativeBtn, true);
+          speakText(text, selectedNativeLang, soundwaveNative, function () {
+            togglePlayStop(playNativeBtn, false);
+          });
+        };
+
+        const playTargetBtn = document.getElementById("play-target-lang-text");
+        const soundwaveTarget = playTargetBtn.querySelector(".soundwave");
+        playTargetBtn.onclick = function () {
+          const text = document.getElementById(
+            "target-lang-full-text-content"
+          ).innerText;
+          togglePlayStop(playTargetBtn, true);
+          speakText(text, selectedTargetLang, soundwaveTarget, function () {
+            togglePlayStop(playTargetBtn, false);
+          });
+        };
 
         vocabList.innerHTML = "";
         learnedWords.forEach((word, idx) => {
           const item = document.createElement("div");
-          item.className = "flex justify-between items-center bg-slate-700/50 p-3 rounded-md";
+          item.className =
+            "flex justify-between items-center bg-slate-700/50 p-3 rounded-md";
 
           //TODO: svg in project folder. no internet needed
           item.innerHTML = `
@@ -831,26 +984,44 @@
         });
 
         // Add event listeners for vocab playback
-        vocabList.querySelectorAll('.play-vocab').forEach(btn => {
-          const soundwave = btn.querySelector('.soundwave');
-          btn.onclick = function() {
-            const idx = btn.getAttribute('data-idx');
+        vocabList.querySelectorAll(".play-vocab").forEach((btn) => {
+          const soundwave = btn.querySelector(".soundwave");
+          btn.onclick = function () {
+            const idx = btn.getAttribute("data-idx");
             const word = learnedWords[idx].target;
-            speakText(word, selectedTargetLang, soundwave);
+            togglePlayStop(btn, true);
+            speakText(word, selectedTargetLang, soundwave, function () {
+              togglePlayStop(btn, false);
+            });
           };
         });
-      // --- WEB SPEECH API ---
-      function speakText(text, lang, soundwaveEl) {
-        if (!window.speechSynthesis) return;
-        const utter = new window.SpeechSynthesisUtterance(text);
-        utter.lang = lang;
-        window.speechSynthesis.cancel(); // Stop any current speech
-        if (soundwaveEl) soundwaveEl.style.display = 'inline-block';
-        utter.onend = utter.onerror = function() {
-          if (soundwaveEl) soundwaveEl.style.display = 'none';
-        };
-        window.speechSynthesis.speak(utter);
-      }
+        // --- WEB SPEECH API ---
+        function speakText(text, lang, soundwaveEl, onDone) {
+          if (!window.speechSynthesis) return;
+          const utter = new window.SpeechSynthesisUtterance(text);
+          utter.lang = lang;
+          window.speechSynthesis.cancel(); // Stop any current speech
+          if (soundwaveEl) soundwaveEl.style.display = "inline-block";
+          utter.onend = utter.onerror = function () {
+            if (soundwaveEl) soundwaveEl.style.display = "none";
+            if (typeof onDone === "function") onDone();
+          };
+          window.speechSynthesis.speak(utter);
+        }
+
+        // Toggle play/stop icon for button
+        function togglePlayStop(btn, isPlaying) {
+          const svg = btn.querySelector("svg");
+          if (!svg) return;
+          if (isPlaying) {
+            // Change to stop icon
+            svg.innerHTML =
+              '<rect x="6" y="6" width="12" height="12" rx="2" fill="currentColor"/>';
+          } else {
+            // Change to play icon
+            svg.innerHTML = '<path fill="currentColor" d="M8 5v14l11-7z"/>';
+          }
+        }
       }
 
       function initializeApp() {
@@ -882,16 +1053,16 @@
         generateText(); // Generate content based on initial selections
       }
 
-      document.addEventListener("DOMContentLoaded", function() {
+      document.addEventListener("DOMContentLoaded", function () {
         initializeApp();
         // Hide/show menu logic
-        const controlsCard = document.getElementById('controls-card');
-        const toggleMenuBtn = document.getElementById('toggle-menu-btn');
+        const controlsCard = document.getElementById("controls-card");
+        const toggleMenuBtn = document.getElementById("toggle-menu-btn");
         let menuVisible = true;
-        toggleMenuBtn.onclick = function() {
+        toggleMenuBtn.onclick = function () {
           menuVisible = !menuVisible;
-          controlsCard.style.display = menuVisible ? '' : 'none';
-          toggleMenuBtn.textContent = menuVisible ? '᎒' : '᎒';
+          controlsCard.style.display = menuVisible ? "" : "none";
+          toggleMenuBtn.textContent = menuVisible ? "᎒" : "᎒";
         };
       });
     </script>
