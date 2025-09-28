@@ -3,7 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Interaktive Sprach-Lern App</title>
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://cdn-icons-png.flaticon.com/128/826/826070.png"
+    />
+    <title>Trovl.</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -61,15 +66,24 @@
     <div class="container mx-auto px-4 py-8 md:py-12">
       <!-- Header -->
       <header class="text-center mb-4 md:mb-12">
-        <h1
-          class="text-4xl md:text-5xl font-bold text-white mb-2"
-          data-key="appTitle"
-        >
-          Trovl
-        </h1>
-        <p class="text-lg md:text-xl text-slate-400" data-key="appSubtitle">
+        <div class="flex items-center justify-center gap-3 mb-2">
+          <img
+            src="https://cdn-icons-png.flaticon.com/128/826/826070.png"
+            width="42"
+            height="42"
+            alt="App Icon"
+            style="box-shadow: 0 1px 4px #38bdf8; border-radius: 12px"
+          />
+          <h1
+            class="text-4xl md:text-5xl font-bold text-white"
+            data-key="appTitle"
+          >
+            Trovl
+          </h1>
+        </div>
+        <span class="text-lg md:text-xl text-slate-400" data-key="appSubtitle">
           Travel the word.
-        </p>
+        </span>
       </header>
 
       <!-- Hide Menu Button -->
@@ -120,34 +134,58 @@
             </select>
           </div>
           <!-- Native Language Selection -->
-          <div>
-            <label
-              for="native-lang-select"
-              class="block mb-2 text-sm font-medium text-slate-300"
-              data-key="yourLanguageLabel"
-              >Deine Sprache</label
+          <div
+            class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 col-span-2 justify-center"
+          >
+            <div class="flex-1 min-w-[120px]">
+              <label
+                for="native-lang-select"
+                class="block mb-2 text-sm font-medium text-slate-300"
+                data-key="yourLanguageLabel"
+                >Deine Sprache</label
+              >
+              <select
+                id="native-lang-select"
+                class="bg-slate-700 border border-slate-600 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+              >
+                <!-- Options will be populated by JS -->
+              </select>
+            </div>
+            <!-- Swap Button -->
+            <button
+              id="swap-lang-btn"
+              title="Sprachen tauschen"
+              class="bg-blue-600 hover:bg-blue-700 text-white rounded-full p-1 shadow-lg transition flex items-center justify-center"
+              style="
+                width: 32px;
+                height: 32px;
+                min-width: 32px;
+                min-height: 32px;
+                box-sizing: border-box;
+              "
             >
-            <select
-              id="native-lang-select"
-              class="bg-slate-700 border border-slate-600 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            >
-              <!-- Options will be populated by JS -->
-            </select>
-          </div>
-          <!-- Target Language Selection -->
-          <div>
-            <label
-              for="target-lang-select"
-              class="block mb-2 text-sm font-medium text-slate-300"
-              data-key="targetLanguageLabel"
-              >Zielsprache</label
-            >
-            <select
-              id="target-lang-select"
-              class="bg-slate-700 border border-slate-600 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            >
-              <!-- Options will be populated by JS -->
-            </select>
+              <img
+                src="https://cdn-icons-png.flaticon.com/128/10397/10397675.png"
+                alt="Swap Languages"
+                width="22"
+                height="22"
+                style="filter: drop-shadow(0 2px 8px #38bdf8); margin: 0"
+              />
+            </button>
+            <div class="flex-1 min-w-[120px]">
+              <label
+                for="target-lang-select"
+                class="block mb-2 text-sm font-medium text-slate-300"
+                data-key="targetLanguageLabel"
+                >Zielsprache</label
+              >
+              <select
+                id="target-lang-select"
+                class="bg-slate-700 border border-slate-600 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+              >
+                <!-- Options will be populated by JS -->
+              </select>
+            </div>
           </div>
         </div>
         <p id="error-message" class="text-red-400 text-center mt-4 text-sm"></p>
@@ -559,17 +597,17 @@
               fr: "escale",
               it: "scalo",
             },
-          }
+          },
         },
 
         // --- Plane Arrival ---
         plane_arrival: {
           base: {
-            en: 'Upon reaching your destination, proceed to the {arrivals} area. The {landed_arrival_time} will be displayed on screens.<br><br>Your next stop is {baggage_claim} to retrieve your checked luggage from the {carousel_conveyor_belt}. If you have multiple bags or heavy items, a {trolley_cart} can be very helpful.<br><br>In the unfortunate event that your baggage is missing, report it immediately to the {lost_and_found} office.<br><br>',
-            de: 'Nach Erreichen Ihres Ziels begeben Sie sich zum Bereich {arrivals}. Die {landed_arrival_time} wird auf den Bildschirmen angezeigt.<br><br>Ihr nächster Halt ist die {baggage_claim}, um Ihr aufgegebenes Gepäck vom {carousel_conveyor_belt} abzuholen. Wenn Sie mehrere Taschen oder schwere Gegenstände haben, kann ein {trolley_cart} sehr hilfreich sein.<br><br>Im unglücklichen Fall, dass Ihr Gepäck fehlt, melden Sie es sofort beim {lost_and_found} Büro.<br><br>',
-            es: 'Al llegar a su destino, diríjase a la zona de {arrivals}. La {landed_arrival_time} se mostrará en las pantallas.<br><br>Su próxima parada es la {baggage_claim} para recoger su equipaje facturado de la {carousel_conveyor_belt}. Si tiene varias bolsas o artículos pesados, un {trolley_cart} puede ser muy útil.<br><br>En el desafortunado caso de que su equipaje falte, repórtelo inmediatamente a la oficina de {lost_and_found}.<br><br>',
-            fr: 'Une fois arrivé à destination, rendez-vous dans la zone des {arrivals}. L\'{landed_arrival_time} sera affichée sur les écrans.<br><br>Votre prochaine étape est la {baggage_claim} pour récupérer vos bagages enregistrés sur le {carousel_conveyor_belt}. Si vous avez plusieurs sacs ou des objets lourds, un {trolley_cart} peut être très utile.<br><br>Dans le cas malheureux où vos bagages seraient manquants, signalez-le immédiatement au bureau des {lost_and_found}.<br><br>',
-            it: 'Una volta raggiunta la destinazione, procedi all\'area degli {arrivals}. L\'{landed_arrival_time} sarà visualizzata sugli schermi.<br><br>La tua prossima fermata è la {baggage_claim} per ritirare il tuo bagaglio registrato dal {carousel_conveyor_belt}. Se hai più borse o oggetti pesanti, un {trolley_cart} può essere molto utile.<br><br>Nel caso sfortunato in cui il tuo bagaglio manchi, segnalalo immediatamente all\'ufficio {lost_and_found}.<br><br>',
+            en: "Upon reaching your destination, proceed to the {arrivals} area. The {landed_arrival_time} will be displayed on screens.<br><br>Your next stop is {baggage_claim} to retrieve your checked luggage from the {carousel_conveyor_belt}. If you have multiple bags or heavy items, a {trolley_cart} can be very helpful.<br><br>In the unfortunate event that your baggage is missing, report it immediately to the {lost_and_found} office.<br><br>",
+            de: "Nach Erreichen Ihres Ziels begeben Sie sich zum Bereich {arrivals}. Die {landed_arrival_time} wird auf den Bildschirmen angezeigt.<br><br>Ihr nächster Halt ist die {baggage_claim}, um Ihr aufgegebenes Gepäck vom {carousel_conveyor_belt} abzuholen. Wenn Sie mehrere Taschen oder schwere Gegenstände haben, kann ein {trolley_cart} sehr hilfreich sein.<br><br>Im unglücklichen Fall, dass Ihr Gepäck fehlt, melden Sie es sofort beim {lost_and_found} Büro.<br><br>",
+            es: "Al llegar a su destino, diríjase a la zona de {arrivals}. La {landed_arrival_time} se mostrará en las pantallas.<br><br>Su próxima parada es la {baggage_claim} para recoger su equipaje facturado de la {carousel_conveyor_belt}. Si tiene varias bolsas o artículos pesados, un {trolley_cart} puede ser muy útil.<br><br>En el desafortunado caso de que su equipaje falte, repórtelo inmediatamente a la oficina de {lost_and_found}.<br><br>",
+            fr: "Une fois arrivé à destination, rendez-vous dans la zone des {arrivals}. L'{landed_arrival_time} sera affichée sur les écrans.<br><br>Votre prochaine étape est la {baggage_claim} pour récupérer vos bagages enregistrés sur le {carousel_conveyor_belt}. Si vous avez plusieurs sacs ou des objets lourds, un {trolley_cart} peut être très utile.<br><br>Dans le cas malheureux où vos bagages seraient manquants, signalez-le immédiatement au bureau des {lost_and_found}.<br><br>",
+            it: "Una volta raggiunta la destinazione, procedi all'area degli {arrivals}. L'{landed_arrival_time} sarà visualizzata sugli schermi.<br><br>La tua prossima fermata è la {baggage_claim} per ritirare il tuo bagaglio registrato dal {carousel_conveyor_belt}. Se hai più borse o oggetti pesanti, un {trolley_cart} può essere molto utile.<br><br>Nel caso sfortunato in cui il tuo bagaglio manchi, segnalalo immediatamente all'ufficio {lost_and_found}.<br><br>",
           },
           vocab: {
             arrivals: {
@@ -616,9 +654,247 @@
             },
           },
         },
-        
+
         // ----------------------------------------------------------------------
-        // --- Next top-level category: ---
+        // --- Top-level category: Travel by Bus---
+        // --- Bus Locations ---
+        bus_locations: {
+          base: {
+            en: "When traveling by bus, locate the nearest {bus_stop} or a {bus_shelter} for protection from the elements. For longer journeys or transfers, head to a {bus_station_bus_terminal} or an {interchange_transit_center}.<br><br>Check the {timetable_schedule} for your desired {route_number} and {destination}. You might take a {local_bus} for short trips, an {express_bus} for faster travel with fewer stops, or a {shuttle_bus} for specific routes like airport transfers. For longer distances between cities, a {coach_intercity_bus} is ideal. If you're out late, a {night_bus} might be available.<br><br>",
+            de: "Wenn Sie mit dem Bus reisen, suchen Sie die nächstgelegene {bus_stop} oder eine {bus_shelter} zum Schutz vor den Elementen. Für längere Reisen oder Transfers begeben Sie sich zu einer {bus_station_bus_terminal} oder einem {interchange_transit_center}.<br><br>Überprüfen Sie den {timetable_schedule} für Ihre gewünschte {route_number} und {destination}. Sie könnten einen {local_bus} für kurze Fahrten, einen {express_bus} für schnellere Reisen mit weniger Haltestellen oder einen {shuttle_bus} für bestimmte Routen wie Flughafentransfers nehmen. Für längere Strecken zwischen Städten ist ein {coach_intercity_bus} ideal. Wenn Sie spät unterwegs sind, könnte ein {night_bus} verfügbar sein.<br><br>",
+            es: "Cuando viaje en autobús, localice la {bus_stop} más cercana o una {bus_shelter} para protegerse de los elementos. Para viajes más largos o traslados, diríjase a una {bus_station_bus_terminal} o a un {interchange_transit_center}.<br><br>Consulte el {timetable_schedule} para su {route_number} y {destination} deseados. Puede tomar un {local_bus} para viajes cortos, un {express_bus} para viajes más rápidos con menos paradas, o un {shuttle_bus} para rutas específicas como traslados al aeropuerto. Para distancias más largas entre ciudades, un {coach_intercity_bus} es ideal. Si sale tarde, podría haber un {night_bus} disponible.<br><br>",
+            fr: "Lorsque vous voyagez en bus, localisez l'{bus_stop} la plus proche ou un {bus_shelter} pour vous protéger des éléments. Pour les trajets plus longs ou les transferts, rendez-vous à une {bus_station_bus_terminal} ou à un {interchange_transit_center}.<br><br>Vérifiez le {timetable_schedule} pour votre {route_number} et {destination} souhaités. Vous pouvez prendre un {local_bus} pour les trajets courts, un {express_bus} pour un voyage plus rapide avec moins d'arrêts, ou un {shuttle_bus} pour des itinéraires spécifiques comme les transferts aéroportuaires. Pour les longues distances entre les villes, un {coach_intercity_bus} est idéal. Si vous sortez tard, un {night_bus} pourrait être disponible.<br><br>",
+            it: "Quando viaggi in autobus, individua la {bus_stop} più vicina o una {bus_shelter} per proteggerti dagli agenti atmosferici. Per viaggi più lunghi o trasferimenti, dirigiti verso una {bus_station_bus_terminal} o un {interchange_transit_center}.<br><br>Controlla il {timetable_schedule} per il tuo {route_number} e {destination} desiderati. Potresti prendere un {local_bus} per viaggi brevi, un {express_bus} per viaggi più veloci con meno fermate, o un {shuttle_bus} per percorsi specifici come i trasferimenti aeroportuali. Per distanze più lunghe tra le città, un {coach_intercity_bus} è ideale. Se esci tardi, potrebbe essere disponibile un {night_bus}.<br><br>",
+          },
+          vocab: {
+            bus_stop: {
+              de: "Bushaltestelle",
+              en: "bus stop",
+              es: "parada de autobús",
+              fr: "arrêt de bus",
+              it: "fermata dell'autobus",
+            },
+            bus_shelter: {
+              de: "Buswartehalle",
+              en: "bus shelter",
+              es: "refugio de autobús",
+              fr: "abri de bus",
+              it: "pensilina dell'autobus",
+            },
+            bus_station_bus_terminal: {
+              de: "Busbahnhof/Bus-Terminal",
+              en: "bus station/bus terminal",
+              es: "estación de autobuses/terminal de autobuses",
+              fr: "gare routière/terminal de bus",
+              it: "stazione degli autobus/terminal degli autobus",
+            },
+            interchange_transit_center: {
+              de: "Umsteigebahnhof/Verkehrszentrum",
+            },
+            timetable_schedule: {
+              de: "Fahrplan",
+              en: "timetable/schedule",
+              es: "horario",
+              fr: "horaire",
+              it: "orario",
+            },
+            route_number: {
+              de: "Liniennummer",
+              en: "route number",
+              es: "número de ruta",
+              fr: "numéro de ligne",
+              it: "numero di percorso",
+            },
+            destination: {
+              de: "Ziel",
+              en: "destination",
+              es: "destino",
+              fr: "destination",
+              it: "destinazione",
+            },
+            local_bus: {
+              de: "Stadtbus",
+              en: "local bus",
+              es: "autobús local",
+              fr: "bus local",
+              it: "autobus locale",
+            },
+            express_bus: {
+              de: "Expressbus",
+              en: "express bus",
+              es: "autobús expreso",
+              fr: "bus express",
+              it: "autobus espresso",
+            },
+            shuttle_bus: {
+              de: "Shuttlebus",
+              en: "shuttle bus",
+              es: "autobús lanzadera",
+              fr: "navette",
+              it: "navetta",
+            },
+            coach_intercity_bus: {
+              de: "Reisebus/Intercity-Bus",
+              en: "coach/intercity bus",
+              es: "autobús de larga distancia/interurbano",
+              fr: "autocar/bus interurbain",
+              it: "pullman/autobus interurbano",
+            },
+            night_bus: {
+              de: "Nachtbus",
+              en: "night bus",
+              es: "autobús nocturno",
+              fr: "bus de nuit",
+              it: "autobus notturno",
+            },
+          },
+        },
+
+        tickets_fares: {
+          base: {
+            en: "To ride the bus, you'll need to pay the {fare} and obtain a {ticket}. You can purchase a {single_one_way} ticket for a single journey or a {return_round_trip} ticket for a round trip. For frequent travel, a {day_pass_travel_card} might be more economical.<br><br>Payment methods vary: some buses have a {fare_box} for cash, while others rely on a {ticket_machine} for purchases. Remember to {validate} your ticket if required. Many systems now accept {contactless} payments. If paying with cash, it's often helpful to have {exact_change}.<br><br>",
+            de: "Um den Bus zu fahren, müssen Sie den {fare} bezahlen und ein {ticket} erhalten. Sie können ein {single_one_way} Ticket für eine einfache Fahrt oder ein {return_round_trip} Ticket für eine Hin- und Rückfahrt kaufen. Für häufige Reisen könnte eine {day_pass_travel_card} wirtschaftlicher sein.<br><br>Die Zahlungsmethoden variieren: Einige Busse haben eine {fare_box} für Bargeld, während andere auf einen {ticket_machine} für den Kauf angewiesen sind. Denken Sie daran, Ihr Ticket zu {validate}, wenn dies erforderlich ist. Viele Systeme akzeptieren jetzt {contactless} Zahlungen. Wenn Sie bar bezahlen, ist es oft hilfreich, {exact_change} zu haben.<br><br>",
+            es: "Para viajar en autobús, necesitará pagar la {fare} y obtener un {ticket}. Puede comprar un billete de {single_one_way} para un solo viaje o un billete de {return_round_trip} para un viaje de ida y vuelta. Para viajes frecuentes, un {day_pass_travel_card} podría ser más económico.<br><br>Los métodos de pago varían: algunos autobuses tienen una {fare_box} para efectivo, mientras que otros dependen de una {ticket_machine} para las compras. Recuerde {validate} su billete si es necesario. Muchos sistemas ahora aceptan pagos {contactless}. Si paga en efectivo, a menudo es útil tener {exact_change}.<br><br>",
+            fr: "Pour prendre le bus, vous devrez payer le {fare} et obtenir un {ticket}. Vous pouvez acheter un billet {single_one_way} pour un trajet simple ou un billet {return_round_trip} pour un aller-retour. Pour les voyages fréquents, un {day_pass_travel_card} peut être plus économique.<br><br>Les méthodes de paiement varient : certains bus disposent d'une {fare_box} pour l'argent liquide, tandis que d'autres utilisent une {ticket_machine} pour les achats. N'oubliez pas de {validate} votre billet si nécessaire. De nombreux systèmes acceptent désormais les paiements {contactless}. Si vous payez en espèces, il est souvent utile d'avoir la {exact_change}.<br><br>",
+            it: "Per viaggiare in autobus, dovrai pagare la {fare} e ottenere un {ticket}. Puoi acquistare un biglietto {single_one_way} per un viaggio singolo o un biglietto {return_round_trip} per un viaggio di andata e ritorno. Per viaggi frequenti, un {day_pass_travel_card} potrebbe essere più economico.<br><br>I metodi di pagamento variano: alcuni autobus hanno una {fare_box} per contanti, mentre altri si affidano a una {ticket_machine} per gli acquisti. Ricorda di {validate} il tuo biglietto se necessario. Molti sistemi ora accettano pagamenti {contactless}. Se paghi in contanti, è spesso utile avere la {exact_change}.<br><br>",
+          },
+          vocab: {
+            fare: {
+              de: "Fahrpreis",
+              en: "fare",
+              es: "tarifa",
+              fr: "tarif",
+              it: "tariffa",
+            },
+            ticket: {
+              de: "Fahrschein",
+              en: "ticket",
+              es: "billete",
+              fr: "billet",
+              it: "biglietto",
+            },
+            single_one_way: {
+              de: "Einzelfahrschein",
+              en: "single/one-way",
+              es: "sencillo/de ida",
+              fr: "simple/aller simple",
+              it: "singolo/solo andata",
+            },
+            return_round_trip: {
+              de: "Rückfahrkarte",
+              en: "return/round-trip",
+              es: "de ida y vuelta",
+              fr: "aller-retour",
+              it: "andata e ritorno",
+            },
+            day_pass_travel_card: {
+              de: "Tageskarte/Reisekarte",
+              en: "day pass/travel card",
+              es: "pase diario/tarjeta de viaje",
+              fr: "pass journalier/carte de voyage",
+              it: "pass giornaliero/carta di viaggio",
+            },
+            fare_box: {
+              de: "Fahrpreisbox",
+              en: "fare box",
+              es: "caja de tarifas",
+              fr: "boîte tarifaire",
+              it: "cassa tariffe",
+            },
+            ticket_machine: {
+              de: "Fahrkartenautomat",
+              en: "ticket machine",
+              es: "máquina expendedora de billetes",
+              fr: "distributeur de billets",
+              it: "distributore di biglietti",
+            },
+            validate: {
+              de: "entwerten",
+              en: "validate",
+              es: "validar",
+              fr: "valider",
+              it: "convalidare",
+            },
+            contactless: {
+              de: "kontaktlos",
+              en: "contactless",
+              es: "sin contacto",
+              fr: "sans contact",
+              it: "contactless",
+            },
+            exact_change: {
+              de: "passendes Kleingeld",
+              en: "exact change",
+              es: "cambio exacto",
+              fr: "monnaie exacte",
+              it: "spiccioli esatti",
+            },
+          },
+        },
+
+        on_the_bus: {
+          base: {
+            en: "When your bus arrives, wait for passengers to {to_alight_to_get_off} before you {to_board_to_get_on}. Once inside, move down the {aisle} and find a seat, being mindful of {priority_seating} for those who need it.<br><br>Keep an eye on the {next_stop_display} to know when your stop is approaching. To signal your stop, press the {stop_request_button_bell}. The {driver} will then pull over at the next designated stop.<br><br>",
+            de: "Wenn Ihr Bus ankommt, warten Sie, bis die Passagiere {to_alight_to_get_off} sind, bevor Sie {to_board_to_get_on}. Gehen Sie einmal drinnen den {aisle} entlang und suchen Sie sich einen Sitzplatz, wobei Sie auf {priority_seating} für diejenigen achten, die ihn benötigen.<br><br>Behalten Sie die {next_stop_display} im Auge, um zu wissen, wann Ihre Haltestelle naht. Um Ihre Haltestelle zu signalisieren, drücken Sie den {stop_request_button_bell}. Der {driver} wird dann an der nächsten vorgesehenen Haltestelle anhalten.<br><br>",
+            es: "Cuando llegue su autobús, espere a que los pasajeros {to_alight_to_get_off} antes de {to_board_to_get_on}. Una vez dentro, avance por el {aisle} y busque un asiento, teniendo en cuenta los {priority_seating} para quienes lo necesiten.<br><br>Esté atento al {next_stop_display} para saber cuándo se acerca su parada. Para señalar su parada, presione el {stop_request_button_bell}. El {driver} se detendrá en la siguiente parada designada.<br><br>",
+            fr: "Lorsque votre bus arrive, attendez que les passagers {to_alight_to_get_off} avant de {to_board_to_get_on}. Une fois à l'intérieur, avancez dans l'{aisle} et trouvez un siège, en tenant compte des {priority_seating} pour ceux qui en ont besoin.<br><br>Gardez un œil sur le {next_stop_display} pour savoir quand votre arrêt approche. Pour signaler votre arrêt, appuyez sur le {stop_request_button_bell}. Le {driver} s'arrêtera alors au prochain arrêt désigné.<br><br>",
+            it: "Quando arriva il tuo autobus, aspetta che i passeggeri {to_alight_to_get_off} prima di {to_board_to_get_on}. Una volta all'interno, percorri il {aisle} e trova un posto a sedere, tenendo conto dei {priority_seating} per chi ne ha bisogno.<br><br>Tieni d'occhio il {next_stop_display} per sapere quando si avvicina la tua fermata. Per segnalare la tua fermata, premi il {stop_request_button_bell}. Il {driver} si fermerà alla prossima fermata designata.<br><br>",
+          },
+          vocab: {
+            to_alight_to_get_off: {
+              de: "aussteigen",
+              en: "to alight/to get off",
+              es: "bajarse",
+              fr: "descendre",
+              it: "scendere",
+            },
+            to_board_to_get_on: {
+              de: "einsteigen",
+              en: "to board/to get on",
+              es: "subirse",
+              fr: "monter",
+              it: "salire",
+            },
+            aisle: {
+              de: "Gang",
+              en: "aisle",
+              es: "pasillo",
+              fr: "allée",
+              it: "corridoio",
+            },
+            priority_seating: {
+              de: "Sitzplätze mit Vorrang",
+              en: "priority seating",
+              es: "asientos prioritarios",
+              fr: "places prioritaires",
+              it: "posti prioritari",
+            },
+            next_stop_display: {
+              de: "Anzeige der nächsten Haltestelle",
+              en: "next stop display",
+              es: "pantalla de la próxima parada",
+              fr: "affichage du prochain arrêt",
+              it: "display della prossima fermata",
+            },
+            stop_request_button_bell: {
+              de: "Haltewunschknopf/-glocke",
+              en: "stop request button/bell",
+              es: "botón/timbre de solicitud de parada",
+              fr: "bouton/sonnette d'arrêt demandé",
+              it: "pulsante/campanello di richiesta di fermata",
+            },
+            driver: {
+              de: "Fahrer/Fahrerin",
+              en: "driver",
+              es: "conductor/conductora",
+              fr: "chauffeur/chauffeuse",
+              it: "autista/autista donna",
+            },
+          },
+        },
+
+        // ----------------------------------------------------------------------
+        // --- Next top-level category: Dining Out ---
         // --- At the restaurant ---
         restaurant: {
           base: {},
@@ -644,7 +920,6 @@
 
       // --- DISPLAY NAMES ---
       const topicNames = {
-
         // --- Top-level Topic: Travel by Plane ---
         travel_by_plane: {
           en: "Travel by Plane",
@@ -693,7 +968,41 @@
           },
         },
 
-        // --- Next top-level Topic: Dining Out ---
+        // --- Top-level Topic: Travel by Bus ---
+        travel_by_bus: {
+          en: "Travel by Bus",
+          de: "Reisen mit dem Bus",
+          es: "Viajar en autobús",
+          fr: "Voyager en bus",
+          it: "Viaggiare in autobus",
+
+          // --- Sub-level Topics: Travel by Bus ---
+          subcategories: {
+            bus_locations: {
+              en: "Bus Locations",
+              de: "Busstandorte",
+              es: "Ubicaciones de autobuses",
+              fr: "Emplacements des bus",
+              it: "Posizioni degli autobus",
+            },
+            tickets_fares: {
+              en: "Tickets & Fares",
+              de: "Tickets & Fahrpreise",
+              es: "Boletos y tarifas",
+              fr: "Billets et tarifs",
+              it: "Biglietti e tariffe",
+            },
+            on_the_bus: {
+              en: "On the Bus",
+              de: "Im Bus",
+              es: "En el autobús",
+              fr: "Dans le bus",
+              it: "Sull'autobus",
+            },
+          },
+        },
+
+        // --- Top-level Topic: Travel by Placeholder ---
         next_category: {
           en: "Next Category (Placeholder)",
           de: "Nächste Kategorie (Platzhalter)",
@@ -707,7 +1016,7 @@
               de: "Nächste Unterkategorie (Platzhalter)",
               es: "Siguiente subcategoría (Marcador de posición)",
               fr: "Sous-catégorie suivante (espace réservé)",
-              it: "Prossima sottocategoria (segnaposto)"
+              it: "Prossima sottocategoria (segnaposto)",
             },
           },
         },
@@ -840,6 +1149,25 @@
       );
 
       // --- FUNCTIONS ---
+      // --- SWAP BUTTON LOGIC ---
+      document.addEventListener("DOMContentLoaded", function () {
+        const swapBtn = document.getElementById("swap-lang-btn");
+        if (swapBtn) {
+          swapBtn.addEventListener("click", function () {
+            const nativeSelect = document.getElementById("native-lang-select");
+            const targetSelect = document.getElementById("target-lang-select");
+            if (nativeSelect && targetSelect) {
+              const temp = nativeSelect.value;
+              nativeSelect.value = targetSelect.value;
+              targetSelect.value = temp;
+              // Trigger change events if needed
+              nativeSelect.dispatchEvent(new Event("change"));
+              targetSelect.dispatchEvent(new Event("change"));
+              generateText();
+            }
+          });
+        }
+      });
       function populateSelect(selectElement, data, selectedValue) {
         selectElement.innerHTML = "";
         const currentUILang = uiLangSelect.value || "en"; // Get current UI language
