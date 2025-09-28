@@ -395,6 +395,110 @@
           },
         },
 
+        // --- Departure & Boarding
+        departure_boarding: {
+          base: {
+            en: 'At the airport, check the {departures} board for your flight status. It will display your {depart_departure_time} and {gate} number.<br><br>Be aware of potential updates, such as a {gate_change}. Head to the {departure_lounge} near your assigned gate well before your {board_boarding_time}.<br><br>Listen for announcements, including the {final_call} for boarding. Flight statuses can vary: your flight might be {on_time}, {delayed}, or in unfortunate cases, {cancelled}.<br><br>',
+            de: 'Am Flughafen überprüfen Sie die {departures} Tafel auf den Status Ihres Fluges. Dort werden Ihre {depart_departure_time} und die {gate} Nummer angezeigt.<br><br>Seien Sie sich möglicher Aktualisierungen bewusst, wie z.B. einer {gate_change}. Gehen Sie rechtzeitig vor Ihrer {board_boarding_time} zur {departure_lounge} in der Nähe Ihres zugewiesenen Gates.<br><br>Achten Sie auf Durchsagen, einschließlich des {final_call} für das Boarding. Flugstatus können variieren: Ihr Flug könnte {on_time}, {delayed} oder im schlimmsten Fall {cancelled} sein.<br><br>',
+            es: 'En el aeropuerto, consulte el tablero de {departures} para conocer el estado de su vuelo. Mostrará su {depart_departure_time} y el número de {gate}.<br><br>Esté atento a posibles actualizaciones, como un {gate_change}. Diríjase a la {departure_lounge} cerca de su puerta asignada con suficiente antelación a su {board_boarding_time}.<br><br>Escuche los anuncios, incluido el {final_call} para el embarque. Los estados de los vuelos pueden variar: su vuelo podría estar {on_time}, {delayed} o, en casos desafortunados, {cancelled}.<br><br>',
+            fr: "À l'aéroport, consultez le tableau des {departures} pour connaître le statut de votre vol. Il affichera votre {depart_departure_time} et le numéro de {gate}.<br><br>Soyez attentif aux mises à jour potentielles, telles qu'un {gate_change}. Rendez-vous au {departure_lounge} près de votre porte assignée bien avant votre {board_boarding_time}.<br><br>Écoutez les annonces, y compris l'{final_call} pour l'embarquement. Les statuts des vols peuvent varier : votre vol peut être {on_time}, {delayed} ou, dans les cas malheureux, {cancelled}.<br><br>",
+            it: "All'aeroporto, controlla il tabellone delle {departures} per lo stato del tuo volo. Mostrerà il tuo {depart_departure_time} e il numero del {gate}.<br><br>Fai attenzione a possibili aggiornamenti, come un {gate_change}. Recati al {departure_lounge} vicino al tuo gate assegnato ben prima del tuo {board_boarding_time}.<br><br>Ascolta gli annunci, incluso il {final_call} per l'imbarco. Gli stati dei voli possono variare: il tuo volo potrebbe essere {on_time}, {delayed} o, in casi sfortunati, {cancelled}.<br><br>",
+          },
+          vocab: {
+            departures: {
+              de: "Abflugtafel",
+              en: "departures",
+              es: "salidas",
+              fr: "départs",
+              it: "partenze",
+            },
+            depart_departure_time: {
+              de: "Abflugzeit",
+              en: "departure time",
+              es: "hora de salida",
+              fr: "heure de départ",
+              it: "orario di partenza",
+            },
+            gate: {
+              de: "Gate",
+              en: "gate",
+              es: "puerta",
+              fr: "porte",
+              it: "gate",
+            },
+            gate_change: {
+              de: "Gate-Änderung",
+              en: "gate change",
+              es: "cambio de puerta",
+              fr: "changement de porte",
+              it: "cambio di gate",
+            },
+            departure_lounge: {
+              de: "Abflughalle",
+              en: "departure lounge",
+              es: "sala de embarque",
+              fr: "salle d'embarquement",
+              it: "sala partenze",
+            },
+            board_boarding_time: {
+              de: "Boarding-Zeit",
+              en: "boarding time",
+              es: "hora de embarque",
+              fr: "heure d'embarquement",
+              it: "orario di imbarco",
+            },
+            final_call: {
+              de: "letzter Aufruf",
+              en: "final call",
+              es: "último aviso",
+              fr: "dernier appel",
+              it: "ultimo avviso",
+            },
+            on_time: {
+              de: "pünktlich",
+              en: "on time",
+              es: "a tiempo",
+              fr: "à l'heure",
+              it: "in orario",
+            },
+            delayed: {
+              de: "verspätet",
+              en: "delayed",
+              es: "retrasado",
+              fr: "retardé",
+              it: "in ritardo",
+            },
+            cancelled: {
+              de: "annulliert",
+              en: "cancelled",
+              es: "cancelado",
+              fr: "annulé",
+              it: "cancellato",
+            },
+          },
+        },
+
+        // --- On the Plane ---
+        on_plane: {
+          base: {
+            en: ''
+          },
+          vocab: {
+
+          },
+        },
+
+        // --- Plane Arrival ---
+        plane_arrival: {
+          base: {
+
+          },
+          vocab: {
+
+          },
+        },
+
+
         // --- At the restaurant ---
         restaurant: {
           base: {
@@ -623,6 +727,27 @@
           es: "En el Aeropuerto",
           fr: "À l'aéroport",
           it: "All'Aeroporto",
+        },
+        departure_boarding: {
+          de: "Abflug & Boarding",
+          en: "Departure & Boarding",
+          es: "Salida y Embarque",
+          fr: "Départ et Embarquement",
+          it: "Partenza e Imbarco",
+        },
+        on_plane: {
+          de: "Im Flugzeug",
+          en: "On the Plane",
+          es: "En el Avión",
+          fr: "Dans l'avion",
+          it: "Sull'Aereo",
+        },
+        plane_arrival: {
+          de: "Ankunft des Flugzeugs",
+          en: "Plane Arrival",
+          es: "Llegada del Avión",
+          fr: "Arrivée de l'avion",
+          it: "Arrivo dell'Aereo",
         },
         restaurant: {
           de: "Im Restaurant",
