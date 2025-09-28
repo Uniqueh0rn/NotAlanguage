@@ -209,7 +209,6 @@
       // --- DATA STORE ---
       const content = {
         // --- Top-level category: Travel by Plane ---
-
         // --- Book a flight ---
         booking_flight: {
           base: {
@@ -483,19 +482,143 @@
         // --- On the Plane ---
         on_plane: {
           base: {
-            en: "",
+            en: "Once on board, find your assigned {cabin_seat}, whether it's an {aisle_seat} or a {window_seat}. Store your belongings in the {overhead_bin_locker}.<br><br>The {cabin_crew_flight_attendant} will provide safety instructions and service throughout the flight. The pilots operate the aircraft from the {cockpit}. Remember to {fasten_your_seatbelt} when instructed, especially during {turbulence}.<br><br>If your journey involves a {connecting_flight}, you'll have a {layover_stopover} at an intermediate airport before continuing to your final destination.<br><br>",
+            de: "Einmal an Bord, finden Sie Ihren zugewiesenen {cabin_seat}, sei es ein {aisle_seat} oder ein {window_seat}. Verstauen Sie Ihre Habseligkeiten im {overhead_bin_locker}.<br><br>Das {cabin_crew_flight_attendant} wird während des gesamten Fluges Sicherheitsanweisungen und Service bereitstellen. Die Piloten steuern das Flugzeug vom {cockpit}. Denken Sie daran, Ihren {fasten_your_seatbelt}, wenn Sie dazu aufgefordert werden, besonders bei {turbulence}.<br><br>Wenn Ihre Reise einen {connecting_flight} beinhaltet, haben Sie einen {layover_stopover} an einem Zwischenflughafen, bevor Sie zu Ihrem endgültigen Ziel weiterreisen.<br><br>",
+            es: "Una vez a bordo, encuentra tu {cabin_seat} asignado, ya sea un {aisle_seat} o un {window_seat}. Guarda tus pertenencias en el {overhead_bin_locker}.<br><br>La {cabin_crew_flight_attendant} proporcionará instrucciones de seguridad y servicio durante todo el vuelo. Los pilotos operan la aeronave desde la {cockpit}. Recuerda {fasten_your_seatbelt} cuando se te indique, especialmente durante la {turbulence}.<br><br>Si tu viaje incluye un {connecting_flight}, tendrás una {layover_stopover} en un aeropuerto intermedio antes de continuar a tu destino final.<br><br>",
+            fr: "Une fois à bord, trouvez votre {cabin_seat} assigné, qu'il s'agisse d'un {aisle_seat} ou d'un {window_seat}. Rangez vos affaires dans le {overhead_bin_locker}.<br><br>Le {cabin_crew_flight_attendant} fournira des instructions de sécurité et un service tout au long du vol. Les pilotes opèrent l'avion depuis le {cockpit}. N'oubliez pas de {fasten_your_seatbelt} lorsque cela vous est demandé, en particulier en cas de {turbulence}.<br><br>Si votre voyage comprend un {connecting_flight}, vous aurez une {layover_stopover} dans un aéroport intermédiaire avant de continuer vers votre destination finale.<br><br>",
+            it: "Una volta a bordo, trova il tuo {cabin_seat} assegnato, che sia un {aisle_seat} o un {window_seat}. Riponi i tuoi effetti personali nel {overhead_bin_locker}.<br><br>Il {cabin_crew_flight_attendant} fornirà istruzioni di sicurezza e servizio durante tutto il volo. I piloti operano l'aeromobile dalla {cockpit}. Ricorda di {fasten_your_seatbelt} quando ti viene indicato, specialmente durante la {turbulence}.<br><br>Se il tuo viaggio prevede un {connecting_flight}, avrai una {layover_stopover} in un aeroporto intermedio prima di proseguire verso la tua destinazione finale.<br><br>",
           },
-          vocab: {},
+          vocab: {
+            cabin_seat: {
+              de: "Kabinenplatz",
+              en: "cabin seat",
+              es: "asiento de cabina",
+              fr: "siège en cabine",
+              it: "posto in cabina",
+            },
+            aisle_seat: {
+              de: "Gangplatz",
+              en: "aisle seat",
+              es: "asiento de pasillo",
+              fr: "siège côté couloir",
+              it: "posto lato corridoio",
+            },
+            window_seat: {
+              de: "Fensterplatz",
+              en: "window seat",
+              es: "asiento junto a la ventana",
+              fr: "siège côté hublot",
+              it: "posto lato finestrino",
+            },
+            overhead_bin_locker: {
+              de: "Gepäckfach",
+              en: "overhead bin/locker",
+              es: "compartimento superior",
+              fr: "compartiment supérieur",
+              it: "vano superiore",
+            },
+            cabin_crew_flight_attendant: {
+              de: "Kabinenpersonal/Flugbegleiter",
+              en: "cabin crew/flight attendant",
+              es: "tripulación de cabina/asistente de vuelo",
+              fr: "équipage de cabine/hôtesse de l'air",
+              it: "equipaggio di cabina/assistente di volo",
+            },
+            cockpit: {
+              de: "Cockpit",
+              en: "cockpit",
+              es: "cabina de mando",
+              fr: "cockpit",
+              it: "cockpit",
+            },
+            fasten_your_seatbelt: {
+              de: "Sicherheitsgurt anlegen",
+              en: "fasten your seatbelt",
+              es: "abrocharse el cinturón de seguridad",
+              fr: "attachez votre ceinture de sécurité",
+              it: "allacciare la cintura di sicurezza",
+            },
+            turbulence: {
+              de: "Turbulenzen",
+              en: "turbulence",
+              es: "turbulencia",
+              fr: "turbulence",
+              it: "turbolenza",
+            },
+            connecting_flight: {
+              de: "Anschlussflug",
+              en: "connecting flight",
+              es: "vuelo de conexión",
+              fr: "vol de correspondance",
+              it: "volo di collegamento",
+            },
+            layover_stopover: {
+              de: "Zwischenstopp",
+              en: "layover/stopover",
+              es: "escala",
+              fr: "escale",
+              it: "scalo",
+            },
+          }
         },
 
         // --- Plane Arrival ---
         plane_arrival: {
-          base: {},
-          vocab: {},
+          base: {
+            en: 'Upon reaching your destination, proceed to the {arrivals} area. The {landed_arrival_time} will be displayed on screens.<br><br>Your next stop is {baggage_claim} to retrieve your checked luggage from the {carousel_conveyor_belt}. If you have multiple bags or heavy items, a {trolley_cart} can be very helpful.<br><br>In the unfortunate event that your baggage is missing, report it immediately to the {lost_and_found} office.<br><br>',
+            de: 'Nach Erreichen Ihres Ziels begeben Sie sich zum Bereich {arrivals}. Die {landed_arrival_time} wird auf den Bildschirmen angezeigt.<br><br>Ihr nächster Halt ist die {baggage_claim}, um Ihr aufgegebenes Gepäck vom {carousel_conveyor_belt} abzuholen. Wenn Sie mehrere Taschen oder schwere Gegenstände haben, kann ein {trolley_cart} sehr hilfreich sein.<br><br>Im unglücklichen Fall, dass Ihr Gepäck fehlt, melden Sie es sofort beim {lost_and_found} Büro.<br><br>',
+            es: 'Al llegar a su destino, diríjase a la zona de {arrivals}. La {landed_arrival_time} se mostrará en las pantallas.<br><br>Su próxima parada es la {baggage_claim} para recoger su equipaje facturado de la {carousel_conveyor_belt}. Si tiene varias bolsas o artículos pesados, un {trolley_cart} puede ser muy útil.<br><br>En el desafortunado caso de que su equipaje falte, repórtelo inmediatamente a la oficina de {lost_and_found}.<br><br>',
+            fr: 'Une fois arrivé à destination, rendez-vous dans la zone des {arrivals}. L\'{landed_arrival_time} sera affichée sur les écrans.<br><br>Votre prochaine étape est la {baggage_claim} pour récupérer vos bagages enregistrés sur le {carousel_conveyor_belt}. Si vous avez plusieurs sacs ou des objets lourds, un {trolley_cart} peut être très utile.<br><br>Dans le cas malheureux où vos bagages seraient manquants, signalez-le immédiatement au bureau des {lost_and_found}.<br><br>',
+            it: 'Una volta raggiunta la destinazione, procedi all\'area degli {arrivals}. L\'{landed_arrival_time} sarà visualizzata sugli schermi.<br><br>La tua prossima fermata è la {baggage_claim} per ritirare il tuo bagaglio registrato dal {carousel_conveyor_belt}. Se hai più borse o oggetti pesanti, un {trolley_cart} può essere molto utile.<br><br>Nel caso sfortunato in cui il tuo bagaglio manchi, segnalalo immediatamente all\'ufficio {lost_and_found}.<br><br>',
+          },
+          vocab: {
+            arrivals: {
+              de: "Ankunftsbereich",
+              en: "arrivals",
+              es: "llegadas",
+              fr: "arrivées",
+              it: "arrivi",
+            },
+            landed_arrival_time: {
+              de: "Ankunftszeit",
+              en: "arrival time",
+              es: "hora de llegada",
+              fr: "heure d'arrivée",
+              it: "orario di arrivo",
+            },
+            baggage_claim: {
+              de: "Gepäckausgabe",
+              en: "baggage claim",
+              es: "recogida de equipaje",
+              fr: "retrait des bagages",
+              it: "ritiro bagagli",
+            },
+            carousel_conveyor_belt: {
+              de: "Gepäckkarussell/ Förderband",
+              en: "carousel/conveyor belt",
+              es: "cinta transportadora",
+              fr: "tapis roulant",
+              it: "nastro trasportatore",
+            },
+            trolley_cart: {
+              de: "Gepäckwagen",
+              en: "trolley/cart",
+              es: "carrito",
+              fr: "chariot",
+              it: "carrello",
+            },
+            lost_and_found: {
+              de: "Fundbüro",
+              en: "lost and found",
+              es: "objetos perdidos",
+              fr: "objets trouvés",
+              it: "oggetti smarriti",
+            },
+          },
         },
-
+        
+        // ----------------------------------------------------------------------
         // --- Next top-level category: ---
-
         // --- At the restaurant ---
         restaurant: {
           base: {},
@@ -589,8 +712,8 @@
           },
         },
       };
-      // This object now holds the *display names* of the languages themselves,
-      // translated into each UI language.
+
+      // This object now holds the *display names* of the languages themselves, translated into each UI language.
       const languageDisplayNames = {
         de: {
           de: "Deutsch",
