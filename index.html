@@ -800,6 +800,7 @@
         const selectedTargetLang = targetLangSelect.value;
         const currentUILang = uiLangSelect.value || "en"; // Get current UI language
 
+        const contentDisplay = document.getElementById("content-display");
         if (selectedNativeLang === selectedTargetLang) {
           errorMessage.textContent =
             uiTranslations[currentUILang].errorMessageSameLanguage;
@@ -810,9 +811,11 @@
           targetLangFullText.textContent = "";
           nativeLangTitle.textContent = "";
           targetLangTitle.textContent = "";
+          contentDisplay.style.display = "none";
           return;
         } else {
           errorMessage.textContent = "";
+          contentDisplay.style.display = "block";
         }
 
         // Dynamically find topic display name for any category/subcategory structure
