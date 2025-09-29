@@ -750,7 +750,8 @@
           },
         },
 
-        tickets_fares: {
+        // --- Bus Tickets & Fares ---
+        bus_tickets_fares: {
           base: {
             en: "To ride the bus, you'll need to pay the {fare} and obtain a {ticket}. You can purchase a {single_one_way} ticket for a single journey or a {return_round_trip} ticket for a round trip. For frequent travel, a {day_pass_travel_card} might be more economical.<br><br>Payment methods vary: some buses have a {fare_box} for cash, while others rely on a {ticket_machine} for purchases. Remember to {validate} your ticket if required. Many systems now accept {contactless} payments. If paying with cash, it's often helpful to have {exact_change}.<br><br>",
             de: "Um den Bus zu fahren, müssen Sie den {fare} bezahlen und ein {ticket} erhalten. Sie können ein {single_one_way} Ticket für eine einfache Fahrt oder ein {return_round_trip} Ticket für eine Hin- und Rückfahrt kaufen. Für häufige Reisen könnte eine {day_pass_travel_card} wirtschaftlicher sein.<br><br>Die Zahlungsmethoden variieren: Einige Busse haben eine {fare_box} für Bargeld, während andere auf einen {ticket_machine} für den Kauf angewiesen sind. Denken Sie daran, Ihr Ticket zu {validate}, wenn dies erforderlich ist. Viele Systeme akzeptieren jetzt {contactless} Zahlungen. Wenn Sie bar bezahlen, ist es oft hilfreich, {exact_change} zu haben.<br><br>",
@@ -832,6 +833,7 @@
           },
         },
 
+        // --- On the Bus ---
         on_the_bus: {
           base: {
             en: "When your bus arrives, wait for passengers to {to_alight_to_get_off} before you {to_board_to_get_on}. Once inside, move down the {aisle} and find a seat, being mindful of {priority_seating} for those who need it.<br><br>Keep an eye on the {next_stop_display} to know when your stop is approaching. To signal your stop, press the {stop_request_button_bell}. The {driver} will then pull over at the next designated stop.<br><br>",
@@ -894,6 +896,299 @@
         },
 
         // ----------------------------------------------------------------------
+        // --- Top-level category: Travel by train---
+        // --- Train Locations ---
+        train_Station: {
+          base: {
+            en: "At the {train_station_union_station}, you'll find the {concourse} which leads to the {platform} where trains arrive and depart on the {track}. For tickets, visit the {ticket_office_ticket_counter} or use a {ticket_machine_kiosk}.<br><br>Check the {arrivals_board} and {departures_board} for train times and platform information. If you need assistance, an {information_desk} is usually available. For temporary storage, look for {left_luggage_luggage_lockers}.<br><br>Train types vary: a {local_train_commuter_train} serves urban areas, a {regional_train} connects nearby cities, and an {intercity_long_distance_train} covers greater distances. For speed, opt for a {high_speed_train}, or for overnight travel, a {sleeper_train_night_train}.<br><br>",
+            de: "Am {train_station_union_station} finden Sie die {concourse}, die zum {platform} führt, wo Züge auf dem {track} ankommen und abfahren. Für Tickets besuchen Sie das {ticket_office_ticket_counter} oder nutzen Sie einen {ticket_machine_kiosk}.<br><br>Überprüfen Sie die {arrivals_board} und {departures_board} für Zugzeiten und Bahnsteiginformationen. Wenn Sie Hilfe benötigen, ist normalerweise ein {information_desk} verfügbar. Für die vorübergehende Aufbewahrung suchen Sie nach {left_luggage_luggage_lockers}.<br><br>Zugtypen variieren: Ein {local_train_commuter_train} bedient städtische Gebiete, ein {regional_train} verbindet nahegelegene Städte, und ein {intercity_long_distance_train} deckt größere Entfernungen ab. Für Geschwindigkeit entscheiden Sie sich für einen {high_speed_train}, oder für Nachtfahrten einen {sleeper_train_night_train}.<br><br>",
+            es: "En la {train_station_union_station}, encontrará el {concourse} que conduce a la {platform} donde los trenes llegan y salen en la {track}. Para boletos, visite la {ticket_office_ticket_counter} o use una {ticket_machine_kiosk}.<br><br>Consulte el {arrivals_board} y el {departures_board} para conocer los horarios de los trenes y la información de las plataformas. Si necesita ayuda, generalmente hay un {information_desk} disponible. Para almacenamiento temporal, busque {left_luggage_luggage_lockers}.<br><br>Los tipos de tren varían: un {local_train_commuter_train} sirve a áreas urbanas, un {regional_train} conecta ciudades cercanas, y un {intercity_long_distance_train} cubre distancias mayores. Para mayor velocidad, opte por un {high_speed_train}, o para viajes nocturnos, un {sleeper_train_night_train}.<br><br>",
+            fr: "À la {train_station_union_station}, vous trouverez le {concourse} qui mène à la {platform} où les trains arrivent et partent sur la {track}. Pour les billets, rendez-vous au {ticket_office_ticket_counter} ou utilisez une {ticket_machine_kiosk}.<br><br>Consultez le {arrivals_board} et le {departures_board} pour les horaires des trains et les informations sur les quais. Si vous avez besoin d'aide, un {information_desk} est généralement disponible. Pour le stockage temporaire, cherchez des {left_luggage_luggage_lockers}.<br><br>Les types de trains varient : un {local_train_commuter_train} dessert les zones urbaines, un {regional_train} relie les villes voisines, et un {intercity_long_distance_train} couvre de plus grandes distances. Pour la vitesse, optez pour un {high_speed_train}, ou pour les voyages de nuit, un {sleeper_train_night_train}.<br><br>",
+            it: "Alla {train_station_union_station} troverai il {concourse} che conduce alla {platform} dove i treni arrivano e partono sul {track}. Per i biglietti, visita il {ticket_office_ticket_counter} o utilizza una {ticket_machine_kiosk}.<br><br>Controlla il {arrivals_board} e il {departures_board} per gli orari dei treni e le informazioni sulle piattaforme. Se hai bisogno di assistenza, di solito è disponibile un {information_desk}. Per lo stoccaggio temporaneo, cerca i {left_luggage_luggage_lockers}.<br><br>I tipi di treno variano: un {local_train_commuter_train} serve le aree urbane, un {regional_train} collega le città vicine e un {intercity_long_distance_train} copre distanze maggiori. Per la velocità, opta per un {high_speed_train}, o per i viaggi notturni, un {sleeper_train_night_train}.<br><br>",
+          },
+          vocab: {
+            train_station_union_station: {
+              de: "Bahnhof/Hauptbahnhof",
+              en: "train station/union station",
+              es: "estación de tren/estación central",
+              fr: "gare/gare centrale",
+              it: "stazione ferroviaria/stazione centrale",
+            },
+            concourse: {
+              de: "Halle",
+              en: "concourse",
+              es: "vestíbulo",
+              fr: "hall",
+              it: "atrio",
+            },
+            platform: {
+              de: "Bahnsteig",
+              en: "platform",
+              es: "andén",
+              fr: "quai",
+              it: "binario",
+            },
+            track: {
+              de: "Gleis",
+              en: "track",
+              es: "vía",
+              fr: "voie",
+              it: "binario",
+            },
+            ticket_office_ticket_counter: {
+              de: "Fahrkartenschalter",
+              en: "ticket office/ticket counter",
+              es: "taquilla de billetes",
+              fr: "guichet/billetterie",
+              it: "biglietteria/sportello biglietti",
+            },
+            ticket_machine_kiosk: {
+              de: "Fahrkartenautomat/Kiosk",
+              en: "ticket machine/kiosk",
+              es: "máquina expendedora de billetes/quiosco",
+              fr: "distributeur de billets/kiosque",
+              it: "distributore di biglietti/chiosco",
+            },
+            arrivals_board: {
+              de: "Ankunftstafel",
+              en: "arrivals board",
+              es: "panel de llegadas",
+              fr: "tableau des arrivées",
+              it: "tabellone degli arrivi",
+            },
+            departures_board: {
+              de: "Abfahrtstafel",
+              en: "departures board",
+              es: "panel de salidas",
+              fr: "tableau des départs",
+              it: "tabellone delle partenze",
+            },
+            information_desk: {
+              de: "Informationsschalter/-desk",
+              en: "information desk",
+              es: "mostrador de información",
+              fr: "bureau d'information",
+              it: "bancone informazioni",
+            },
+            left_luggage_luggage_lockers: {
+              de: "Gepäckaufbewahrung/Gepäckschließfächer",
+              en: "left luggage/luggage lockers",
+              es: "consigna/taquillas de equipaje",
+              fr: "consigne/casiers à bagages",
+              it: "deposito bagagli/armadietti per bagagli",
+            },
+            local_train_commuter_train: {
+              de: "S-Bahn/Regionalzug",
+              en: "local train/commuter train",
+              es: "tren local/tren de cercanías",
+              fr: "train local/train de banlieue",
+              it: "treno locale/treno pendolare",
+            },
+            regional_train: {
+              de: "Regionalzug",
+              en: "regional train",
+              es: "tren regional",
+              fr: "train régional",
+              it: "treno regionale",
+            },
+            intercity_long_distance_train: {
+              de: "Intercity-Zug/Fernzug",
+              en: "intercity/long-distance train",
+              es: "tren interurbano/de larga distancia",
+              fr: "train interurbain/de longue distance",
+              it: "treno intercity/a lunga distanza",
+            },
+            high_speed_train: {
+              de: "Hochgeschwindigkeitszug",
+              en: "high-speed train",
+              es: "tren de alta velocidad",
+              fr: "train à grande vitesse",
+              it: "treno ad alta velocità",
+            },
+            sleeper_train_night_train: {
+              de: "Schlafwagen/Nachtzug",
+              en: "sleeper train/night train",
+              es: "tren cama/tren nocturno",
+              fr: "train couchette/train de nuit",
+              it: "treno letto/treno notturno",
+            },
+          },
+        },
+
+        // --- Train Tickets & Fares ---
+        train_tickets_fares: {
+          base: {
+            en: 'To travel by train, you\'ll need to purchase a {ticket} for the appropriate {fare}. You can choose a {single_one_way} journey or a {return_round_trip}. For extensive travel, a {rail_pass} might be beneficial.<br><br>Some journeys require a {seat_reservation} for a specific {carriage_car}. Depending on the ticket type, {validation} might be necessary before boarding. During your journey, a {ticket_inspector_conductor} will check your ticket.<br><br>',
+            de: 'Um mit dem Zug zu reisen, müssen Sie ein {ticket} für den entsprechenden {fare} kaufen. Sie können eine {single_one_way} Fahrt oder eine {return_round_trip} wählen. Für umfangreiche Reisen könnte ein {rail_pass} von Vorteil sein.<br><br>Für einige Fahrten ist eine {seat_reservation} für einen bestimmten {carriage_car} erforderlich. Je nach Tickettyp kann eine {validation} vor dem Einsteigen notwendig sein. Während Ihrer Reise wird ein {ticket_inspector_conductor} Ihr Ticket überprüfen.<br><br>',
+            es: 'Para viajar en tren, necesitará comprar un {ticket} para la {fare} apropiada. Puede elegir un viaje de {single_one_way} o un {return_round_trip}. Para viajes extensos, un {rail_pass} podría ser beneficioso.<br><br>Algunos viajes requieren una {seat_reservation} para un {carriage_car} específico. Dependiendo del tipo de billete, puede ser necesario una {validation} antes de abordar. Durante su viaje, un {ticket_inspector_conductor} revisará su billete.<br><br>',
+            fr: 'Pour voyager en train, vous devrez acheter un {ticket} pour le {fare} approprié. Vous pouvez choisir un voyage {single_one_way} ou un {return_round_trip}. Pour les voyages longs, un {rail_pass} peut être bénéfique.<br><br>Certaines trajets nécessitent une {seat_reservation} pour un {carriage_car} spécifique. Selon le type de billet, une {validation} peut être nécessaire avant l\'embarquement. Pendant votre voyage, un {ticket_inspector_conductor} vérifiera votre billet.<br><br>',
+            it: 'Per viaggiare in treno, dovrai acquistare un {ticket} per la {fare} appropriata. Puoi scegliere un viaggio {single_one_way} o un {return_round_trip}. Per viaggi estesi, un {rail_pass} potrebbe essere utile.<br><br>Alcuni viaggi richiedono una {seat_reservation} per un {carriage_car} specifico. A seconda del tipo di biglietto, potrebbe essere necessaria una {validation} prima di salire a bordo. Durante il tuo viaggio, un {ticket_inspector_conductor} controllerà il tuo biglietto.<br><br>',
+          },
+          vocab: {
+            ticket: {
+              de: "Fahrkarte",
+              en: "ticket",
+              es: "billete",
+              fr: "billet",
+              it: "biglietto",
+            },
+            fare: {
+              de: "Fahrpreis",
+              en: "fare",
+              es: "tarifa",
+              fr: "tarif",
+              it: "tariffa",
+            },
+            single_one_way: {
+              de: "Einzelfahrt",
+              en: "single/one-way",
+              es: "sencillo/de ida",
+              fr: "simple/aller simple",
+              it: "singolo/solo andata",
+            },
+            return_round_trip: {
+              de: "Rückfahrkarte",
+              en: "return/round-trip",
+              es: "de ida y vuelta",
+              fr: "aller-retour",
+              it: "andata e ritorno",
+            },
+            rail_pass: {
+              de: "Bahnpass",
+              en: "rail pass",
+              es: "pase ferroviario",
+              fr: "pass ferroviaire",
+              it: "abbonamento ferroviario",
+            },
+            seat_reservation: {
+              de: "Sitzplatzreservierung",
+              en: "seat reservation",
+              es: "reserva de asiento",
+              fr: "réservation de siège",
+              it: "prenotazione del posto a sedere",
+            },
+            carriage_car: {
+              de: "Wagen/Klasse",
+              en: "carriage/car",
+              es: "vagón/clase",
+              fr: "voiture/classe",
+              it: "vagone/classe",
+            },
+            validation: {
+              de: "Entwertung/Validierung",
+              en: "validation",
+              es: "validación",
+              fr: "validation",
+              it: "convalida",
+            },
+            ticket_inspector_conductor: {
+              de: "Schaffner/Zugbegleiter",
+              en: "ticket inspector/conductor",
+              es: "revisor/conductor",
+              fr: "contrôleur/chef de train",
+              it: "controllore/capotreno",
+            },
+          },
+        },
+
+        // --- On the Train ---
+        on_the_train: {
+          base: {
+            en: 'When your train arrives, {to_board} the correct {carriage_car}. Find your {seat}, whether it\'s an {aisle_seat} or a {window_seat}, and place your bags on the {overhead_rack_luggage_rack}.<br><br>During the journey, you might visit the {dining_car} for a meal or the {buffet_car_snack_bar} for refreshments. Some trains offer a {quiet_carriage} for a more peaceful ride. Remember to {to_alight} at your destination. If your journey involves a {connecting_train_connection}, you\'ll need to {transfer_change} trains at an intermediate station.<br><br>',
+            de: 'Wenn Ihr Zug ankommt, {to_board} Sie den richtigen {carriage_car}. Finden Sie Ihren {seat}, ob es ein {aisle_seat} oder ein {window_seat} ist, und legen Sie Ihre Taschen auf das {overhead_rack_luggage_rack}.<br><br>Während der Fahrt können Sie den {dining_car} für eine Mahlzeit oder den {buffet_car_snack_bar} für Erfrischungen besuchen. Einige Züge bieten einen {quiet_carriage} für eine ruhigere Fahrt. Denken Sie daran, an Ihrem Ziel auszusteigen. Wenn Ihre Reise einen {connecting_train_connection} beinhaltet, müssen Sie an einer Zwischenstation die Züge {transfer_change}.<br><br>',
+            es: 'Cuando llegue su tren, {to_board} el {carriage_car} correcto. Encuentre su {seat}, ya sea un {aisle_seat} o un {window_seat}, y coloque sus bolsas en el {overhead_rack_luggage_rack}.<br><br>Durante el viaje, puede visitar el {dining_car} para una comida o el {buffet_car_snack_bar} para refrescos. Algunos trenes ofrecen un {quiet_carriage} para un viaje más tranquilo. Recuerde {to_alight} en su destino. Si su viaje implica una {connecting_train_connection}, deberá {transfer_change} de trenes en una estación intermedia.<br><br>',
+            fr: 'Lorsque votre train arrive, {to_board} le bon {carriage_car}. Trouvez votre {seat}, qu\'il s\'agisse d\'un {aisle_seat} ou d\'un {window_seat}, et placez vos sacs sur le {overhead_rack_luggage_rack}.<br><br>Pendant le voyage, vous pouvez visiter le {dining_car} pour un repas ou le {buffet_car_snack_bar} pour des rafraîchissements. Certains trains offrent un {quiet_carriage} pour un trajet plus paisible. N\'oubliez pas de {to_alight} à votre destination. Si votre voyage implique une {connecting_train_connection}, vous devrez {transfer_change} de train dans une gare intermédiaire.<br><br>',
+            it: 'Quando arriva il tuo treno, {to_board} il {carriage_car} corretto. Trova il tuo {seat}, che sia un {aisle_seat} o un {window_seat}, e posiziona le tue borse sul {overhead_rack_luggage_rack}.<br><br>Durante il viaggio, puoi visitare il {dining_car} per un pasto o il {buffet_car_snack_bar} per rinfreschi. Alcuni treni offrono un {quiet_carriage} per un viaggio più tranquillo. Ricorda di {to_alight} a destinazione. Se il tuo viaggio prevede una {connecting_train_connection}, dovrai {transfer_change} treni in una stazione intermedia.<br><br>',
+          },
+          vocab: {
+            to_board: {
+              de: "einsteigen",
+              en: "to board",
+              es: "subirse",
+              fr: "monter",
+              it: "salire",
+            },
+            carriage_car: {
+              de: "Wagen/Klasse",
+              en: "carriage/car",
+              es: "vagón/clase",
+              fr: "voiture/classe",
+              it: "vagone/classe",
+            },
+            seat: {
+              de: "Sitzplatz",
+              en: "seat",
+              es: "asiento",
+              fr: "siège",
+              it: "posto a sedere",
+            },
+            aisle_seat: {
+              de: "Gangplatz",
+              en: "aisle seat",
+              es: "asiento del pasillo",
+              fr: "siège côté couloir",
+              it: "posto lato corridoio",
+            },
+            window_seat: {
+              de: "Fensterplatz",
+              en: "window seat",
+              es: "asiento junto a la ventana",
+              fr: "siège côté fenêtre",
+              it: "posto lato finestra",
+            },
+            overhead_rack_luggage_rack: {
+              de: "Gepäckablage/Gepäcknetz",
+              en: "overhead rack/luggage rack",
+              es: "portaequipajes/estante para equipaje",
+              fr: "porte-bagages/râtelier à bagages",
+              it: "portabagagli/portapacchi",
+            },
+            dining_car: {
+              de: "Speisewagen",
+              en: "dining car",
+              es: "vagón comedor",
+              fr: "wagon-restaurant",
+              it: "vagone ristorante",
+            },
+            buffet_car_snack_bar: {
+              de: "Bistro-/Imbisswagen",
+              en: "buffet car/snack bar",
+              es: "vagón bufé/bar de aperitivos",
+              fr: "wagon-buffet/snack-bar",
+              it: "vagone buffet/snack bar",
+            },
+            quiet_carriage: {
+              de: "Ruhewagen",
+              en: "quiet carriage",
+              es: "vagón silencioso",
+              fr: "voiture silencieuse",
+              it: "vagone silenzioso",
+            },
+            to_alight: {
+              de: "aussteigen",
+              en: "to alight",
+              es: "bajarse",
+              fr: "descendre",
+              it: "scendere",
+            },
+            transfer_change: {
+              de: "umsteigen",
+              en: "to transfer/to change",
+              es: "transbordar/cambiar",
+              fr: "changer",
+              it: "cambiare",
+            },
+            connecting_train_connection: {
+              de: "Anschlusszug/Verbindung",
+              en: "connecting train/connection",
+              es: "tren de conexión/conexión",
+              fr: "train de correspondance/correspondance",
+              it: "treno di collegamento/connessione",
+            },
+          },
+        },
+
+        // ----------------------------------------------------------------------
         // --- Next top-level category: Dining Out ---
         // --- At the restaurant ---
         restaurant: {
@@ -902,7 +1197,6 @@
         },
 
         // --- Next top-level category: ---
-
         // --- Shopping ---
         shopping: {
           base: {},
@@ -910,9 +1204,8 @@
         },
 
         // --- Next top-level category: ---
-
-        // --- Hotel Check-in ---
-        hotel_checkin: {
+        // --- Hotel ---
+        hotel: {
           base: {},
           vocab: {},
         },
@@ -985,12 +1278,12 @@
               fr: "Emplacements des bus",
               it: "Posizioni degli autobus",
             },
-            tickets_fares: {
-              en: "Tickets & Fares",
-              de: "Tickets & Fahrpreise",
-              es: "Boletos y tarifas",
-              fr: "Billets et tarifs",
-              it: "Biglietti e tariffe",
+            bus_tickets_fares: {
+              en: "Bus tickets & fares",
+              de: "Bustickets & Fahrpreise",
+              es: "Boletos y tarifas de autobús",
+              fr: "Billets et tarifs de bus",
+              it: "Biglietti e tariffe dell'autobus",
             },
             on_the_bus: {
               en: "On the Bus",
@@ -998,6 +1291,40 @@
               es: "En el autobús",
               fr: "Dans le bus",
               it: "Sull'autobus",
+            },
+          },
+        },
+
+        // --- Top-level Topic: Travel by train ---
+        travel_by_train: {
+          en: "Travel by train",
+          de: "Reisen mit dem Zug",
+          es: "Viajar en tren",
+          fr: "Voyager en train",
+          it: "Viaggiare in treno",
+
+          // --- Sub-level Topics: Travel by train ---
+          subcategories: {
+            train_Station: {
+              en: "Train Station",
+              de: "Bahnhof",
+              es: "Estación de tren",
+              fr: "Gare",
+              it: "Stazione ferroviaria",
+            },
+            train_tickets_fares: {
+              en: "Train tickets & fares",
+              de: "Zugtickets & Fahrpreise",
+              es: "Boletos y tarifas de tren",
+              fr: "Billets et tarifs de train",
+              it: "Biglietti e tariffe del treno",
+            },
+            on_the_train: {
+              en: "On the Train",
+              de: "Im Zug",
+              es: "En el tren",
+              fr: "Dans le train",
+              it: "Sul treno",
             },
           },
         },
