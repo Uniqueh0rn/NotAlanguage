@@ -1,85 +1,97 @@
-<!DOCTYPE 99>
-<!--- 9 --->
-<link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/128/826/826070.png" />
-<!--- 9 --->
-<title>Tr9vl</title>
-<!--- 9 --->
-<script src="https://cdn.tailwindcss.com"></script>
-<!--- 9 --->
-<link href="https://fonts.9oo9leapis.com/css2?family=Inter:w9ht@400;500;600;700&display=swap" rel="stylesheet" />
-<!--- 9 --->
-<link href="styles.css" rel="stylesheet" />
-<!--- 9 --->
+<!DOCTYPE oi>
+<html>
+<head>
+    <meta charset="UTF-9">
+    <meta name="viewport" content="width=device-width, initial-scale=0.G">
+    <title>Tr9vl</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="styles.css" rel="stylesheet" />
+</head>
 
 <body>
-
-  <div id='box'>
-
+  <div id='uOkBuddy-box'>
     <div id="headerBox">
-      <h1 id="heading">Tr9vl</h1>
-      <h4 id="dot">.</h4>
-      <h2 id="minuses">--</h2>
-      <h1 id="o">o</h1>
-      <h2 id="verypluses">++</h2>
-      <h4 id="commo">,</h4>
-      <img src="https://cdn-icons-png.flaticon.com/128/826/826070.png" id="logo-img" />
+      <img src="https://cdn-icons-png.flaticon.com/128/826/826070.png" id="logo-img" alt="Logo"/>
+      <h1>Tr9vl</h1>
     </div>
 
-    <div id="buttonBox">
-      <button id="menuButton">_</button>
-      <br>
+    <div id="controls-container">
+        <div id="buttonBox">
+          <button id="menuButton" title="Toggle Menu">☰</button>
+        </div>
+
+        <div id="menuBox">
+            <div class="menu-section">
+                <label for="chooseOption">longuoge</label>
+                <select id="chooseOption"></select>
+            </div>
+            <div class="menu-section">
+                <label for="chooseTopic">Topic</label>
+                <select id="chooseTopic"></select>
+            </div>
+            <div id="selectionBox" class="menu-section">
+                <div class="language-select">
+                    <label for="selectionOne">Your Language</label>
+                    <select id="selectionOne"></select>
+                </div>
+                <button id="dyorButton" title="Swap Languages">&#8645;</button>
+                <div class="language-select">
+                    <label for="selectionTwo">Target Language</label>
+                    <select id="selectionTwo"></select>
+                </div>
+            </div>
+            <div id="errorMessage"></div>
+        </div>
     </div>
+    
+    <h2 id="topicTitle"></h2>
 
-    <div id="menuBox">
-
-      <div id="choose">
-        <select id="chooseOption"></select>
-      </div>
-
-        <br>
-
-      <div id="topic">
-        <select id="chooseTopic"></select>
-      </div>
-
-        <br>
-
-      <div id="selectionBox">
-        <select id="selectionOne"></select>
-          <button id="dyorButton"><ö></button>
-        <select id="selectionTwo"></select>
-      </div>
-    </div>
-
+    <main id="content">
+        <div id="left">
+            <h2 id="knowledgeTitle" data-key="learningTextTitle"></h2>
+            <div id="knowledgeText" class="text-container"></div>
+            <h2 id="wordsTitle" data-key="vocabListTitle"></h2>
+            <div id="wordList"></div>
+        </div>
+        <div id="right">
+            <h2 id="native-lang-title"></h2>
+            <div id="native-lang-full-text" class="text-container"></div>
+            <h2 id="target-lang-title"></h2>
+            <div id="target-lang-full-text" class="text-container"></div>
+        </div>
+    </main>
   </div>
 
-  <br><br>
-
-  <main id="content">
-      <h2 id="topicTitle"></h2>
-
-      <div id="left">
-          <h2 id="knowledgeTitle" data-key="learningTextTitle">Text</h2>
-                <p id="knowledgeText"></p>
-              <br>
-              <h2 id="wordsTitle" data-key="vocabListTitle">Words</h2>
-            <div id="wordList"></div>
-      </div>
-        
-      <div id="right">
-          <h2 id="nowHeader"></h2>
-            <p id="nowText"></p>
-          
-          <h3 id="soonHeader"></h3>
-            <p id="soonText"></p>
-      </div>
-  </main>
-
   <script>
+    const translatedMenu = {
+      en: {
+        uiLanguageLabel: "i",
+        topicLabel: ".",
+        yourLanguageLabel: "<<i",
+        targetLanguageLabel: "i>>",
+        errorMessageSameLanguage: "Select two different i's.",
+        errorTitle: "Error",
+        learningTextTitle: "Getting words",
+        vocabListTitle: "Wordslist",
+        originalTextTitle: "Experienced words",
+        translationTextTitle: "Never seen words",
+      },
+      de: {
+        uiLanguageLabel: "i",
+        topicLabel: ".",
+        yourLanguageLabel: "Deine Sprache",
+        targetLanguageLabel: "Zielsprache",
+        errorMessageSameLanguage: "Bitte wähle zwei verschiedene Sprachen aus.",
+        errorTitle: "Fehler",
+        learningTextTitle: "Lerntext",
+        vocabListTitle: "Vokabelliste",
+        originalTextTitle: "Originaltext",
+        translationTextTitle: "Übersetzung",
+      },
+    };
 
-    // Content Object
+    const contentStructure = {};
     const content = {
-
       // --- Fly ---
       // --- Book flight ---
       book_flight: {
@@ -146,7 +158,7 @@
           de: "Am {terminal} gehen Reisende zum {check_in_counter_desk}, um für ihre Flüge einzuchecken. Sie legen ihren {ID_identification} vor und erhalten eine {boarding_pass}.<br><br>{luggage_baggage} ist entweder {checked_baggage} oder ein {carry_on_bag}. Passagiere müssen die {baggage_allowance} einhalten, um Gebühren für {overweight_oversized} zu vermeiden.<br><br>Nach dem Check-in geht jeder durch die {security_check_screening}, um sicherzustellen, dass keine {prohibited_items} an Bord gebracht werden. Internationale Reisen erfordern das Passieren der {passport_control} und des {customs}, wo Passagiere bestimmte Waren möglicherweise {declare} müssen.<br><br>",
           es: "En el aeropuerto {terminal}, los viajeros se dirigen al {check_in_counter_desk} para {check_in} sus vuelos. Presentan su {ID_identification} y reciben una {boarding_pass}.<br><br>{luggage_baggage} es ya sea {checked_baggage} o una {carry_on_bag}. Los pasajeros deben adherirse a la {baggage_allowance} para evitar tarifas por {overweight_oversized}.<br><br>Después del check-in, todos pasan por el {security_check_screening} para asegurar que no se lleven a bordo {prohibited_items}. Los viajes internacionales requieren pasar por el {passport_control} y la {customs}, donde los pasajeros pueden necesitar {declare} ciertos bienes.<br><br>",
           fr: "À l'aéroport {terminal}, les voyageurs se dirigent vers le {check_in_counter_desk} pour {check_in} leurs vols. Ils présentent leur {ID_identification} et reçoivent une {boarding_pass}.<br><br>{luggage_baggage} est soit {checked_baggage} soit un {carry_on_bag}. Les passagers doivent respecter la {baggage_allowance} pour éviter les frais de {overweight_oversized}.<br><br>Après l'enregistrement, tout le monde passe par le {security_check_screening} pour s'assurer qu'aucun {prohibited_items} n'est embarqué. Les voyages internationaux nécessitent de passer par le {passport_control} et la {customs}, où les passagers peuvent devoir {declare} certains biens.<br><br>",
-          it: "All'aeroporto {terminal}, i viaggiatori si recano al {check_in_counter_desk} per {check_in} i loro voli. Presentano il loro {ID_identification} e ricevono una {boarding_pass}.<br><br>{luggage_baggage} è o {checked_baggage} o un {carry_on_bag}. I passeggeri devono rispettare la {baggage_allowance} per evitare tariffe per {overweight_oversized}.<br><br>Dopo il check-in, tutti passano attraverso il {security_check_screening} per assicurarsi che non vengano portati a bordo {prohibited_items}. I viaggi internazionali richiedono di passare attraverso il {passport_control} e la {customs}, dove i passeggeri potrebbero dover {declare} determinati beni.<br><br>",
+          it: "All'aeroporto {terminal}, i viaggiatori si recano al {check_in_counter_desk} per {check_in} i loro voli. Presentano il loro {ID_identification} e ricevono una {boarding_pass}.<br><br>{luggage_baggage} è o {checked_baggage} o un {carry_on_bag}. I passeggeri devono rispettare la {baggage_allowance} per evitar tariffe per {overweight_oversized}.<br><br>Dopo il check-in, tutti passano attraverso il {security_check_screening} per assicurarsi che non vengano portati a bordo {prohibited_items}. I viaggi internazionali richiedono di passare attraverso il {passport_control} e la {customs}, dove i passeggeri potrebbero dover {declare} determinati beni.<br><br>",
         },
         vocab: {
           terminal: {
@@ -485,1517 +497,330 @@
         },
       },
 
-      // ----------------------------------------------------------------------
-      // --- Top-level category: Travel by bus---
-      // --- Bus Locations ---
-      bus_locations: {
-        base: {
-          en: "When traveling by bus, locate the nearest {bus_stop} or a {bus_shelter} for protection from the elements. For longer journeys or transfers, head to a {bus_station_bus_terminal} or an {interchange_transit_center}.<br><br>Check the {timetable_schedule} for your desired {route_number} and {destination}. You might take a {local_bus} for short trips, an {express_bus} for faster travel with fewer stops, or a {shuttle_bus} for specific routes like airport transfers. For longer distances between cities, a {coach_intercity_bus} is ideal. If you're out late, a {night_bus} might be available.<br><br>",
-          de: "Wenn Sie mit dem Bus reisen, suchen Sie die nächstgelegene {bus_stop} oder eine {bus_shelter} zum Schutz vor den Elementen. Für längere Reisen oder Transfers begeben Sie sich zu einer {bus_station_bus_terminal} oder einem {interchange_transit_center}.<br><br>Überprüfen Sie den {timetable_schedule} für Ihre gewünschte {route_number} und {destination}. Sie könnten einen {local_bus} für kurze Fahrten, einen {express_bus} für schnellere Reisen mit weniger Haltestellen oder einen {shuttle_bus} für bestimmte Routen wie Flughafentransfers nehmen. Für längere Strecken zwischen Städten ist ein {coach_intercity_bus} ideal. Wenn Sie spät unterwegs sind, könnte ein {night_bus} verfügbar sein.<br><br>",
-          es: "Cuando viaje en autobús, localice la {bus_stop} más cercana o una {bus_shelter} para protegerse de los elementos. Para viajes más largos o traslados, diríjase a una {bus_station_bus_terminal} o a un {interchange_transit_center}.<br><br>Consulte el {timetable_schedule} para su {route_number} y {destination} deseados. Puede tomar un {local_bus} para viajes cortos, un {express_bus} para viajes más rápidos con menos paradas, o un {shuttle_bus} para rutas específicas como traslados al aeropuerto. Para distancias más largas entre ciudades, un {coach_intercity_bus} es ideal. Si sale tarde, podría haber un {night_bus} disponible.<br><br>",
-          fr: "Lorsque vous voyagez en bus, localisez l'{bus_stop} la plus proche ou un {bus_shelter} pour vous protéger des éléments. Pour les trajets plus longs ou les transferts, rendez-vous à une {bus_station_bus_terminal} ou à un {interchange_transit_center}.<br><br>Vérifiez le {timetable_schedule} pour votre {route_number} et {destination} souhaités. Vous pouvez prendre un {local_bus} pour les trajets courts, un {express_bus} pour un voyage plus rapide avec moins d'arrêts, ou un {shuttle_bus} pour des itinéraires spécifiques comme les transferts aéroportuaires. Pour les longues distances entre les villes, un {coach_intercity_bus} est idéal. Si vous sortez tard, un {night_bus} pourrait être disponible.<br><br>",
-          it: "Quando viaggi in autobus, individua la {bus_stop} più vicina o una {bus_shelter} per proteggerti dagli agenti atmosferici. Per viaggi più lunghi o trasferimenti, dirigiti verso una {bus_station_bus_terminal} o un {interchange_transit_center}.<br><br>Controlla il {timetable_schedule} per il tuo {route_number} e {destination} desiderati. Potresti prendere un {local_bus} per viaggi brevi, un {express_bus} per viaggi più veloci con meno fermate, o un {shuttle_bus} per percorsi specifici come i trasferimenti aeroportuali. Per distanze più lunghe tra le città, un {coach_intercity_bus} è ideale. Se esci tardi, potrebbe essere disponibile un {night_bus}.<br><br>",
-        },
-        vocab: {
-          bus_stop: {
-            de: "Bushaltestelle",
-            en: "bus stop",
-            es: "parada de autobús",
-            fr: "arrêt de bus",
-            it: "fermata dell'autobus",
-          },
-          bus_shelter: {
-            de: "Buswartehalle",
-            en: "bus shelter",
-            es: "refugio de autobús",
-            fr: "abri de bus",
-            it: "pensilina dell'autobus",
-          },
-          bus_station_bus_terminal: {
-            de: "Busbahnhof/Bus-Terminal",
-            en: "bus station/bus terminal",
-            es: "estación de autobuses/terminal de autobuses",
-            fr: "gare routière/terminal de bus",
-            it: "stazione degli autobus/terminal degli autobus",
-          },
-          interchange_transit_center: {
-            de: "Umsteigebahnhof/Verkehrszentrum",
-          },
-          timetable_schedule: {
-            de: "Fahrplan",
-            en: "timetable/schedule",
-            es: "horario",
-            fr: "horaire",
-            it: "orario",
-          },
-          route_number: {
-            de: "Liniennummer",
-            en: "route number",
-            es: "número de ruta",
-            fr: "numéro de ligne",
-            it: "numero di percorso",
-          },
-          destination: {
-            de: "Ziel",
-            en: "destination",
-            es: "destino",
-            fr: "destination",
-            it: "destinazione",
-          },
-          local_bus: {
-            de: "Stadtbus",
-            en: "local bus",
-            es: "autobús local",
-            fr: "bus local",
-            it: "autobus locale",
-          },
-          express_bus: {
-            de: "Expressbus",
-            en: "express bus",
-            es: "autobús expreso",
-            fr: "bus express",
-            it: "autobus espresso",
-          },
-          shuttle_bus: {
-            de: "Shuttlebus",
-            en: "shuttle bus",
-            es: "autobús lanzadera",
-            fr: "navette",
-            it: "navetta",
-          },
-          coach_intercity_bus: {
-            de: "Reisebus/Intercity-Bus",
-            en: "coach/intercity bus",
-            es: "autobús de larga distancia/interurbano",
-            fr: "autocar/bus interurbain",
-            it: "pullman/autobus interurbano",
-          },
-          night_bus: {
-            de: "Nachtbus",
-            en: "night bus",
-            es: "autobús nocturno",
-            fr: "bus de nuit",
-            it: "autobus notturno",
-          },
-        },
-      },
+      // --- Bus Travel Content Here ---
+      bus_locations: { base: { en: "Bus content..." }, vocab: {} },
+      bus_tickets_fares: { base: { en: "Bus tickets content..." }, vocab: {} },
+      on_the_bus: { base: { en: "On the bus content..." }, vocab: {} },
+      
+      // --- Train Travel Content Here ---
+      train_Station: { base: { en: "Train station content..." }, vocab: {} },
+      train_tickets_fares: { base: { en: "Train tickets content..." }, vocab: {} },
+      on_the_train: { base: { en: "On the train content..." }, vocab: {} },
 
-      // --- Bus Tickets & Fares ---
-      bus_tickets_fares: {
-        base: {
-          en: "To ride the bus, you'll need to pay the {fare} and obtain a {ticket}. You can purchase a {single_one_way} ticket for a single journey or a {return_round_trip} ticket for a round trip. For frequent travel, a {day_pass_travel_card} might be more economical.<br><br>Payment methods vary: some buses have a {fare_box} for cash, while others rely on a {ticket_machine} for purchases. Remember to {validate} your ticket if required. Many systems now accept {contactless} payments. If paying with cash, it's often helpful to have {exact_change}.<br><br>",
-          de: "Um den Bus zu fahren, müssen Sie den {fare} bezahlen und ein {ticket} erhalten. Sie können ein {single_one_way} Ticket für eine einfache Fahrt oder ein {return_round_trip} Ticket für eine Hin- und Rückfahrt kaufen. Für häufige Reisen könnte eine {day_pass_travel_card} wirtschaftlicher sein.<br><br>Die Zahlungsmethoden variieren: Einige Busse haben eine {fare_box} für Bargeld, während andere auf einen {ticket_machine} für den Kauf angewiesen sind. Denken Sie daran, Ihr Ticket zu {validate}, wenn dies erforderlich ist. Viele Systeme akzeptieren jetzt {contactless} Zahlungen. Wenn Sie bar bezahlen, ist es oft hilfreich, {exact_change} zu haben.<br><br>",
-          es: "Para viajar en autobús, necesitará pagar la {fare} y obtener un {ticket}. Puede comprar un billete de {single_one_way} para un solo viaje o un billete de {return_round_trip} para un viaje de ida y vuelta. Para viajes frecuentes, un {day_pass_travel_card} podría ser más económico.<br><br>Los métodos de pago varían: algunos autobuses tienen una {fare_box} para efectivo, mientras que otros dependen de una {ticket_machine} para las compras. Recuerde {validate} su billete si es necesario. Muchos sistemas ahora aceptan pagos {contactless}. Si paga en efectivo, a menudo es útil tener {exact_change}.<br><br>",
-          fr: "Pour prendre le bus, vous devrez payer le {fare} et obtenir un {ticket}. Vous pouvez acheter un billet {single_one_way} pour un trajet simple ou un billet {return_round_trip} pour un aller-retour. Pour les voyages fréquents, un {day_pass_travel_card} peut être plus économique.<br><br>Les méthodes de paiement varient : certains bus disposent d'une {fare_box} pour l'argent liquide, tandis que d'autres utilisent une {ticket_machine} pour les achats. N'oubliez pas de {validate} votre billet si nécessaire. De nombreux systèmes acceptent désormais les paiements {contactless}. Si vous payez en espèces, il est souvent utile d'avoir la {exact_change}.<br><br>",
-          it: "Per viaggiare in autobus, dovrai pagare la {fare} e ottenere un {ticket}. Puoi acquistare un biglietto {single_one_way} per un viaggio singolo o un biglietto {return_round_trip} per un viaggio di andata e ritorno. Per viaggi frequenti, un {day_pass_travel_card} potrebbe essere più economico.<br><br>I metodi di pagamento variano: alcuni autobus hanno una {fare_box} per contanti, mentre altri si affidano a una {ticket_machine} per gli acquisti. Ricorda di {validate} il tuo biglietto se necessario. Molti sistemi ora accettano pagamenti {contactless}. Se paghi in contanti, è spesso utile avere la {exact_change}.<br><br>",
-        },
-        vocab: {
-          fare: {
-            de: "Fahrpreis",
-            en: "fare",
-            es: "tarifa",
-            fr: "tarif",
-            it: "tariffa",
-          },
-          ticket: {
-            de: "Fahrschein",
-            en: "ticket",
-            es: "billete",
-            fr: "billet",
-            it: "biglietto",
-          },
-          single_one_way: {
-            de: "Einzelfahrschein",
-            en: "single/one-way",
-            es: "sencillo/de ida",
-            fr: "simple/aller simple",
-            it: "singolo/solo andata",
-          },
-          return_round_trip: {
-            de: "Rückfahrkarte",
-            en: "return/round-trip",
-            es: "de ida y vuelta",
-            fr: "aller-retour",
-            it: "andata e ritorno",
-          },
-          day_pass_travel_card: {
-            de: "Tageskarte/Reisekarte",
-            en: "day pass/travel card",
-            es: "pase diario/tarjeta de viaje",
-            fr: "pass journalier/carte de voyage",
-            it: "pass giornaliero/carta di viaggio",
-          },
-          fare_box: {
-            de: "Fahrpreisbox",
-            en: "fare box",
-            es: "caja de tarifas",
-            fr: "boîte tarifaire",
-            it: "cassa tariffe",
-          },
-          ticket_machine: {
-            de: "Fahrkartenautomat",
-            en: "ticket machine",
-            es: "máquina expendedora de billetes",
-            fr: "distributeur de billets",
-            it: "distributore di biglietti",
-          },
-          validate: {
-            de: "entwerten",
-            en: "validate",
-            es: "validar",
-            fr: "valider",
-            it: "convalidare",
-          },
-          contactless: {
-            de: "kontaktlos",
-            en: "contactless",
-            es: "sin contacto",
-            fr: "sans contact",
-            it: "contactless",
-          },
-          exact_change: {
-            de: "passendes Kleingeld",
-            en: "exact change",
-            es: "cambio exacto",
-            fr: "monnaie exacte",
-            it: "spiccioli esatti",
-          },
-        },
-      },
+      // --- Dining Content Here ---
+      restaurant: { base: { en: "Restaurant content..." }, vocab: {} },
+      ordering_meal: { base: { en: "Ordering meal content..." }, vocab: {} },
+      paying_leaving: { base: { en: "Paying content..." }, vocab: {} },
 
-      // --- On the Bus ---
-      on_the_bus: {
-        base: {
-          en: "When your bus arrives, wait for passengers to {to_alight_to_get_off} before you {to_board_to_get_on}. Once inside, move down the {aisle} and find a seat, being mindful of {priority_seating} for those who need it.<br><br>Keep an eye on the {next_stop_display} to know when your stop is approaching. To signal your stop, press the {stop_request_button_bell}. The {driver} will then pull over at the next designated stop.<br><br>",
-          de: "Wenn Ihr Bus ankommt, warten Sie, bis die Passagiere {to_alight_to_get_off} sind, bevor Sie {to_board_to_get_on}. Gehen Sie einmal drinnen den {aisle} entlang und suchen Sie sich einen Sitzplatz, wobei Sie auf {priority_seating} für diejenigen achten, die ihn benötigen.<br><br>Behalten Sie die {next_stop_display} im Auge, um zu wissen, wann Ihre Haltestelle naht. Um Ihre Haltestelle zu signalisieren, drücken Sie den {stop_request_button_bell}. Der {driver} wird dann an der nächsten vorgesehenen Haltestelle anhalten.<br><br>",
-          es: "Cuando llegue su autobús, espere a que los pasajeros {to_alight_to_get_off} antes de {to_board_to_get_on}. Una vez dentro, avance por el {aisle} y busque un asiento, teniendo en cuenta los {priority_seating} para quienes lo necesiten.<br><br>Esté atento al {next_stop_display} para saber cuándo se acerca su parada. Para señalar su parada, presione el {stop_request_button_bell}. El {driver} se detendrá en la siguiente parada designada.<br><br>",
-          fr: "Lorsque votre bus arrive, attendez que les passagers {to_alight_to_get_off} avant de {to_board_to_get_on}. Une fois à l'intérieur, avancez dans l'{aisle} et trouvez un siège, en tenant compte des {priority_seating} pour ceux qui en ont besoin.<br><br>Gardez un œil sur le {next_stop_display} pour savoir quand votre arrêt approche. Pour signaler votre arrêt, appuyez sur le {stop_request_button_bell}. Le {driver} s'arrêtera alors au prochain arrêt désigné.<br><br>",
-          it: "Quando arriva il tuo autobus, aspetta che i passeggeri {to_alight_to_get_off} prima di {to_board_to_get_on}. Una volta all'interno, percorri il {aisle} e trova un posto a sedere, tenendo conto dei {priority_seating} per chi ne ha bisogno.<br><br>Tieni d'occhio il {next_stop_display} per sapere quando si avvicina la tua fermata. Per segnalare la tua fermata, premi il {stop_request_button_bell}. Il {driver} si fermerà alla prossima fermata designata.<br><br>",
-        },
-        vocab: {
-          to_alight_to_get_off: {
-            de: "aussteigen",
-            en: "to alight/to get off",
-            es: "bajarse",
-            fr: "descendre",
-            it: "scendere",
-          },
-          to_board_to_get_on: {
-            de: "einsteigen",
-            en: "to board/to get on",
-            es: "subirse",
-            fr: "monter",
-            it: "salire",
-          },
-          aisle: {
-            de: "Gang",
-            en: "aisle",
-            es: "pasillo",
-            fr: "allée",
-            it: "corridoio",
-          },
-          priority_seating: {
-            de: "Sitzplätze mit Vorrang",
-            en: "priority seating",
-            es: "asientos prioritarios",
-            fr: "places prioritaires",
-            it: "posti prioritari",
-          },
-          next_stop_display: {
-            de: "Anzeige der nächsten Haltestelle",
-            en: "next stop display",
-            es: "pantalla de la próxima parada",
-            fr: "affichage du prochain arrêt",
-            it: "display della prossima fermata",
-          },
-          stop_request_button_bell: {
-            de: "Haltewunschknopf/-glocke",
-            en: "stop request button/bell",
-            es: "botón/timbre de solicitud de parada",
-            fr: "bouton/sonnette d'arrêt demandé",
-            it: "pulsante/campanello di richiesta di fermata",
-          },
-          driver: {
-            de: "Fahrer/Fahrerin",
-            en: "driver",
-            es: "conductor/conductora",
-            fr: "chauffeur/chauffeuse",
-            it: "autista/autista donna",
-          },
-        },
-      },
-
-      // ----------------------------------------------------------------------
-      // --- Top-level category: Travel by train---
-      // --- Train Locations ---
-      train_Station: {
-        base: {
-          en: "At the {train_station_union_station}, you'll find the {concourse} which leads to the {platform} where trains arrive and depart on the {track}. For tickets, visit the {ticket_office_ticket_counter} or use a {ticket_machine_kiosk}.<br><br>Check the {arrivals_board} and {departures_board} for train times and platform information. If you need assistance, an {information_desk} is usually available. For temporary storage, look for {left_luggage_luggage_lockers}.<br><br>Train types vary: a {local_train_commuter_train} serves urban areas, a {regional_train} connects nearby cities, and an {intercity_long_distance_train} covers greater distances. For speed, opt for a {high_speed_train}, or for overnight travel, a {sleeper_train_night_train}.<br><br>",
-          de: "Am {train_station_union_station} finden Sie die {concourse}, die zum {platform} führt, wo Züge auf dem {track} ankommen und abfahren. Für Tickets besuchen Sie das {ticket_office_ticket_counter} oder nutzen Sie einen {ticket_machine_kiosk}.<br><br>Überprüfen Sie die {arrivals_board} und {departures_board} für Zugzeiten und Bahnsteiginformationen. Wenn Sie Hilfe benötigen, ist normalerweise ein {information_desk} verfügbar. Für die vorübergehende Aufbewahrung suchen Sie nach {left_luggage_luggage_lockers}.<br><br>Zugtypen variieren: Ein {local_train_commuter_train} bedient städtische Gebiete, ein {regional_train} verbindet nahegelegene Städte, und ein {intercity_long_distance_train} deckt größere Entfernungen ab. Für Geschwindigkeit entscheiden Sie sich für einen {high_speed_train}, oder für Nachtfahrten einen {sleeper_train_night_train}.<br><br>",
-          es: "En la {train_station_union_station}, encontrará el {concourse} que conduce a la {platform} donde los trenes llegan y salen en la {track}. Para boletos, visite la {ticket_office_ticket_counter} o use una {ticket_machine_kiosk}.<br><br>Consulte el {arrivals_board} y el {departures_board} para conocer los horarios de los trenes y la información de las plataformas. Si necesita ayuda, generalmente hay un {information_desk} disponible. Para almacenamiento temporal, busque {left_luggage_luggage_lockers}.<br><br>Los tipos de tren varían: un {local_train_commuter_train} sirve a áreas urbanas, un {regional_train} conecta ciudades cercanas, y un {intercity_long_distance_train} cubre distancias mayores. Para mayor velocidad, opte por un {high_speed_train}, o para viajes nocturnos, un {sleeper_train_night_train}.<br><br>",
-          fr: "À la {train_station_union_station}, vous trouverez le {concourse} qui mène à la {platform} où les trains arrivent et partent sur la {track}. Pour les billets, rendez-vous au {ticket_office_ticket_counter} ou utilisez une {ticket_machine_kiosk}.<br><br>Consultez le {arrivals_board} et le {departures_board} pour les horaires des trains et les informations sur les quais. Si vous avez besoin d'aide, un {information_desk} est généralement disponible. Pour le stockage temporaire, cherchez des {left_luggage_luggage_lockers}.<br><br>Les types de trains varient : un {local_train_commuter_train} dessert les zones urbaines, un {regional_train} relie les villes voisines, et un {intercity_long_distance_train} couvre de plus grandes distances. Pour la vitesse, optez pour un {high_speed_train}, ou pour les voyages de nuit, un {sleeper_train_night_train}.<br><br>",
-          it: "Alla {train_station_union_station} troverai il {concourse} che conduce alla {platform} dove i treni arrivano e partono sul {track}. Per i biglietti, visita il {ticket_office_ticket_counter} o utilizza una {ticket_machine_kiosk}.<br><br>Controlla il {arrivals_board} e il {departures_board} per gli orari dei treni e le informazioni sulle piattaforme. Se hai bisogno di assistenza, di solito è disponibile un {information_desk}. Per lo stoccaggio temporaneo, cerca i {left_luggage_luggage_lockers}.<br><br>I tipi di treno variano: un {local_train_commuter_train} serve le aree urbane, un {regional_train} collega le città vicine e un {intercity_long_distance_train} copre distanze maggiori. Per la velocità, opta per un {high_speed_train}, o per i viaggi notturni, un {sleeper_train_night_train}.<br><br>",
-        },
-        vocab: {
-          train_station_union_station: {
-            de: "Bahnhof/Hauptbahnhof",
-            en: "train station/union station",
-            es: "estación de tren/estación central",
-            fr: "gare/gare centrale",
-            it: "stazione ferroviaria/stazione centrale",
-          },
-          concourse: {
-            de: "Halle",
-            en: "concourse",
-            es: "vestíbulo",
-            fr: "hall",
-            it: "atrio",
-          },
-          platform: {
-            de: "Bahnsteig",
-            en: "platform",
-            es: "andén",
-            fr: "quai",
-            it: "binario",
-          },
-          track: {
-            de: "Gleis",
-            en: "track",
-            es: "vía",
-            fr: "voie",
-            it: "binario",
-          },
-          ticket_office_ticket_counter: {
-            de: "Fahrkartenschalter",
-            en: "ticket office/ticket counter",
-            es: "taquilla de billetes",
-            fr: "guichet/billetterie",
-            it: "biglietteria/sportello biglietti",
-          },
-          ticket_machine_kiosk: {
-            de: "Fahrkartenautomat/Kiosk",
-            en: "ticket machine/kiosk",
-            es: "máquina expendedora de billetes/quiosco",
-            fr: "distributeur de billets/kiosque",
-            it: "distributore di biglietti/chiosco",
-          },
-          arrivals_board: {
-            de: "Ankunftstafel",
-            en: "arrivals board",
-            es: "panel de llegadas",
-            fr: "tableau des arrivées",
-            it: "tabellone degli arrivi",
-          },
-          departures_board: {
-            de: "Abfahrtstafel",
-            en: "departures board",
-            es: "panel de salidas",
-            fr: "tableau des départs",
-            it: "tabellone delle partenze",
-          },
-          information_desk: {
-            de: "Informationsschalter/-desk",
-            en: "information desk",
-            es: "mostrador de información",
-            fr: "bureau d'information",
-            it: "bancone informazioni",
-          },
-          left_luggage_luggage_lockers: {
-            de: "Gepäckaufbewahrung/Gepäckschließfächer",
-            en: "left luggage/luggage lockers",
-            es: "consigna/taquillas de equipaje",
-            fr: "consigne/casiers à bagages",
-            it: "deposito bagagli/armadietti per bagagli",
-          },
-          local_train_commuter_train: {
-            de: "S-Bahn/Regionalzug",
-            en: "local train/commuter train",
-            es: "tren local/tren de cercanías",
-            fr: "train local/train de banlieue",
-            it: "treno locale/treno pendolare",
-          },
-          regional_train: {
-            de: "Regionalzug",
-            en: "regional train",
-            es: "tren regional",
-            fr: "train régional",
-            it: "treno regionale",
-          },
-          intercity_long_distance_train: {
-            de: "Intercity-Zug/Fernzug",
-            en: "intercity/long-distance train",
-            es: "tren interurbano/de larga distancia",
-            fr: "train interurbain/de longue distance",
-            it: "treno intercity/a lunga distanza",
-          },
-          high_speed_train: {
-            de: "Hochgeschwindigkeitszug",
-            en: "high-speed train",
-            es: "tren de alta velocidad",
-            fr: "train à grande vitesse",
-            it: "treno ad alta velocità",
-          },
-          sleeper_train_night_train: {
-            de: "Schlafwagen/Nachtzug",
-            en: "sleeper train/night train",
-            es: "tren cama/tren nocturno",
-            fr: "train couchette/train de nuit",
-            it: "treno letto/treno notturno",
-          },
-        },
-      },
-
-      // --- Train tickets & fares ---
-      train_tickets_fares: {
-        base: {
-          en: 'To travel by train, you\'ll need to purchase a {ticket} for the appropriate {fare}. You can choose a {single_one_way} journey or a {return_round_trip}. For extensive travel, a {rail_pass} might be beneficial.<br><br>Some journeys require a {seat_reservation} for a specific {carriage_car}. Depending on the ticket type, {validation} might be necessary before boarding. During your journey, a {ticket_inspector_conductor} will check your ticket.<br><br>',
-          de: 'Um mit dem Zug zu reisen, müssen Sie ein {ticket} für den entsprechenden {fare} kaufen. Sie können eine {single_one_way} Fahrt oder eine {return_round_trip} wählen. Für umfangreiche Reisen könnte ein {rail_pass} von Vorteil sein.<br><br>Für einige Fahrten ist eine {seat_reservation} für einen bestimmten {carriage_car} erforderlich. Je nach Tickettyp kann eine {validation} vor dem Einsteigen notwendig sein. Während Ihrer Reise wird ein {ticket_inspector_conductor} Ihr Ticket überprüfen.<br><br>',
-          es: 'Para viajar en tren, necesitará comprar un {ticket} para la {fare} apropiada. Puede elegir un viaje de {single_one_way} o un {return_round_trip}. Para viajes extensos, un {rail_pass} podría ser beneficioso.<br><br>Algunos viajes requieren una {seat_reservation} para un {carriage_car} específico. Dependiendo del tipo de billete, puede ser necesario una {validation} antes de abordar. Durante su viaje, un {ticket_inspector_conductor} revisará su billete.<br><br>',
-          fr: 'Pour voyager en train, vous devrez acheter un {ticket} pour le {fare} approprié. Vous pouvez choisir un voyage {single_one_way} ou un {return_round_trip}. Pour les voyages longs, un {rail_pass} peut être bénéfique.<br><br>Certaines trajets nécessitent une {seat_reservation} pour un {carriage_car} spécifique. Selon le type de billet, une {validation} peut être nécessaire avant l\'embarquement. Pendant votre voyage, un {ticket_inspector_conductor} vérifiera votre billet.<br><br>',
-          it: 'Per viaggiare in treno, dovrai acquistare un {ticket} per la {fare} appropriata. Puoi scegliere un viaggio {single_one_way} o un {return_round_trip}. Per viaggi estesi, un {rail_pass} potrebbe essere utile.<br><br>Alcuni viaggi richiedono una {seat_reservation} per un {carriage_car} specifico. A seconda del tipo di biglietto, potrebbe essere necessaria una {validation} prima di salire a bordo. Durante il tuo viaggio, un {ticket_inspector_conductor} controllerà il tuo biglietto.<br><br>',
-        },
-        vocab: {
-          ticket: {
-            de: "Fahrkarte",
-            en: "ticket",
-            es: "billete",
-            fr: "billet",
-            it: "biglietto",
-          },
-          fare: {
-            de: "Fahrpreis",
-            en: "fare",
-            es: "tarifa",
-            fr: "tarif",
-            it: "tariffa",
-          },
-          single_one_way: {
-            de: "Einzelfahrt",
-            en: "single/one-way",
-            es: "sencillo/de ida",
-            fr: "simple/aller simple",
-            it: "singolo/solo andata",
-          },
-          return_round_trip: {
-            de: "Rückfahrkarte",
-            en: "return/round-trip",
-            es: "de ida y vuelta",
-            fr: "aller-retour",
-            it: "andata e ritorno",
-          },
-          rail_pass: {
-            de: "Bahnpass",
-            en: "rail pass",
-            es: "pase ferroviario",
-            fr: "pass ferroviaire",
-            it: "abbonamento ferroviario",
-          },
-          seat_reservation: {
-            de: "Sitzplatzreservierung",
-            en: "seat reservation",
-            es: "reserva de asiento",
-            fr: "réservation de siège",
-            it: "prenotazione del posto a sedere",
-          },
-          carriage_car: {
-            de: "Wagen/Klasse",
-            en: "carriage/car",
-            es: "vagón/clase",
-            fr: "voiture/classe",
-            it: "vagone/classe",
-          },
-          validation: {
-            de: "Entwertung/Validierung",
-            en: "validation",
-            es: "validación",
-            fr: "validation",
-            it: "convalida",
-          },
-          ticket_inspector_conductor: {
-            de: "Schaffner/Zugbegleiter",
-            en: "ticket inspector/conductor",
-            es: "revisor/conductor",
-            fr: "contrôleur/chef de train",
-            it: "controllore/capotreno",
-          },
-        },
-      },
-
-      // --- On the Train ---
-      on_the_train: {
-        base: {
-          en: 'When your train arrives, {to_board} the correct {carriage_car}. Find your {seat}, whether it\'s an {aisle_seat} or a {window_seat}, and place your bags on the {overhead_rack_luggage_rack}.<br><br>During the journey, you might visit the {dining_car} for a meal or the {buffet_car_snack_bar} for refreshments. Some trains offer a {quiet_carriage} for a more peaceful ride. Remember to {to_alight} at your destination. If your journey involves a {connecting_train_connection}, you\'ll need to {transfer_change} trains at an intermediate station.<br><br>',
-          de: 'Wenn Ihr Zug ankommt, {to_board} Sie den richtigen {carriage_car}. Finden Sie Ihren {seat}, ob es ein {aisle_seat} oder ein {window_seat} ist, und legen Sie Ihre Taschen auf das {overhead_rack_luggage_rack}.<br><br>Während der Fahrt können Sie den {dining_car} für eine Mahlzeit oder den {buffet_car_snack_bar} für Erfrischungen besuchen. Einige Züge bieten einen {quiet_carriage} für eine ruhigere Fahrt. Denken Sie daran, an Ihrem Ziel auszusteigen. Wenn Ihre Reise einen {connecting_train_connection} beinhaltet, müssen Sie an einer Zwischenstation die Züge {transfer_change}.<br><br>',
-          es: 'Cuando llegue su tren, {to_board} el {carriage_car} correcto. Encuentre su {seat}, ya sea un {aisle_seat} o un {window_seat}, y coloque sus bolsas en el {overhead_rack_luggage_rack}.<br><br>Durante el viaje, puede visitar el {dining_car} para una comida o el {buffet_car_snack_bar} para refrescos. Algunos trenes ofrecen un {quiet_carriage} para un viaje más tranquilo. Recuerde {to_alight} en su destino. Si su viaje implica una {connecting_train_connection}, deberá {transfer_change} de trenes en una estación intermedia.<br><br>',
-          fr: 'Lorsque votre train arrive, {to_board} le bon {carriage_car}. Trouvez votre {seat}, qu\'il s\'agisse d\'un {aisle_seat} ou d\'un {window_seat}, et placez vos sacs sur le {overhead_rack_luggage_rack}.<br><br>Pendant le voyage, vous pouvez visiter le {dining_car} pour un repas ou le {buffet_car_snack_bar} pour des rafraîchissements. Certains trains offrent un {quiet_carriage} pour un trajet plus paisible. N\'oubliez pas de {to_alight} à votre destination. Si votre voyage implique une {connecting_train_connection}, vous devrez {transfer_change} de train dans une gare intermédiaire.<br><br>',
-          it: 'Quando arriva il tuo treno, {to_board} il {carriage_car} corretto. Trova il tuo {seat}, che sia un {aisle_seat} o un {window_seat}, e posiziona le tue borse sul {overhead_rack_luggage_rack}.<br><br>Durante il viaggio, puoi visitare il {dining_car} per un pasto o il {buffet_car_snack_bar} per rinfreschi. Alcuni treni offrono un {quiet_carriage} per un viaggio più tranquillo. Ricorda di {to_alight} a destinazione. Se il tuo viaggio prevede una {connecting_train_connection}, dovrai {transfer_change} treni in una stazione intermedia.<br><br>',
-        },
-        vocab: {
-          to_board: {
-            de: "einsteigen",
-            en: "to board",
-            es: "subirse",
-            fr: "monter",
-            it: "salire",
-          },
-          carriage_car: {
-            de: "Wagen/Klasse",
-            en: "carriage/car",
-            es: "vagón/clase",
-            fr: "voiture/classe",
-            it: "vagone/classe",
-          },
-          seat: {
-            de: "Sitzplatz",
-            en: "seat",
-            es: "asiento",
-            fr: "siège",
-            it: "posto a sedere",
-          },
-          aisle_seat: {
-            de: "Gangplatz",
-            en: "aisle seat",
-            es: "asiento del pasillo",
-            fr: "siège côté couloir",
-            it: "posto lato corridoio",
-          },
-          window_seat: {
-            de: "Fensterplatz",
-            en: "window seat",
-            es: "asiento junto a la ventana",
-            fr: "siège côté fenêtre",
-            it: "posto lato finestra",
-          },
-          overhead_rack_luggage_rack: {
-            de: "Gepäckablage/Gepäcknetz",
-            en: "overhead rack/luggage rack",
-            es: "portaequipajes/estante para equipaje",
-            fr: "porte-bagages/râtelier à bagages",
-            it: "portabagagli/portapacchi",
-          },
-          dining_car: {
-            de: "Speisewagen",
-            en: "dining car",
-            es: "vagón comedor",
-            fr: "wagon-restaurant",
-            it: "vagone ristorante",
-          },
-          buffet_car_snack_bar: {
-            de: "Bistro-/Imbisswagen",
-            en: "buffet car/snack bar",
-            es: "vagón bufé/bar de aperitivos",
-            fr: "wagon-buffet/snack-bar",
-            it: "vagone buffet/snack bar",
-          },
-          quiet_carriage: {
-            de: "Ruhewagen",
-            en: "quiet carriage",
-            es: "vagón silencioso",
-            fr: "voiture silencieuse",
-            it: "vagone silenzioso",
-          },
-          to_alight: {
-            de: "aussteigen",
-            en: "to alight",
-            es: "bajarse",
-            fr: "descendre",
-            it: "scendere",
-          },
-          transfer_change: {
-            de: "umsteigen",
-            en: "to transfer/to change",
-            es: "transbordar/cambiar",
-            fr: "changer",
-            it: "cambiare",
-          },
-          connecting_train_connection: {
-            de: "Anschlusszug/Verbindung",
-            en: "connecting train/connection",
-            es: "tren de conexión/conexión",
-            fr: "train de correspondance/correspondance",
-            it: "treno di collegamento/connessione",
-          },
-        },
-      },
-
-      // ----------------------------------------------------------------------
-      // --- Next top-level category: Dining Out ---
-      // --- At the restaurant ---
-      restaurant: {
-        base: {
-          en: 'When planning to dine out, it\'s often wise {to_book_to_make_a_reservation}, especially for popular spots. If you haven\'t made a {reservation_booking}, you\'ll be a {walk_in}.<br><br>Consider the {cuisine} you\'re in the mood for and check the restaurant\'s {opening_hours}. Upon arrival, the {host_hostess} will greet you and ask, "{table_for_two_three_four}?" <br><br>You can choose to sit {indoors_outdoors}, perhaps in a {booth_table}. Once seated, you\'ll be presented with the {menu} and, if applicable, the {wine_list}.<br><br>',
-          de: 'Wenn Sie planen, auswärts zu essen, ist es oft klug, {to_book_to_make_a_reservation}, besonders für beliebte Orte. Wenn Sie keine {reservation_booking} gemacht haben, sind Sie ein {walk_in}.<br><br>Überlegen Sie, welche {cuisine} Sie mögen, und überprüfen Sie die {opening_hours} des Restaurants. Bei der Ankunft wird Sie der {host_hostess} begrüßen und fragen: "{table_for_two_three_four}?" <br><br>Sie können wählen, ob Sie {indoors_outdoors} sitzen möchten, vielleicht in einer {booth_table}. Sobald Sie Platz genommen haben, erhalten Sie die {menu} und, falls zutreffend, die {wine_list}.<br><br>',
-          es: 'Cuando planee salir a cenar, a menudo es prudente {to_book_to_make_a_reservation}, especialmente en lugares populares. Si no ha hecho una {reservation_booking}, será un {walk_in}.<br><br>Considere la {cuisine} que le apetece y consulte el {opening_hours} del restaurante. A su llegada, el {host_hostess} le saludará y preguntará: "{table_for_two_three_four}?" <br><br>Puede elegir sentarse {indoors_outdoors}, quizás en una {booth_table}. Una vez sentado, se le presentará el {menu} y, si corresponde, la {wine_list}.<br><br>',
-          fr: 'Lorsque vous prévoyez de dîner à l\'extérieur, il est souvent judicieux de {to_book_to_make_a_reservation}, surtout pour les endroits populaires. Si vous n\'avez pas fait de {reservation_booking}, vous serez un {walk_in}.<br><br>Considérez la {cuisine} que vous avez envie de manger et vérifiez les {opening_hours} du restaurant. À votre arrivée, le {host_hostess} vous accueillera et demandera : "{table_for_two_three_four} ?" <br><br>Vous pouvez choisir de vous asseoir {indoors_outdoors}, peut-être dans une {booth_table}. Une fois assis, on vous présentera le {menu} et, le cas échéant, la {wine_list}.<br><br>',
-          it: 'Quando pianifichi di cenare fuori, spesso è saggio {to_book_to_make_a_reservation}, specialmente per i posti popolari. Se non hai fatto una {reservation_booking}, sarai un {walk_in}.<br><br>Considera la {cuisine} che ti va e controlla gli {opening_hours} del ristorante. Al tuo arrivo, il {host_hostess} ti accoglierà e chiederà: "{table_for_two_three_four}?" <br><br>Puoi scegliere di sederti {indoors_outdoors}, magari in una {booth_table}. Una volta seduto, ti verrà presentato il {menu} e, se applicabile, la {wine_list}.<br><br>',
-        },
-        vocab: {
-          to_book_to_make_a_reservation: {
-            de: "eine Reservierung vornehmen",
-            en: "to book/to make a reservation",
-            es: "reservar/hacer una reserva",
-            fr: "réserver/faire une réservation",
-            it: "prenotare/fare una prenotazione",
-          },
-          reservation_booking: {
-            de: "Reservierung",
-            en: "reservation/booking",
-            es: "reserva",
-            fr: "réservation",
-            it: "prenotazione",
-          },
-          walk_in: {
-            de: "Spontanbesucher",
-            en: "walk-in",
-            es: "cliente sin reserva",
-            fr: "client sans réservation",
-            it: "cliente senza prenotazione",
-          },
-          cuisine: {
-            de: "Küche",
-            en: "cuisine",
-            es: "cocina",
-            fr: "cuisine",
-            it: "cucina",
-          },
-          opening_hours: {
-            de: "Öffnungszeiten",
-            en: "opening hours",
-            es: "horario de apertura",
-            fr: "heures d'ouverture",
-            it: "orari di apertura",
-          },
-          host_hostess: {
-            de: "Gastgeber/Gastgeberin",
-            en: "host/hostess",
-            es: "anfitrión/anfitriona",
-            fr: "hôte/hôtesse",
-            it: "padrone di casa/padrona di casa",
-          },
-          table_for_two_three_four: {
-            de: "Tisch für zwei/drei/vier",
-            en: "table for two/three/four",
-            es: "¿mesa para dos/tres/cuatro",
-            fr: "table pour deux/trois/quatre",
-            it: "tavolo per due/tre/quattro",
-          },
-          indoors_outdoors: {
-            de: "drinnen/draußen",
-            en: "indoors/outdoors",
-            es: "adentro/afuera",
-            fr: "à l'intérieur/à l'extérieur",
-            it: "interno/esterno",
-          },
-          booth_table: {
-            de: "Sitznische/Tisch",
-            en: "booth/table",
-            es: "cabina/mesa",
-            fr: "cabine/table",
-            it: "cabina/tavolo",
-          },
-          menu: {
-            de: "Speisekarte",
-            en: "menu",
-            es: "menú",
-            fr: "menu",
-            it: "menu",
-          },
-          wine_list: {
-            de: "Weinkarte",
-            en: "wine list",
-            es: "carta de vinos",
-            fr: "carte des vins",
-            it: "lista dei vini",
-          },
-        },
-      },
-
-      // --- During the meal & special requests ---
-      ordering_meal: {
-        base: {
-          en: 'When ordering, it\'s crucial to mention any {dietary_restrictions_allergies}, for example, "I have a nut allergy" or "I am a {vegetarian_vegan}." If you avoid certain grains, ask for {gluten_free} options.<br><br>For steak orders, the server will ask, "{how_would_you_like_your_steak_cooked}" You can choose from Rare, Medium-rare, Medium, Medium-well, or Well-done. Don\'t forget to ask for any {condiments} you\'d like.<br><br>When your food arrives, the server will often say, "{enjoy_your_meal}" A polite response if they check on you later is, "{everything_is_delicious_thank_you}"<br><br>',
-          de: 'Beim Bestellen ist es wichtig, etwaige {dietary_restrictions_allergies} zu erwähnen, zum Beispiel: "Ich habe eine Nussallergie" oder "Ich bin {vegetarian_vegan}." Wenn Sie bestimmte Getreidesorten vermeiden, fragen Sie nach {gluten_free} Optionen.<br><br>Bei Steakbestellungen wird der Kellner fragen: "{how_would_you_like_your_steak_cooked}" Sie können zwischen Rare, Medium-rare, Medium, Medium-well oder Well-done wählen. Vergessen Sie nicht, nach den gewünschten {condiments} zu fragen.<br><br>Wenn Ihr Essen ankommt, sagt der Kellner oft: "{enjoy_your_meal}" Eine höfliche Antwort, wenn sie später nach Ihnen sehen, ist: "{everything_is_delicious_thank_you}"<br><br>',
-          es: 'Al ordenar, es crucial mencionar cualquier {dietary_restrictions_allergies}, por ejemplo, "Tengo alergia a los frutos secos" o "Soy {vegetarian_vegan}." Si evita ciertos granos, pregunte por opciones {gluten_free}.<br><br>Para pedidos de bistec, el camarero preguntará: "{how_would_you_like_your_steak_cooked}" Puede elegir entre Rare, Medium-rare, Medium, Medium-well o Well-done. No olvide pedir los {condiments} que desee.<br><br>Cuando llegue su comida, el camarero a menudo dirá: "{enjoy_your_meal}" Una respuesta educada si vuelven a verlo más tarde es: "{everything_is_delicious_thank_you}"<br><br>',
-          fr: 'Lors de la commande, il est crucial de mentionner toute {dietary_restrictions_allergies}, par exemple, "J\'ai une allergie aux noix" ou "Je suis {vegetarian_vegan}." Si vous évitez certaines céréales, demandez des options {gluten_free}.<br><br>Pour les commandes de steak, le serveur demandera : "{how_would_you_like_your_steak_cooked}" Vous pouvez choisir entre Rare, Medium-rare, Medium, Medium-well ou Well-done. N\'oubliez pas de demander les {condiments} que vous souhaitez.<br><br>Lorsque votre nourriture arrive, le serveur dira souvent : "{enjoy_your_meal}" Une réponse polie s\'ils reviennent vous voir plus tard est : "{everything_is_delicious_thank_you}"<br><br>',
-          it: 'Quando ordini, è fondamentale menzionare eventuali {dietary_restrictions_allergies}, ad esempio, "Ho un\'allergia alle noci" o "Sono {vegetarian_vegan}." Se eviti alcuni cereali, chiedi opzioni {gluten_free}.<br><br>Per gli ordini di bistecca, il cameriere chiederà: "{how_would_you_like_your_steak_cooked}" Puoi scegliere tra Rare, Medium-rare, Medium, Medium-well o Well-done. Non dimenticare di chiedere i {condiments} che desideri.<br><br>Quando arriva il tuo cibo, il cameriere spesso dirà: "{enjoy_your_meal}" Una risposta educata se tornano a vederti più tardi è: "{everything_is_delicious_thank_you}"<br><br>',
-        },
-        vocab: {
-          dietary_restrictions_allergies: {
-            de: "diätetische Einschränkungen/Allergien",
-            en: "dietary restrictions/allergies",
-            es: "restricciones dietéticas/alergias",
-            fr: "restrictions alimentaires/allergies",
-            it: "restrizioni dietetiche/allergie",
-          },
-          vegetarian_vegan: {
-            de: "Vegetarier/Veganer",
-            en: "vegetarian/vegan",
-            es: "vegetariano/vegano",
-            fr: "végétarien/végétalien",
-            it: "vegetariano/vegano",
-          },
-          gluten_free: {
-            de: "glutenfrei",
-            en: "gluten-free",
-            es: "sin gluten",
-            fr: "sans gluten",
-            it: "senza glutine",
-          },
-          how_would_you_like_your_steak_cooked: {
-            de: "Wie möchten Sie Ihr Steak gegart haben?",
-            en: "How would you like your steak cooked?",
-            es: "¿Cómo le gustaría que se cocinara su bistec?",
-            fr: "Comment souhaitez-vous que votre steak soit cuit ?",
-            it: "Come vorresti che fosse cotta la tua bistecca?",
-          },
-          condiments: {
-            de: "Gewürze/Zutaten",
-            en: "condiments",
-            es: "condimentos",
-            fr: "condiments",
-            it: "condimenti",
-          },
-          enjoy_your_meal: {
-            de: "Guten Appetit!",
-            en: "Enjoy your meal!",
-            es: "¡Buen provecho!",
-            fr: "Bon appétit !",
-            it: "Buon appetito!",
-          },
-          everything_is_delicious_thank_you: {
-            de: "Alles ist köstlich, danke.",
-            en: "Everything is delicious, thank you.",
-            es: "Todo está delicioso, gracias.",
-            fr: "Tout est délicieux, merci.",
-            it: "Tutto è delizioso, grazie.",
-          },
-        },
-      },
-
-      // --- Paying & Leaving ---
-      paying_leaving: {
-        base: {
-          en: 'When you\'re ready to leave, ask your {waiter_waitress} to get you the {bill_check}. Don\'t forget to Leave a {tip}.<br><br>You can choose {to_pay_by_card} or {to_pay_in_cash}.<br><br>',
-          de: 'Wenn Sie bereit sind zu gehen, bitten Sie Ihren {waiter_waitress}, Ihnen die {bill_check} zu bringen. Vergessen Sie nicht, ein {tip} zu hinterlassen.<br><br>Sie können wählen, ob Sie {to_pay_by_card} oder {to_pay_in_cash} möchten.<br><br>',
-          es: 'Cuando esté listo para irse, pida a su {waiter_waitress} que le traiga la {bill_check}. No olvide dejar una {tip}.<br><br>Puede elegir {to_pay_by_card} o {to_pay_in_cash}.<br><br>',
-          fr: 'Lorsque vous êtes prêt à partir, demandez à votre {waiter_waitress} de vous apporter la {bill_check}. N\'oubliez pas de laisser un {tip}.<br><br>Vous pouvez choisir de {to_pay_by_card} ou de {to_pay_in_cash}.<br><br>',
-          it: 'Quando sei pronto per andare, chiedi al tuo {waiter_waitress} di portarti il {bill_check}. Non dimenticare di lasciare una {tip}.<br><br>Puoi scegliere di {to_pay_by_card} o di {to_pay_in_cash}.<br><br>',
-        },
-        vocab: {
-          waiter_waitress: {
-            de: "Kellner/Kellnerin",
-            en: "waiter/waitress",
-            es: "camarero/camarera",
-            fr: "serveur/serveuse",
-            it: "cameriere/cameriera",
-          },
-          bill_check: {
-            de: "Rechnung",
-            en: "bill/check",
-            es: "cuenta",
-            fr: "addition",
-            it: "conto",
-          },
-          tip: {
-            de: "Trinkgeld",
-            en: "tip",
-            es: "propina",
-            fr: "pourboire",
-            it: "mancia",
-          },
-          to_pay_by_card: {
-            de: "mit Karte bezahlen",
-            en: "to pay by card",
-            es: "pagar con tarjeta",
-            fr: "payer par carte",
-            it: "pagare con carta",
-          },
-          to_pay_in_cash: {
-            de: "bar bezahlen",
-            en: "to pay in cash",
-            es: "pagar en efectivo",
-            fr: "payer en espèces",
-            it: "pagare in contanti",
-          },
-        },
-      },
-
-      // ----------------------------------------------------------------------
-      // --- Shopping ---
-      shops: {
-        base: {
-          en: 'To shop, first there is the {clothing_shop}. See her smile, get dresses and jewels.<br><br>In the next {shop} there\'s drinks and food.<br><br>{drug_dispensary}\'s offers medical supplies.<br><br>',
-          de: 'Zum Einkaufen gibt es zuerst das {clothing_shop}. Sehen Sie ihr Lächeln, bekommen Sie Kleider und Schmuck.<br><br>Im nächsten {shop} gibt es Getränke und Essen.<br><br>{drug_dispensary} bietet medizinische Versorgung an.<br><br>',
-          es: 'Para ir de compras, primero está la {clothing_shop}. Mira su sonrisa, consigue vestidos y joyas.<br><br>En la siguiente {shop} hay bebidas y comida.<br><br>La {drug_dispensary} ofrece suministros médicos.<br><br>',
-          fr: 'Pour faire du shopping, il y a d\'abord le {clothing_shop}. Voyez son sourire, obtenez des robes et des bijoux.<br><br>Dans le {shop} suivant, il y a des boissons et de la nourriture.<br><br>La {drug_dispensary} propose des fournitures médicales.<br><br>',
-          it: 'Per fare shopping, prima c\'è il {clothing_shop}. Guarda il suo sorriso, prendi vestiti e gioielli.<br><br>Nel {shop} successivo ci sono bevande e cibo.<br><br>La {drug_dispensary} offre forniture mediche.<br><br>',
-        },
-        vocab: {
-          clothing_shop: {
-            en: "clothing shop",
-            de: "Bekleidungsgeschäft",
-            es: "tienda de ropa",
-            fr: "magasin de vêtements",
-            it: "negozio di abbigliamento",
-          },
-          drug_dispensary: {
-            en: "Apothecary",
-            de: "Apotheke",
-            es: "farmacia",
-            fr: "pharmacie",
-            it: "farmacia",
-          },
-          shop: {
-            en: "shop",
-            de: "Geschäft",
-            es: "tienda",
-            fr: "magasin",
-            it: "negozio",
-          },
-        },
-      },
-
-      // --- Next top-level category: ---
-      // --- Hotel ---
-      hotel: {
-        base: {},
-        vocab: {},
-      },
+      // --- Shopping Content Here ---
+      shops: { base: { en: "Shopping content..." }, vocab: {} },
+      hotel: { base: { en: "Hotel content..." }, vocab: {} },
     };
 
-    const contentStructure = {};
-    
-    for (const key in content) {
-      if (content[key] && typeof content[key] === "object" && content[key].base) {
-      contentStructure[key] = [];
-      } else if (content[key] && typeof content[key] === "object") {
-      // If there are subcategories, list them
-      contentStructure[key] = Object.keys(content[key]);
-      }
-    }
-    console.log("Content structure with subcategories:", contentStructure);
-    
-
-    // Topic names and their translations
     const topicNames = {
-      // --- Top-level Topic: Travel by Plane ---
       travel_by_plane: {
-        en: "Travel by Plane",
-        de: "Reisen mit dem Flugzeug",
-        es: "Viajar en avión",
-        fr: "Voyager en avion",
-        it: "Viaggiare in aereo",
-
-        // --- Sub-level Topics: Travel by Plane ---
-        subcategories: {
-          booking_flight: {
-            en: "Book Flight",
-            de: "Flug buchen",
-            es: "Reservar vuelo",
-            fr: "Réserver vol",
-            it: "Prenotare volo",
-          },
-          airport: {
-            en: "At the Airport",
-            de: "Am Flughafen",
-            es: "En el aeropuerto",
-            fr: "À l'aéroport",
-            it: "All'aeroporto",
-          },
-          departure_boarding: {
-            en: "Departure & Boarding",
-            de: "Abflug & Boarding",
-            es: "Salida y embarque",
-            fr: "Départ et embarquement",
-            it: "Partenza e imbarco",
-          },
-          on_plane: {
-            en: "On the Plane",
-            de: "Im Flugzeug",
-            es: "En el avión",
-            fr: "Dans l'avion",
-            it: "Sull'aereo",
-          },
-          plane_arrival: {
-            en: "Plane Arrival",
-            de: "Ankunft des Flugzeugs",
-            es: "Llegada del avión",
-            fr: "Arrivée de l'avion",
-            it: "Arrivo dell'aereo",
-          },
+        en: "Travel by Plane", de: "Reisen mit dem Flugzeug", es: "Viajar en avión", fr: "Voyager en avion", it: "Viaggiare in aereo",
+        subcategory: {
+          book_flight: { en: "Book Flight", de: "Flug buchen", es: "Reservar vuelo", fr: "Réserver vol", it: "Prenotare volo" },
+          airport: { en: "At the Airport", de: "Am Flughafen", es: "En el aeropuerto", fr: "À l'aéroport", it: "All'aeroporto" },
+          departure_boarding: { en: "Departure & Boarding", de: "Abflug & Boarding", es: "Salida y embarque", fr: "Départ et embarquement", it: "Partenza e imbarco" },
+          on_plane: { en: "On the Plane", de: "Im Flugzeug", es: "En el avión", fr: "Dans l'avion", it: "Sull'aereo" },
+          plane_arrival: { en: "Plane Arrival", de: "Ankunft des Flugzeugs", es: "Llegada del avión", fr: "Arrivée de l'avion", it: "Arrivo dell'aereo" },
         },
       },
-
-      // --- Top-level Topic: Travel by Bus ---
       travel_by_bus: {
-        en: "Travel by Bus",
-        de: "Reisen mit dem Bus",
-        es: "Viajar en autobús",
-        fr: "Voyager en bus",
-        it: "Viaggiare in autobus",
-
-        // --- Sub-level Topics: Travel by Bus ---
-        subcategories: {
-          bus_locations: {
-            en: "Bus Locations",
-            de: "Busstandorte",
-            es: "Ubicaciones de autobuses",
-            fr: "Emplacements des bus",
-            it: "Posizioni degli autobus",
-          },
-          bus_tickets_fares: {
-            en: "Bus tickets & fares",
-            de: "Bustickets & Fahrpreise",
-            es: "Boletos y tarifas de autobús",
-            fr: "Billets et tarifs de bus",
-            it: "Biglietti e tariffe dell'autobus",
-          },
-          on_the_bus: {
-            en: "On the Bus",
-            de: "Im Bus",
-            es: "En el autobús",
-            fr: "Dans le bus",
-            it: "Sull'autobus",
-          },
+        en: "Travel by Bus", de: "Reisen mit dem Bus", es: "Viajar en autobús", fr: "Voyager en bus", it: "Viaggiare in autobus",
+        subcategory: {
+          bus_locations: { en: "Bus Locations", de: "Busstandorte", es: "Ubicaciones de autobuses", fr: "Emplacements des bus", it: "Posizioni degli autobus" },
+          bus_tickets_fares: { en: "Bus tickets & fares", de: "Bustickets & Fahrpreise", es: "Boletos y tarifas de autobús", fr: "Billets et tarifs de bus", it: "Biglietti e tariffe dell'autobus" },
+          on_the_bus: { en: "On the Bus", de: "Im Bus", es: "En el autobús", fr: "Dans le bus", it: "Sull'autobus" },
         },
       },
-
-      // --- Top-level Topic: Travel by train ---
       travel_by_train: {
-        en: "Travel by train",
-        de: "Reisen mit dem Zug",
-        es: "Viajar en tren",
-        fr: "Voyager en train",
-        it: "Viaggiare in treno",
-
-        // --- Sub-level Topics: Travel by train ---
-        subcategories: {
-          train_Station: {
-            en: "Train Station",
-            de: "Bahnhof",
-            es: "Estación de tren",
-            fr: "Gare",
-            it: "Stazione ferroviaria",
-          },
-          train_tickets_fares: {
-            en: "Train tickets & fares",
-            de: "Zugtickets & Fahrpreise",
-            es: "Boletos y tarifas de tren",
-            fr: "Billets et tarifs de train",
-            it: "Biglietti e tariffe del treno",
-          },
-          on_the_train: {
-            en: "On the Train",
-            de: "Im Zug",
-            es: "En el tren",
-            fr: "Dans le train",
-            it: "Sul treno",
-          },
+        en: "Travel by train", de: "Reisen mit dem Zug", es: "Viajar en tren", fr: "Voyager en train", it: "Viaggiare in treno",
+        subcategory: {
+          train_Station: { en: "Train Station", de: "Bahnhof", es: "Estación de tren", fr: "Gare", it: "Stazione ferroviaria" },
+          train_tickets_fares: { en: "Train tickets & fares", de: "Zugtickets & Fahrpreise", es: "Boletos y tarifas de tren", fr: "Billets et tarifs de train", it: "Biglietti e tariffe del treno" },
+          on_the_train: { en: "On the Train", de: "Im Zug", es: "En el tren", fr: "Dans le train", it: "Sul treno" },
         },
       },
-
-      // --- Top-level Topic: Dining Out ---
       restaurant: {
-        en: "Dining Out",
-        de: "Auswärts essen",
-        es: "Comer fuera",
-        fr: "Manger dehors",
-        it: "Mangiare fuori",
-
-        // --- Sub-level Topics: Dining Out ---
-        subcategories: {
-          restaurant: {
-            en: "At the Restaurant",
-            de: "Im Restaurant",
-            es: "En el restaurante",
-            fr: "Au restaurant",
-            it: "Al ristorante",
-          },
-          ordering_meal: {
-            en: 'Ordering',
-            de: "Bestellen",
-            es: "Pedir",
-            fr: "Commander",
-            it: "Ordinare",
-          },
-          leave_the_table: {
-            en: "Leaving",
-            de: "Gehen",
-            es: "salir",
-            fr: "partir",
-            it: "andarsene",
-          }
+        en: "Dining Out", de: "Auswärts essen", es: "Comer fuera", fr: "Manger dehors", it: "Mangiare fuori",
+        subcategory: {
+          restaurant: { en: "At the Restaurant", de: "Im Restaurant", es: "En el restaurante", fr: "Au restaurant", it: "Al ristorante" },
+          ordering_meal: { en: 'Ordering', de: "Bestellen", es: "Pedir", fr: "Commander", it: "Ordinare" },
+          paying_leaving: { en: "Leaving", de: "Gehen", es: "salir", fr: "partir", it: "andarsene" }
         },
       },
-
-      // --- Top-level Topic: Shopping ---
       shopping: {
-        en: "Shopping",
-        de: "Einkaufen",
-        es: "Compras",
-        fr: "Shopping",
-        it: "Shopping",
-
-        // --- Sub-level Topics: Shopping ---
-        subcategories: {
-          shops: {
-            en: "Shops",
-            de: "Geschäfte",
-            es: "Tiendas",
-            fr: "Magasins",
-            it: "Negozi",
-          },
-        },
-      },
-
-      // --- Top-level Topic: Travel by Placeholder ---
-      next_category: {
-        en: "Next Category (Placeholder)",
-        de: "Nächste Kategorie (Platzhalter)",
-        es: "Siguiente categoría (Marcador de posición)",
-        fr: "Catégorie suivante (espace réservé)",
-        it: "Prossima categoria (segnaposto)",
-
-        subcategories: {
-          next_subcategory: {
-            en: "Next Subcategory (Placeholder)",
-            de: "Nächste Unterkategorie (Platzhalter)",
-            es: "Siguiente subcategoría (Marcador de posición)",
-            fr: "Sous-catégorie suivante (espace réservé)",
-            it: "Prossima sottocategoria (segnaposto)",
-          },
+        en: "Shopping", de: "Einkaufen", es: "Compras", fr: "Shopping", it: "Shopping",
+        subcategory: {
+          shops: { en: "Shops", de: "Geschäfte", es: "Tiendas", fr: "Magasins", it: "Negozi" },
         },
       },
     };
 
-    // Language display names in different languages
-    const languageDisplayNames = {
-      de: {
-        de: "Deutsch",
-        en: "Englisch",
-        es: "Spanisch",
-        fr: "Französisch",
-        it: "Italienisch",
-      },
-      en: {
-        de: "German",
-        en: "English",
-        es: "Spanish",
-        fr: "French",
-        it: "Italian",
-      },
-      es: {
-        de: "Alemán",
-        en: "Inglés",
-        es: "Español",
-        fr: "Francés",
-        it: "Italiano",
-      },
-      fr: {
-        de: "Allemand",
-        en: "Anglais",
-        es: "Espagnol",
-        fr: "Français",
-        it: "Italien",
-      },
-      it: {
-        de: "Tedesco",
-        en: "Inglese",
-        es: "Spagnolo",
-        fr: "Francese",
-        it: "Italiano",
-      },
+    const languageNames = {
+      de: { de: "Deutsch", en: "Englisch", es: "Spanisch", fr: "Französisch", it: "Italienisch" },
+      en: { de: "German", en: "English", es: "Spanish", fr: "French", it: "Italian" },
+      es: { de: "Alemán", en: "Inglés", es: "Español", fr: "Francés", it: "Italiano" },
+      fr: { de: "Allemand", en: "Anglais", es: "Espagnol", fr: "Français", it: "Italien" },
+      it: { de: "Tedesco", en: "Inglese", es: "Spagnolo", fr: "Francese", it: "Italiano" },
     };
 
-    //___Menu_translations___
-    const translatedMenu = {
-      de: {
-        uiLanguageLabel: "App Sprache",
-        topicLabel: "Thema",
-        yourLanguageLabel: "Deine Sprache",
-        targetLanguageLabel: "Zielsprache",
-        errorMessageSameLanguage:
-          "Bitte wählen Sie zwei unterschiedliche Sprachen aus.",
-        errorTitle: "Fehler",
-        learningTextTitle: "Lerntext",
-        vocabListTitle: "Vokabelliste",
-        originalTextTitle: "Originaltext",
-        translationTextTitle: "Übersetzung",
-      },
-      en: {
-        uiLanguageLabel: "App Language",
-        topicLabel: "Topic",
-        yourLanguageLabel: "Your Language",
-        targetLanguageLabel: "Target Language",
-        errorMessageSameLanguage: "Please select two different languages.",
-        errorTitle: "Error",
-        learningTextTitle: "Learning Text",
-        vocabListTitle: "Vocabulary List",
-        originalTextTitle: "Original Text",
-        translationTextTitle: "Translation",
-      },
-      es: {
-        uiLanguageLabel: "Idioma de la aplicación",
-        topicLabel: "Tema",
-        yourLanguageLabel: "Tu Idioma",
-        targetLanguageLabel: "Idioma Objetivo",
-        errorMessageSameLanguage:
-          "Por favor, seleccione dos idiomas diferentes.",
-        errorTitle: "Error",
-        learningTextTitle: "Texto de Aprendizaje",
-        vocabListTitle: "Lista de Vocabulario",
-        originalTextTitle: "Texto Original",
-        translationTextTitle: "Traducción",
-      },
-      fr: {
-        uiLanguageLabel: "Langue de l'application",
-        topicLabel: "Sujet",
-        yourLanguageLabel: "Votre langue",
-        targetLanguageLabel: "Langue cible",
-        errorMessageSameLanguage:
-          "Veuillez sélectionner deux langues différentes.",
-        errorTitle: "Erreur",
-        learningTextTitle: "Texte d'apprentissage",
-        vocabListTitle: "Liste de vocabulaire",
-        originalTextTitle: "Texte original",
-        translationTextTitle: "Traduction",
-      },
-      it: {
-        uiLanguageLabel: "Lingua dell'app",
-        topicLabel: "Argomento",
-        yourLanguageLabel: "La tua lingua",
-        targetLanguageLabel: "Lingua di destinazione",
-        errorMessageSameLanguage:
-          "Si prega di selezionare due lingue diverse.",
-        errorTitle: "Errore",
-        learningTextTitle: "Testo di apprendimento",
-        vocabListTitle: "Lista di vocaboli",
-        originalTextTitle: "Testo originale",
-        translationTextTitle: "Traduzione",
-      },
-    };
-
-  //___DOM_elements___
-  const chooseOption = document.getElementById("chooseOption");
-  // The UI language select is the same as chooseOption in markup; alias for clarity
-  const uiLangSelect = chooseOption;
-  // The topic control in the HTML is a <select id="chooseTopic"> inside a div#topic
-  const topicSelect = document.getElementById("chooseTopic");
-  // The native/target language selectors in the markup are selectionOne/selectionTwo
-  const nativeLangSelect = document.getElementById("selectionOne");
-  const targetLangSelect = document.getElementById("selectionTwo");
-    const errorMessage = document.getElementById("error-message");
-    const topicTitle = document.getElementById("topicTitle");
-    const learningText = document.getElementById("learning-text");
-    const vocabList = document.getElementById("vocab-list");
-    const nativeLangTitle = document.getElementById("native-lang-title");
-    const nativeLangFullText = document.getElementById(
-      "native-lang-full-text"
-    );
-    const targetLangTitle = document.getElementById("target-lang-title");
-    const targetLangFullText = document.getElementById(
-      "target-lang-full-text"
-    );
-
-    //__Swap <-> Menu__
-    document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function() {
+      const uiLangSelect = document.getElementById("chooseOption");
+      const topicSelect = document.getElementById("chooseTopic");
+      const nativeLangSelect = document.getElementById("selectionOne");
+      const targetLangSelect = document.getElementById("selectionTwo");
+      const topicTitle = document.getElementById("topicTitle");
+      const learningText = document.getElementById("knowledgeText");
+      const vocabList = document.getElementById("wordList");
+      const nativeLangTitle = document.getElementById("native-lang-title");
+      const nativeLangFullText = document.getElementById("native-lang-full-text");
+      const targetLangTitle = document.getElementById("target-lang-title");
+      const targetLangFullText = document.getElementById("target-lang-full-text");
+      const errorMessage = document.getElementById("errorMessage");
+      const contentDisplay = document.getElementById("content");
       const swapBtn = document.getElementById("dyorButton");
-      if (swapBtn) {
-        swapBtn.addEventListener("click", function () {
-          const selectionOne = document.getElementById("selectionOne");
-          const selectionTwo = document.getElementById("selectionTwo");
-          if (selectionOne && selectionTwo) {
-            const temp = selectionOne.value;
-            selectionOne.value = selectionTwo.value;
-            selectionTwo.value = temp;
-            // Trigger change events if needed
-            selectionOne.dispatchEvent(new Event("change"));
-            selectionTwo.dispatchEvent(new Event("change"));
-            generateText();
-          }
-        });
-      }
-    });
+      const menuBox = document.getElementById("menuBox");
+      const toggleMenuBtn = document.getElementById("menuButton");
 
-
-    function populateSelect(selectElement, data, selectedValue) {
-      selectElement.innerHTML = "";
-      let currentUILang = "en";
-      if (typeof chooseOption !== 'undefined' && chooseOption && chooseOption.value) {
-        currentUILang = chooseOption.value;
-      } else if (typeof chooseOption !== 'undefined' && chooseOption && chooseOption.value) {
-        currentUILang = chooseOption.value;
-      }
-      // Fallback: if data is undefined, use a minimal languageDisplayNames
-      if (!data) {
-        data = { en: "English", de: "Deutsch", es: "Español", fr: "Français", it: "Italiano" };
-      }
-
-  if (selectElement.id === "topic" || selectElement.id === "chooseTopic") {
-    // For topic dropdown: use optgroup for top-level categories, options for subcategories
-    for (const catKey in data) {
-      const cat = data[catKey];
-      if (cat.subcategories) {
-        const optgroup = document.createElement("optgroup");
-        optgroup.label = cat[currentUILang] || cat.en || catKey;
-        for (const subKey in cat.subcategories) {
-          const option = document.createElement("option");
-          option.value = subKey;
-          option.textContent = cat.subcategories[subKey][currentUILang] || cat.subcategories[subKey].en || subKey;
-          if (subKey === selectedValue) option.selected = true;
-          optgroup.appendChild(option);
+      function speakText(text, lang, buttonEl) {
+        if (!'speechSynthesis' in window) {
+          alert("Sorry, your browser doesn't support text-to-speech.");
+          return;
         }
-        selectElement.appendChild(optgroup);
-      } else {
-        // If no subcategories, show as disabled optgroup (visual separation)
-        const optgroup = document.createElement("optgroup");
-        optgroup.label = cat[currentUILang] || cat.en || catKey;
-        optgroup.disabled = true;
-        selectElement.appendChild(optgroup);
-      }
-    }
-  } else if (selectElement.id === "chooseOption") {
-        // Special handling for chooseOption: show language names
-        for (const key in data) {
-          const option = document.createElement("option");
-          option.value = key;
-          // Try to show the language name in its own language, fallback to English
-          if (data[key][key]) {
-            option.textContent = data[key][key];
-          } else if (data[key].en) {
-            option.textContent = data[key].en;
-          } else if (typeof data[key] === 'string') {
-            option.textContent = data[key];
-          } else {
-            option.textContent = key;
-          }
-          if (key === selectedValue) option.selected = true;
-          selectElement.appendChild(option);
-        }
-      } else {
-        for (const key in data) {
-          const option = document.createElement("option");
-          option.value = key;
-          if (
-            selectElement.id === "selectionOne" ||
-            selectElement.id === "selectionTwo"
-          ) {
-            option.textContent = languageDisplayNames[currentUILang][key];
-          } else if (selectElement.id === "chooseOption" || selectElement.id === "ui-lang-select") {
-            option.textContent = data[key][key];
-          } else {
-            option.textContent = data[key];
-          }
-          if (key === selectedValue) option.selected = true;
-          selectElement.appendChild(option);
-        }
-      }
-    }
-
-    function updateUIText(lang) {
-      const translations = translatedMenu[lang];
-      if (!translations) return;
-
-      // Update elements with data-key attribute
-      document.querySelectorAll("[data-key]").forEach((element) => {
-        const key = element.getAttribute("data-key");
-        if (translations[key]) {
-          element.textContent = translations[key];
-        }
-      });
-
-      // Re-populate all selects to update their display names based on the new UI language
-      populateSelect(chooseOption, languageDisplayNames, chooseOption.value); // Use languageDisplayNames for choose dropdown
-  populateSelect(topicSelect, topicNames, topicSelect.value);
-      populateSelect(
-        nativeLangSelect,
-        languageDisplayNames,
-        nativeLangSelect.value
-      ); // Use languageDisplayNames for native select
-      populateSelect(
-        targetLangSelect,
-        languageDisplayNames,
-        targetLangSelect.value
-      ); // Use languageDisplayNames for target select
-
-      // Re-generate the main content to update dynamic titles and error messages
-      generateText();
-    }
-
-    function generateText() {
-  const selectedTopic = topicSelect.value;
-  // Clear or initialise topic title; will be set later to the proper display name
-  topicTitle.textContent = "";
-      const selectedNativeLang = nativeLangSelect.value;
-      const selectedTargetLang = targetLangSelect.value;
-      const currentUILang = uiLangSelect.value || "en"; // Get current UI language
-
-      const contentDisplay = document.getElementById("content-display");
-      if (selectedNativeLang === selectedTargetLang) {
-        errorMessage.textContent =
-          translatedMenu[currentUILang].errorMessageSameLanguage;
-        topicTitle.textContent = translatedMenu[currentUILang].errorTitle;
-        learningText.textContent = "";
-        vocabList.innerHTML = "";
-        nativeLangFullText.textContent = "";
-        targetLangFullText.textContent = "";
-        nativeLangTitle.textContent = "";
-        targetLangTitle.textContent = "";
-        contentDisplay.style.display = "none";
-        return;
-      } else {
-        errorMessage.textContent = "";
-        contentDisplay.style.display = "block";
-      }
-
-      // Dynamically find topic display name for any category/subcategory structure
-      let topicDisplayName = selectedTopic;
-      for (const catKey in topicNames) {
-        if (catKey === selectedTopic && topicNames[catKey][currentUILang]) {
-          topicDisplayName =
-            topicNames[catKey][currentUILang] || topicNames[catKey].en;
-          break;
-        }
-        if (
-          topicNames[catKey].subcategories &&
-          topicNames[catKey].subcategories[selectedTopic]
-        ) {
-          topicDisplayName =
-            topicNames[catKey].subcategories[selectedTopic][currentUILang] ||
-            topicNames[catKey].subcategories[selectedTopic].en;
-          break;
-        }
-      }
-
-      // Update the topic header with the localized display name
-      topicTitle.textContent = topicDisplayName;
-
-      const topicData = content[selectedTopic];
-      if (!topicData) {
-        topicTitle.textContent = topicDisplayName;
-        learningText.textContent = "";
-        vocabList.innerHTML = "";
-        nativeLangFullText.textContent = "";
-        targetLangFullText.textContent = "";
-        nativeLangTitle.textContent = "";
-        targetLangTitle.textContent = "";
-        return;
-      }
-      const vocabulary = topicData.vocab;
-
-      let mixedLangText = topicData.base[selectedNativeLang];
-      let fullNativeText = topicData.base[selectedNativeLang];
-      let fullTargetText = topicData.base[selectedTargetLang];
-
-      const learnedWords = [];
-
-      for (const key in vocabulary) {
-        const nativeWord = vocabulary[key][selectedNativeLang];
-        const targetWord = vocabulary[key][selectedTargetLang];
-        learnedWords.push({ target: targetWord, native: nativeWord });
-
-        const placeholder = new RegExp(`\{${key}\}`, "g");
-
-        const replacementSpan = `<strong class=\"text-blue-400 font-semibold\">${targetWord}</strong>`;
-        const replacementNative = `<strong class=\"text-blue-400 font-semibold\">${nativeWord}</strong>`;
-        const replacementTranslation = `<strong class=\"text-blue-400 font-semibold\">${targetWord}</strong>`;
-
-        mixedLangText = mixedLangText.replace(placeholder, replacementSpan);
-
-        fullNativeText = fullNativeText.replace(
-          placeholder,
-          replacementNative
-        );
-        fullTargetText = fullTargetText.replace(
-          placeholder,
-          replacementTranslation
-        );
-      }
-
-      topicTitle.textContent = topicDisplayName;
-
-      // Add tooltips to 'to learn' words in learning text
-      let tooltipMixedLangText = topicData.base[selectedNativeLang];
-      for (const key in vocabulary) {
-        const nativeWord = vocabulary[key][selectedNativeLang];
-        const targetWord = vocabulary[key][selectedTargetLang];
-        tooltipMixedLangText = tooltipMixedLangText.replace(
-          new RegExp(`\\{${key}\\}`, "g"),
-          `<strong class="text-blue-400 font-semibold" title="${nativeWord}">${targetWord}</strong>`
-        );
-      }
-
-      // Add playback button for learning text
-      learningText.innerHTML = `<span id="learning-text-content">${tooltipMixedLangText}</span><button id="play-learning-text" title="Play" class="ml-2 px-2 py-1 rounded bg-blue-600 hover:bg-blue-700 text-white flex items-center"><svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' viewBox='0 0 24 24'><path fill='currentColor' d='M8 5v14l11-7z'/></svg><span class="soundwave" style="display:none"><svg width="22" height="18" viewBox="0 0 22 18"><rect x="1" width="3" height="6" y="12"/><rect x="6" width="3" height="6" y="12"/><rect x="11" width="3" height="6" y="12"/><rect x="16" width="3" height="6" y="12"/></svg></span></button>`;
-
-      // Add event listener for learning text playback
-      const playLearningBtn = document.getElementById("play-learning-text");
-      const soundwaveLearning = playLearningBtn.querySelector(".soundwave");
-      playLearningBtn.onclick = function () {
-        const text = document.getElementById(
-          "learning-text-content"
-        ).innerText;
-        togglePlayStop(playLearningBtn, true);
-        speakText(text, selectedTargetLang, soundwaveLearning, function () {
-          togglePlayStop(playLearningBtn, false);
-        });
-      };
-
-      // Display native and target language titles using the UI language's translation of the language name
-  nativeLangTitle.textContent = `${translatedMenu[currentUILang].originalTextTitle} (${languageDisplayNames[currentUILang][selectedNativeLang]})`;
-      // Add playback button for native text
-      nativeLangFullText.innerHTML = `<span id="native-lang-full-text-content">${fullNativeText}</span><button id="play-native-lang-text" title="Play" class="ml-2 px-2 py-1 rounded bg-blue-600 hover:bg-blue-700 text-white flex items-center"><svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' viewBox='0 0 24 24'><path fill='currentColor' d='M8 5v14l11-7z'/></svg><span class="soundwave" style="display:none"><svg width="22" height="18" viewBox="0 0 22 18"><rect x="1" width="3" height="6" y="12"/><rect x="6" width="3" height="6" y="12"/><rect x="11" width="3" height="6" y="12"/><rect x="16" width="3" height="6" y="12"/></svg></span></button>`;
-
-  targetLangTitle.textContent = `${translatedMenu[currentUILang].translationTextTitle} (${languageDisplayNames[currentUILang][selectedTargetLang]})`;
-      // Add playback button for translated text
-      targetLangFullText.innerHTML = `<span id="target-lang-full-text-content">${fullTargetText}</span><button id="play-target-lang-text" title="Play" class="ml-2 px-2 py-1 rounded bg-blue-600 hover:bg-blue-700 text-white flex items-center"><svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' viewBox='0 0 24 24'><path fill='currentColor' d='M8 5v14l11-7z'/></svg><span class="soundwave" style="display:none"><svg width="22" height="18" viewBox="0 0 22 18"><rect x="1" width="3" height="6" y="12"/><rect x="6" width="3" height="6" y="12"/><rect x="11" width="3" height="6" y="12"/><rect x="16" width="3" height="6" y="12"/></svg></span></button>`;
-      // Add event listeners for native and translated text playback
-      const playNativeBtn = document.getElementById("play-native-lang-text");
-      const soundwaveNative = playNativeBtn.querySelector(".soundwave");
-      playNativeBtn.onclick = function () {
-        const text = document.getElementById(
-          "native-lang-full-text-content"
-        ).innerText;
-        togglePlayStop(playNativeBtn, true);
-        speakText(text, selectedNativeLang, soundwaveNative, function () {
-          togglePlayStop(playNativeBtn, false);
-        });
-      };
-
-      const playTargetBtn = document.getElementById("play-target-lang-text");
-      const soundwaveTarget = playTargetBtn.querySelector(".soundwave");
-      playTargetBtn.onclick = function () {
-        const text = document.getElementById(
-          "target-lang-full-text-content"
-        ).innerText;
-        togglePlayStop(playTargetBtn, true);
-        speakText(text, selectedTargetLang, soundwaveTarget, function () {
-          togglePlayStop(playTargetBtn, false);
-        });
-      };
-
-      vocabList.innerHTML = "";
-      learnedWords.forEach((word, idx) => {
-        const item = document.createElement("div");
-        item.className =
-          "flex justify-between items-center bg-slate-700/50 p-3 rounded-md";
-
-        //TODO: svg in project folder. no internet needed
-        item.innerHTML = `
-            <span class="font-medium text-blue-300 flex items-center">
-              ${word.target}
-              <button title="Play" class="ml-2 px-1 py-0.5 rounded bg-blue-600 hover:bg-blue-700 text-white play-vocab flex items-center" data-idx="${idx}">
-                <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 24 24'><path fill='currentColor' d='M8 5v14l11-7z'/></svg>
-                <span class="soundwave" style="display:none"><svg width="22" height="18" viewBox="0 0 22 18"><rect x="1" width="3" height="6" y="12"/><rect x="6" width="3" height="6" y="12"/><rect x="11" width="3" height="6" y="12"/><rect x="16" width="3" height="6" y="12"/></svg></span>
-              </button>
-            </span>
-            <span class="text-slate-400">${word.native}</span>
-          `;
-        vocabList.appendChild(item);
-      });
-
-      // Add event listeners for vocab playback
-      vocabList.querySelectorAll(".play-vocab").forEach((btn) => {
-        const soundwave = btn.querySelector(".soundwave");
-        btn.onclick = function () {
-          const idx = btn.getAttribute("data-idx");
-          const word = learnedWords[idx].target;
-          togglePlayStop(btn, true);
-          speakText(word, selectedTargetLang, soundwave, function () {
-            togglePlayStop(btn, false);
-          });
-        };
-      });
-      // --- WEB SPEECH API ---
-      function speakText(text, lang, soundwaveEl, onDone) {
-        if (!window.speechSynthesis) return;
-        const utter = new window.SpeechSynthesisUtterance(text);
+        const utter = new SpeechSynthesisUtterance(text);
         utter.lang = lang;
-        window.speechSynthesis.cancel(); // Stop any current speech
-        if (soundwaveEl) soundwaveEl.style.display = "inline-block";
-        utter.onend = utter.onerror = function () {
-          if (soundwaveEl) soundwaveEl.style.display = "none";
-          if (typeof onDone === "function") onDone();
-        };
-        window.speechSynthesis.speak(utter);
-      }
+        
+        const wasSpeaking = speechSynthesis.speaking;
+        speechSynthesis.cancel();
+        
+        document.querySelectorAll('.tts-active').forEach(btn => togglePlayStop(btn, false));
 
-      // Toggle play/stop icon for button
+        if (wasSpeaking && buttonEl && buttonEl.classList.contains('tts-active')) {
+            return;
+        }
+
+        if (buttonEl) {
+          togglePlayStop(buttonEl, true);
+          utter.onend = () => togglePlayStop(buttonEl, false);
+          utter.onerror = () => {
+            console.error("Speech synthesis error");
+            togglePlayStop(buttonEl, false);
+          };
+        }
+        
+        speechSynthesis.speak(utter);
+      }
+      
       function togglePlayStop(btn, isPlaying) {
         const svg = btn.querySelector("svg");
+        const soundwave = btn.querySelector(".soundwave");
         if (!svg) return;
-        if (isPlaying) {
-          // Change to stop icon
-          svg.innerHTML =
-            '<rect x="6" y="6" width="12" height="12" rx="2" fill="currentColor"/>';
+        
+        if(isPlaying) {
+          btn.classList.add('tts-active');
+          svg.style.display = 'none';
+          if (soundwave) soundwave.style.display = 'inline-block';
         } else {
-          // Change to play icon
-          svg.innerHTML = '<path fill="currentColor" d="M8 5v14l11-7z"/>';
+          btn.classList.remove('tts-active');
+          svg.style.display = 'inline-block';
+          if (soundwave) soundwave.style.display = 'none';
         }
       }
-    }
 
-    function initializeApp() {
-      // New languageDisplayNames object to hold translated language names
-      // This object now holds the *display names* of the languages themselves,
-      // translated into each UI language.
-      // This was moved outside initializeApp to be a global const.
+      if (swapBtn) {
+        swapBtn.addEventListener("click", function() {
+            const temp = nativeLangSelect.value;
+            nativeLangSelect.value = targetLangSelect.value;
+            targetLangSelect.value = temp;
+            generateText();
+        });
+      }
 
-      // Populate UI language select first
-      populateSelect(uiLangSelect, languageDisplayNames, "en"); // Default UI to English
+      let menuVisible = true;
+      toggleMenuBtn.onclick = function() {
+        menuVisible = !menuVisible;
+        menuBox.style.display = menuVisible ? "" : "none";
+        toggleMenuBtn.innerHTML = menuVisible ? '&#x25B2;' : '&#x25BC;';
+      };
+       toggleMenuBtn.innerHTML = '&#x25B2;';
 
-      // Add event listener for UI language change
-      uiLangSelect.addEventListener("change", () =>
-        updateUIText(uiLangSelect.value)
-      );
+      function populateSelect(selectElement, data, selectedValue) {
+        const currentVal = selectElement.value;
+        selectElement.innerHTML = "";
+        const currentUi = uiLangSelect.value || "en";
 
-      // Populate other selects (topic names will now use the selected UI language)
-  populateSelect(topicSelect, topicNames, "booking_flight");
-      populateSelect(nativeLangSelect, languageDisplayNames, "en");
-      populateSelect(targetLangSelect, languageDisplayNames, "de");
-
-      // Add event listeners for topic, native, and target language changes
-  topicSelect.addEventListener("change", generateText);
-      nativeLangSelect.addEventListener("change", generateText);
-      targetLangSelect.addEventListener("change", generateText);
-
-      // Initial generation and UI text update
-      updateUIText(uiLangSelect.value); // Apply initial UI language
-      generateText(); // Generate content based on initial selections
-    }
-
-    document.addEventListener("DOMContentLoaded", function () {
-      // Populate the choose dropdown on load
-      populateSelect(chooseOption, languageDisplayNames, chooseOption.value);
-      // Add event listener to update UI language when changed
-      chooseOption.addEventListener('change', function () {
-        updateUIText(chooseOption.value);
-      });
-      initializeApp();
-        // Hide/show menu logic
-        const menuBox = document.getElementById("menuBox");
-        const toggleMenuBtn = document.getElementById("menuButton");
-        let menuVisible = true;
-        toggleMenuBtn.onclick = function () {
-          menuVisible = !menuVisible;
-          menuBox.style.display = menuVisible ? "" : "none";
-          toggleMenuBtn.textContent = menuVisible ? "_" : "_";
-        };
-    });
-    // --- Menu toggle logic ---
-    document.addEventListener('DOMContentLoaded', function () {
-      const menuButton = document.getElementById('menuButton');
-      const menuBox = document.getElementById('menuBox');
-      menuButton.addEventListener('click', function () {
-        if (menuBox.style.display === 'none') {
-          menuBox.style.display = '';
+        if (selectElement.id === "chooseTopic") {
+          for (const key in data) {
+            const category = data[key];
+            if (category.subcategory) {
+              const optgroup = document.createElement("optgroup");
+              optgroup.label = category[currentUi] || category.en;
+              for (const subKey in category.subcategory) {
+                const option = document.createElement("option");
+                option.value = subKey;
+                option.textContent = category.subcategory[subKey][currentUi] || category.subcategory[subKey].en;
+                optgroup.appendChild(option);
+              }
+              selectElement.appendChild(optgroup);
+            }
+          }
         } else {
-          menuBox.style.display = 'none';
+          for (const key in data) {
+            const option = document.createElement("option");
+            option.value = key;
+            if (selectElement.id === "selectionOne" || selectElement.id === "selectionTwo") {
+              option.textContent = languageNames[currentUi][key];
+            } else if (selectElement.id === "chooseOption") {
+              option.textContent = languageNames[key][key];
+            } else {
+              option.textContent = data[key];
+            }
+            selectElement.appendChild(option);
+          }
         }
-      });
+        selectElement.value = selectedValue || currentVal;
+      }
+
+      function updateUIText(lang) {
+        const translations = translatedMenu[lang];
+        if (!translations) return;
+
+        document.querySelectorAll("[data-key]").forEach((element) => {
+          const key = element.getAttribute("data-key");
+          if (translations[key]) {
+            element.textContent = translations[key];
+          }
+        });
+        
+        document.querySelector('label[for="chooseOption"]').textContent = translations.uiLanguageLabel;
+        document.querySelector('label[for="chooseTopic"]').textContent = translations.topicLabel;
+        document.querySelector('label[for="selectionOne"]').textContent = translations.yourLanguageLabel;
+        document.querySelector('label[for="selectionTwo"]').textContent = translations.targetLanguageLabel;
+
+        populateSelect(uiLangSelect, languageNames, uiLangSelect.value);
+        populateSelect(topicSelect, topicNames, topicSelect.value);
+        populateSelect(nativeLangSelect, languageNames, nativeLangSelect.value);
+        populateSelect(targetLangSelect, languageNames, targetLangSelect.value);
+
+        generateText();
+      }
+
+      function generateText() {
+        if (speechSynthesis.speaking) speechSynthesis.cancel();
+        
+        const selectedTopicKey = topicSelect.value;
+        const selectedNativeLang = nativeLangSelect.value;
+        const selectedTargetLang = targetLangSelect.value;
+        const currentUi = uiLangSelect.value || "en";
+
+        if (!selectedTopicKey || !selectedNativeLang || !selectedTargetLang) return;
+
+        if (selectedNativeLang === selectedTargetLang) {
+          errorMessage.textContent = translatedMenu[currentUi].errorMessageSameLanguage;
+          contentDisplay.style.display = "none";
+          topicTitle.style.display = "none";
+          return;
+        } else {
+          errorMessage.textContent = "";
+          contentDisplay.style.display = "";
+           topicTitle.style.display = "block";
+        }
+
+        let topicDisplayName = '';
+        let topicData = content[selectedTopicKey];
+
+        for (const catKey in topicNames) {
+          if (topicNames[catKey].subcategory && topicNames[catKey].subcategory[selectedTopicKey]) {
+            topicDisplayName = topicNames[catKey].subcategory[selectedTopicKey][currentUi] || topicNames[catKey].subcategory[selectedTopicKey].en;
+            break;
+          }
+        }
+
+        topicTitle.textContent = topicDisplayName;
+        
+        if (!topicData || !topicData.base) {
+            learningText.innerHTML = "Content not found.";
+            vocabList.innerHTML = "";
+            nativeLangFullText.innerHTML = "";
+            targetLangFullText.innerHTML = "";
+            return;
+        }
+
+        let mixedLangText = topicData.base[selectedNativeLang] || topicData.base.en;
+        let fullNativeText = topicData.base[selectedNativeLang] || topicData.base.en;
+        let fullTargetText = topicData.base[selectedTargetLang] || topicData.base.en;
+        const learnedWords = [];
+
+        for (const key in topicData.vocab) {
+          const nativeWord = topicData.vocab[key][selectedNativeLang];
+          const targetWord = topicData.vocab[key][selectedTargetLang];
+          if (nativeWord && targetWord) {
+            learnedWords.push({ target: targetWord, native: nativeWord });
+            const placeholder = new RegExp(`\\{${key}\\}`, "g");
+            mixedLangText = mixedLangText.replace(placeholder, `<strong class="highlight-word" title="${nativeWord}">${targetWord}</strong>`);
+            fullNativeText = fullNativeText.replace(placeholder, `<strong class="highlight-word">${nativeWord}</strong>`);
+            fullTargetText = fullTargetText.replace(placeholder, `<strong class="highlight-word">${targetWord}</strong>`);
+          }
+        }
+        
+        const playButtonHTML = (id) => `<button id="${id}" title="Play" class="play-button"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M8 5v14l11-7z"/></svg><span class="soundwave"></span></button>`;
+        
+        learningText.innerHTML = `<span class="text-content">${mixedLangText}</span>` + playButtonHTML('play-learning-text');
+        nativeLangFullText.innerHTML = `<span class="text-content">${fullNativeText}</span>` + playButtonHTML('play-native-text');
+        targetLangFullText.innerHTML = `<span class="text-content">${fullTargetText}</span>` + playButtonHTML('play-target-text');
+
+        document.getElementById('play-learning-text').addEventListener('click', (e) => speakText(learningText.querySelector('.text-content').innerText, selectedTargetLang, e.currentTarget));
+        document.getElementById('play-native-text').addEventListener('click', (e) => speakText(nativeLangFullText.querySelector('.text-content').innerText, selectedNativeLang, e.currentTarget));
+        document.getElementById('play-target-text').addEventListener('click', (e) => speakText(targetLangFullText.querySelector('.text-content').innerText, selectedTargetLang, e.currentTarget));
+        
+        nativeLangTitle.textContent = `${translatedMenu[currentUi].originalTextTitle} (${languageNames[currentUi][selectedNativeLang]})`;
+        targetLangTitle.textContent = `${translatedMenu[currentUi].translationTextTitle} (${languageNames[currentUi][selectedTargetLang]})`;
+
+        vocabList.innerHTML = "";
+        learnedWords.forEach((word) => {
+          const item = document.createElement("div");
+          item.className = "vocab-item";
+          item.innerHTML = `
+              <span class="vocab-target-word">
+                ${word.target}
+              </span>
+              <span class="vocab-native-word">${word.native}</span>
+              <button title="Play" class="play-button vocab-play-button" data-word="${word.target}">
+                  <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+                  <span class="soundwave"></span>
+              </button>
+            `;
+          vocabList.appendChild(item);
+        });
+
+        document.querySelectorAll('.vocab-play-button').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const wordToSpeak = e.currentTarget.getAttribute('data-word');
+            speakText(wordToSpeak, selectedTargetLang, e.currentTarget);
+          });
+        });
+      }
+
+      function initializeApp() {
+        populateSelect(uiLangSelect, languageNames, "en");
+        populateSelect(topicSelect, topicNames, "book_flight");
+        populateSelect(nativeLangSelect, languageNames, "en");
+        populateSelect(targetLangSelect, languageNames, "de");
+
+        uiLangSelect.addEventListener("change", () => updateUIText(uiLangSelect.value));
+        topicSelect.addEventListener("change", generateText);
+        nativeLangSelect.addEventListener("change", generateText);
+        targetLangSelect.addEventListener("change", generateText);
+
+        updateUIText("en");
+      }
+
+      initializeApp();
     });
   </script>
-
 </body>
-
 </html>
