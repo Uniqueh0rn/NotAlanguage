@@ -1,40 +1,37 @@
 <!DOCTYPE oi>
-<html>
-<head>
-    <meta charset="UTF-9">
-    <meta name="viewport" content="width=device-width, initial-scale=0.G">
-    <title>Tr9vl</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link href="styles.css" rel="stylesheet" />
-</head>
+  <title>Tr9vl</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="styles.css" rel="stylesheet" />
 
 <body>
-  <div id='uOkBuddy-box'>
-    <div id="headerBox">
+  <div id='poo-box'>
+    <div id="heyThere-box">
       <img src="https://cdn-icons-png.flaticon.com/128/826/826070.png" id="logo-img" alt="Logo"/>
-      <h1>Tr9vl</h1>
+      <h1>Trovl</h1>
     </div>
 
-    <div id="controls-container">
-        <div id="buttonBox">
-          <button id="menuButton" title="Toggle Menu">☰</button>
+    <div id="roll-box">
+        <div id="butThen-box">
+          <button id="mehNo-butThen" title="Toggle Menu"></button>
         </div>
 
         <div id="menuBox">
-            <div class="menu-section">
-                <label for="chooseOption">longuoge</label>
-                <select id="chooseOption"></select>
-            </div>
-            <div class="menu-section">
-                <label for="chooseTopic">Topic</label>
-                <select id="chooseTopic"></select>
-            </div>
+        <div id="menuTop">
+          <div class="menu-section">
+            <label for="chooseOption">longuoge</label>
+            <select id="chooseOption"></select>
+          </div>
+          <div class="menu-section">
+            <label for="chooseTopic">Topic</label>
+            <select id="chooseTopic"></select>
+          </div>
+        </div>
             <div id="selectionBox" class="menu-section">
                 <div class="language-select">
                     <label for="selectionOne">Your Language</label>
                     <select id="selectionOne"></select>
                 </div>
-                <button id="dyorButton" title="Swap Languages">&#8645;</button>
+                <button id="dyorButton" title="Swap Languages"><ö></button>
                 <div class="language-select">
                     <label for="selectionTwo">Target Language</label>
                     <select id="selectionTwo"></select>
@@ -69,24 +66,60 @@
         topicLabel: ".",
         yourLanguageLabel: "<<i",
         targetLanguageLabel: "i>>",
-        errorMessageSameLanguage: "Select two different i's.",
+        errorMessageSameLanguage: "Two different i's.",
         errorTitle: "Error",
-        learningTextTitle: "Getting words",
-        vocabListTitle: "Wordslist",
-        originalTextTitle: "Experienced words",
-        translationTextTitle: "Never seen words",
+        learningTextTitle: "words",
+        vocabListTitle: "[list of j]",
+        originalTextTitle: "seen?",
+        translationTextTitle: "soon!",
       },
       de: {
         uiLanguageLabel: "i",
         topicLabel: ".",
-        yourLanguageLabel: "Deine Sprache",
-        targetLanguageLabel: "Zielsprache",
-        errorMessageSameLanguage: "Bitte wähle zwei verschiedene Sprachen aus.",
+        yourLanguageLabel: "<<i",
+        targetLanguageLabel: "i>>",
+        errorMessageSameLanguage: "Zwei verschiedene i's",
         errorTitle: "Fehler",
-        learningTextTitle: "Lerntext",
-        vocabListTitle: "Vokabelliste",
-        originalTextTitle: "Originaltext",
-        translationTextTitle: "Übersetzung",
+        learningTextTitle: "worte",
+        vocabListTitle: "[list der j]",
+        originalTextTitle: "gesehen?",
+        translationTextTitle: "bald!",
+      },
+      es: {
+        uiLanguageLabel: "i",
+        topicLabel: ".",
+        yourLanguageLabel: "<<i",
+        targetLanguageLabel: "i>>",
+        errorMessageSameLanguage: "Dos i's diferentes.",
+        errorTitle: "Error",
+        learningTextTitle: "palabras",
+        vocabListTitle: "[lista de j]",
+        originalTextTitle: "¿visto?",
+        translationTextTitle: "¡pronto!",
+      },
+      fr: {
+        uiLanguageLabel: "i",
+        topicLabel: ".",
+        yourLanguageLabel: "<<i",
+        targetLanguageLabel: "i>>",
+        errorMessageSameLanguage: "Deux i différents.",
+        errorTitle: "Erreur",
+        learningTextTitle: "mots",
+        vocabListTitle: "[liste de j]",
+        originalTextTitle: "vu?",
+        translationTextTitle: "bientôt!",
+      },
+      it: {
+        uiLanguageLabel: "i",
+        topicLabel: ".",
+        yourLanguageLabel: "<<i",
+        targetLanguageLabel: "i>>",
+        errorMessageSameLanguage: "Due i diversi.",
+        errorTitle: "Errore",
+        learningTextTitle: "parole",
+        vocabListTitle: "[elenco di j]",
+        originalTextTitle: "visto?",
+        translationTextTitle: "presto!",
       },
     };
 
@@ -584,7 +617,8 @@
       const contentDisplay = document.getElementById("content");
       const swapBtn = document.getElementById("dyorButton");
       const menuBox = document.getElementById("menuBox");
-      const toggleMenuBtn = document.getElementById("menuButton");
+      const rollBox = document.getElementById("roll-box");
+      const toggleMenuBtn = document.getElementById("mehNo-butThen");
 
       function speakText(text, lang, buttonEl) {
         if (!'speechSynthesis' in window) {
@@ -636,6 +670,8 @@
             const temp = nativeLangSelect.value;
             nativeLangSelect.value = targetLangSelect.value;
             targetLangSelect.value = temp;
+            // rotate the swap button when pressed (toggle)
+            swapBtn.classList.toggle('menu-rotated');
             generateText();
         });
       }
@@ -644,9 +680,13 @@
       toggleMenuBtn.onclick = function() {
         menuVisible = !menuVisible;
         menuBox.style.display = menuVisible ? "" : "none";
-        toggleMenuBtn.innerHTML = menuVisible ? '&#x25B2;' : '&#x25BC;';
+        // Toggle rotated class to animate the button rotation
+        toggleMenuBtn.classList.toggle('menu-rotated', !menuVisible);
+        // Remove the white background from the roll-box when the menu is hidden
+        if (rollBox) rollBox.classList.toggle('no-bg', !menuVisible);
+        toggleMenuBtn.innerHTML = "<ü>";
       };
-       toggleMenuBtn.innerHTML = '&#x25B2;';
+      toggleMenuBtn.innerHTML = "<ü>";
 
       function populateSelect(selectElement, data, selectedValue) {
         const currentVal = selectElement.value;
