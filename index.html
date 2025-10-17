@@ -62,11 +62,11 @@
   <script>
     const translatedMenu = {
       en: {
-        uiLanguageLabel: "ö",
+        uiLanguageLabel: "mC",
         topicLabel: ".",
-        yourLanguageLabel: "<<ö",
-        targetLanguageLabel: "ö>>",
-        errorMessageSameLanguage: "Two different ö's.",
+        yourLanguageLabel: "<<mC",
+        targetLanguageLabel: "mC>>",
+        errorMessageSameLanguage: "Two different mC's.",
         errorTitle: "Error",
         learningTextTitle: "words",
         vocabListTitle: "[list of j]",
@@ -74,11 +74,11 @@
         translationTextTitle: "soon!",
       },
       de: {
-        uiLanguageLabel: "ö",
+        uiLanguageLabel: "mC",
         topicLabel: ".",
-        yourLanguageLabel: "<<ö",
-        targetLanguageLabel: "ö>>",
-        errorMessageSameLanguage: "Zwei verschiedene ö's",
+        yourLanguageLabel: "<<mC",
+        targetLanguageLabel: "mC>>",
+        errorMessageSameLanguage: "Zwei verschiedene mC's",
         errorTitle: "Fehler",
         learningTextTitle: "worte",
         vocabListTitle: "[list der j]",
@@ -86,11 +86,11 @@
         translationTextTitle: "bald!",
       },
       es: {
-        uiLanguageLabel: "ö",
+        uiLanguageLabel: "mC",
         topicLabel: ".",
-        yourLanguageLabel: "<<ö",
-        targetLanguageLabel: "ö>>",
-        errorMessageSameLanguage: "Dos ö's diferentes.",
+        yourLanguageLabel: "<<mC",
+        targetLanguageLabel: "mC>>",
+        errorMessageSameLanguage: "Dos mC's diferentes.",
         errorTitle: "Error",
         learningTextTitle: "palabras",
         vocabListTitle: "[lista de j]",
@@ -98,11 +98,11 @@
         translationTextTitle: "¡pronto!",
       },
       fr: {
-        uiLanguageLabel: "ö",
+        uiLanguageLabel: "mC",
         topicLabel: ".",
-        yourLanguageLabel: "<<ö",
-        targetLanguageLabel: "ö>>",
-        errorMessageSameLanguage: "Deux ö différents.",
+        yourLanguageLabel: "<<mC",
+        targetLanguageLabel: "mC>>",
+        errorMessageSameLanguage: "Deux mC différents.",
         errorTitle: "Erreur",
         learningTextTitle: "mots",
         vocabListTitle: "[liste de j]",
@@ -110,17 +110,29 @@
         translationTextTitle: "bientôt!",
       },
       it: {
-        uiLanguageLabel: "ö",
+        uiLanguageLabel: "mC",
         topicLabel: ".",
-        yourLanguageLabel: "<<ö",
-        targetLanguageLabel: "ö>>",
-        errorMessageSameLanguage: "Due i diversi.",
+        yourLanguageLabel: "<<mC",
+        targetLanguageLabel: "mC>>",
+        errorMessageSameLanguage: "Due mC diversi.",
         errorTitle: "Errore",
         learningTextTitle: "parole",
         vocabListTitle: "[elenco di j]",
         originalTextTitle: "visto?",
         translationTextTitle: "presto!",
       },
+      mc:{
+        uiLanguageLabel: "mC",
+        topicLabel: ".",
+        yourLanguageLabel: "<<mC",
+        targetLanguageLabel: "mC>>",
+        errorMessageSameLanguage: "Two different mC's.",
+        errorTitle: "Error",
+        learningTextTitle: "words",
+        vocabListTitle: "[list of j]",
+        originalTextTitle: "seen?",
+        translationTextTitle: "soon!",
+      }
     };
 
     const contentStructure = {};
@@ -129,11 +141,12 @@
       // --- Book flight ---
       book_flight: {
         base: {
-          en: "Consider possible {routes}, offered {services}, the {price} you decide.<br><br>Your tickets: {no_return_ticket} for singles or {round_trip_ticket} for return journey. Specify if it's a {domestic_flight} within a country or an {international_flight} between countries.<br><br>Upon successful booking and payment, you will receive an {e_ticket}, which serves as your proof of purchase and contains all flight details.<br><br>",
+          en: 'Consider possible {routes}, offered {services}, the {price} you decide.<br><br>Your tickets: {no_return_ticket} for singles or {round_trip_ticket} for return journey. Specify if it\'s a {domestic_flight} within a country or an {international_flight} between countries.<br><br>Upon successful booking and payment, you will receive an {e_ticket}, which serves as your proof of purchase and contains all flight details.<br><br>',
+          de: '',
         },
         vocab: {
-          airline_carrier: {
-            de: "Fluggesellschaft",
+          routes: {
+            de: "",
             en: "airline",
             es: "aerolínea",
             fr: "compagnie aérienne",

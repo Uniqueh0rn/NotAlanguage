@@ -31,17 +31,15 @@ body {
     margin: 0;
 }
 
-#Q {
+#Qr {
     padding: 1rem;
 }
 
-#Q.no-bg {
+#Qr.no-bg {
     background-color: transparent !important;
     border-color: transparent !important;
     box-shadow: none !important;
 }
-
-
 
 h2 {
     text-align: center;
@@ -69,7 +67,7 @@ label {
     box-shadow: none !important;
 }
 
-#butThen-box {
+#Tn-Qr {
     text-align: center
 }
 
