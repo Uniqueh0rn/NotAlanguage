@@ -39,7 +39,7 @@
     <div class="w-full max-w-4xl mx-auto">
         <header class="text-center mb-8">
             <h1 class="text-4xl font-bold text-white">Toxt to OLLUSOoNS Tronslotor</h1>
-            <p class="text-lg text-gray-400 mt-2">Enter stuff like "Make me feel like a cat in 4D, using blind spots on a white background" or "Let me see what a Snake is seeing in 4D" or "Create a game of Flappy Birds only using this text on white background, blind spots and 4D effects". Copy paste into white Background (Editor Maximized). Then look at upper left corner or the middle of the text. Follow the O-'s' (THIS DOES NOT EVEN NEED INTERNET!). 
+            <p class="text-lg text-gray-400 mt-2">Enter stuff like "Make me feel like a cat in 4D, using blind spots on a white background" or "Let me see what a snake is seeing in 4D" or "Create a game of Flappy Birds only using this text on white background, blind spots and 4D effects". Copy paste into white Background (Editor maximized). Then look at upper left corner or the middle of the text. Follow the O-'s' (THIS DOES NOT EVEN NEED INTERNET!). 
             </p>
         </header>
         
@@ -280,8 +280,7 @@
                 }
                 outputText.textContent = translated;
             };
-
-            const copyToClipboard = () => {
+const copyToClipboard = () => {
                 if(outputText.textContent) {
                     const textarea = document.createElement('textarea');
                     textarea.value = outputText.textContent;
@@ -313,7 +312,9 @@
             const donationAmountInput = document.getElementById('donationAmount');
             const donationMessage = document.getElementById('donationMessage');
             
-            const walletAddress = "0x57600Eb8a5558cc503225CE9662f0E2E2541D404";
+            // Donation address without 0x prefix, which we add for copy/web3 actions
+            const walletAddress = "0x57600Eb8a5558cc503225CE9662f0E2E2541D404"; 
+            //const walletAddress = "0x" + rawWalletAddress; // Always use 0x for web3 calls and copying
 
             // Helper for donation messages
             function showDonationMessage(msg, type = 'info') {
@@ -351,7 +352,7 @@
                     const hexAmount = '0x' + amountInWei.toString(16);
 
                     const transactionParameters = {
-                        to: walletAddress,
+                        to: walletAddress, // uses 0x prefixed address
                         from: window.ethereum.selectedAddress,
                         value: hexAmount,
                     };
@@ -385,8 +386,11 @@
             // --- Copy Address Button Listener ---
             if (copyAddressButton) {
                 copyAddressButton.addEventListener('click', () => {
+                    // Use the 0x prefixed address for copying
+                    const addressToCopy = walletAddress; 
+
                     const tempTextArea = document.createElement('textarea');
-                    tempTextArea.value = walletAddress;
+                    tempTextArea.value = addressToCopy;
                     document.body.appendChild(tempTextArea);
                     tempTextArea.select();
                     tempTextArea.setSelectionRange(0, 99999); // For mobile
