@@ -1,1796 +1,415 @@
-<!DOCTYPE dsooy>
-<title>Tr9vl</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link href="styles.css" rel="stylesheet" />
+<!DOCTYPE 22> <!--WotWhoWetFourSome (FOOFORSURE) OR DOOYEDOOYEEWAITFOREET (ANTIMNOT) crazy, no?-->
+<html lang="ende">
+<head>
+    <meta charset="UTF-Oo">
+    <meta name="viewport" content="width=device-width, initial-scale=0.G">
+    <title>OllosOons</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        textarea::-webkit-scrollbar {
+            width: 8px;
+        }
+        textarea::-webkit-scrollbar-track {
+            background: #2d3548;
+        }
+        textarea::-webkit-scrollbar-thumb {
+            background: #4a5625;
+            border-radius: 4px;
+        } 
+        textarea::-webkit-scrollbar-thumb:hover {
+            background: #718076;
+        }
+        /* Hide scrollbar for number input (from donation file) */
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-200 flex flex-col items-center justify-center min-h-screen p-4">
 
-<body>
-  <div id='O-'> <!-- oiIYIio --> <!-- MushiMushi  -->
-    <div id="KD">
-      <img src="https://cdn-icons-png.flaticon.com/128/826/826070.png" id="BD" />
-      <h2 id="HD">Trovl</h2>
+    <div class="w-full max-w-4xl mx-auto">
+        <header class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-white">Toxt to OLLUSOoNS Tronslotor</h1>
+            <p class="text-lg text-gray-400 mt-2">Enter stuff like "Make me feel like a cat in 4D, using blind spots on a white background" or "Let me see what a snake is seeing in 4D" or "Create a game of Flappy Birds only using this text on white background, blind spots and 4D effects". Copy paste into white Background (Editor maximized). Then look at upper left corner or the middle of the text. Follow the O-'s' (THIS DOES NOT EVEN NEED INTERNET!). 
+            </p>
+        </header>
+        
+        <main class="bg-gray-800 shadow-2xl rounded-2xl p-6 md:p-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Input Section -->
+                <div>
+                    <label for="inputText" class="block text-sm font-medium text-gray-300 mb-2">Your Input</label>
+                    <textarea id="inputText" rows="12" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-4 text-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200 resize-none" placeholder="Type here..."></textarea>
+                    <div class="flex items-center mt-4">
+                        <input id="xorCheckbox" type="checkbox" class="h-4 w-4 text-blue-600 bg-gray-700 border-gray-600 rounded focus:ring-blue-500">
+                        <label for="xorCheckbox" class="ml-2 block text-sm text-gray-300">Shorten output using XOR fold</label>
+                    </div>
+                    <div class="flex items-center mt-2">
+                        <input id="simplifyCheckbox" type="checkbox" class="h-4 w-4 text-blue-600 bg-gray-700 border-gray-600 rounded focus:ring-blue-500">
+                        <label for="simplifyCheckbox" class="ml-2 block text-sm text-gray-300">Simplify output ('o' -> '0', 'O' -> '-')</label>
+                    </div>
+                </div>
+
+                <!-- Output Section -->
+                <div>
+                    <div class="flex justify-between items-center mb-2">
+                         <label for="outputText" class="block text-sm font-medium text-gray-300">Encoded Output</label>
+                         <button id="copyButton" class="px-3 py-1 text-sm bg-blue-600 hover:bg-blue-700 rounded-md font-semibold transition duration-200 flex items-center">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                            Copy
+                         </button>
+                    </div>
+                    <div id="outputText" class="w-full h-full bg-gray-900 border border-gray-700 rounded-lg p-4 text-gray-300 overflow-scroll" style="min-height: 260px;"></div>
+                </div>
+            </div>
+        </main>
+        
+        <!-- NEW: Donation Footer -->
+        <footer class="text-center mt-6 text-gray-400 text-sm">
+            <div class="bg-gray-800 shadow-inner rounded-lg p-4 max-w-2xl mx-auto border border-gray-700">
+                <h3 class="text-sm font-semibold text-white mb-3">Support This App</h3>
+                <div class="flex flex-col sm:flex-row gap-2 justify-center items-center">
+                    <!-- Donation Amount -->
+                    <input type="number" id="donationAmount" step="0.01" min="0"
+                           class="bg-gray-700 border border-gray-600 text-white rounded-md py-2 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 w-full sm:w-auto flex-grow"
+                           placeholder="0.01 ETH">
+                    
+                    <!-- Donate Button -->
+                    <button id="web3DonateButton"
+                       class="bg-blue-600 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded-md text-sm transition-colors duration-200 w-full sm:w-auto">
+                        Donate with Wallet
+                    </button>
+                    
+                    <!-- Copy Address Button -->
+                    <button id="copyAddressButton" class="bg-gray-600 hover:bg-gray-500 text-gray-200 font-medium py-2 px-4 rounded-md text-sm transition-colors duration-200 w-full sm:w-auto">
+                        Copy Address
+                    </button>
+                </div>
+                <!-- Donation Message Area -->
+                <p id="donationMessage" class="text-xs text-center mt-3 h-4"></p>
+            </div>
+        </footer>
     </div>
 
-    <div id="Qr">
-      <div id="Tn-Qr">
-        <button id="mehNo-butThen" title="Toggle Menu"></button>
-      </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- Encoder Logic (from Oo.html) ---
+            const inputText = document.getElementById('inputText');
+            const outputText = document.getElementById('outputText');
+            const copyButton = document.getElementById('copyButton');
+            const xorCheckbox = document.getElementById('xorCheckbox');
+            const simplifyCheckbox = document.getElementById('simplifyCheckbox');
 
-      <div id="menuBox">
-        <div id="menuTop">
-          <div class="menu-section">
-            <label for="chooseOption">longuoge</label>
-            <select id="chooseOption"></select>
-          </div>
-          <div class="menu-section">
-            <label for="chooseTopic">Topic</label>
-            <select id="chooseTopic"></select>
-          </div>
-        </div>
-        <div id="selectionBox" class="menu-section">
-          <div class="language-select">
-            <label for="selectionOne">Your Language</label>
-            <select id="selectionOne"></select>
-          </div>
-          <button id="dyorButton" title="Swap Languages">
-            <ö>
-          </button>
-          <div class="language-select">
-            <label for="selectionTwo">Target Language</label>
-            <select id="selectionTwo"></select>
-          </div>
-        </div>
-        <div id="errorMessage"></div>
-      </div>
-    </div>
+            const encodingMap = {
+                // -- NumerOu'cs (Emoneycs) coins --
+                '0': 'ooooooOoooooooooooooOooooooooooooooooooooOOoooooooooooooOoooooo',
+                '1': 'ooooooOoooooooooooooOoooooooooooooooooooOoOoooooooooooooOoooooo',
+                '2': 'ooooooOoooooooooooooOoooooooooooooooooooOOOoooooooooooooOoooooo',
+                '3': 'ooooooOoooooooooooooOooooooooooooooooooOooOoooooooooooooOoooooo',
+                '4': 'ooooooOoooooooooooooOooooooooooooooooooOoOOoooooooooooooOoooooo',
+                '5': 'ooooooOoooooooooooooOooooooooooooooooooOOOOoooooooooooooOoooooo',
+                '6': 'ooooooOoooooooooooooOoooooooooooooooooOoooOoooooooooooooOoooooo',
+                '7': 'ooooooOoooooooooooooOoooooooooooooooooOooOOoooooooooooooOoooooo',
+                '8': 'ooooooOoooooooooooooOoooooooooooooooooOoOoOoooooooooooooOoooooo',
+                '9': 'ooooooOoooooooooooooOoooooooooooooooooOoOOOoooooooooooooOoooooo', // Note: '9' is distinct from 'g'
 
-    <h2 id="topicTitle"></h2>
+                // -- German O's --
+                'A': 'ooooooOooooooooooooo0ooooooooooooooooooooo0oooooooooooooOoooooo', //By then i'll get it in the ass
+                'a': 'ooooooOooooooooooooo0ooooooooooooooooooooO0oooooooooooooOoooooo', //Isn't it a small world?
+                'B': 'ooooooOooooooooooooo0oooooooooooooooooooOo0oooooooooooooOoooooo', 
+                'b': 'ooooooOooooooooooooo0oooooooooooooooooooOO0oooooooooooooOoooooo',
+                'C': 'ooooooOooooooooooooo0ooooooooooooooooooOoo0oooooooooooooOoooooo',
+                'c': 'ooooooOooooooooooooo0ooooooooooooooooooOoO0oooooooooooooOoooooo',
+                'D': 'ooooooOooooooooooooo0ooooooooooooooooooOOo0oooooooooooooOoooooo',
+                'd': 'ooooooOooooooooooooo0ooooooooooooooooooOOO0oooooooooooooOoooooo',
+                'E': 'ooooooOooooooooooooo0oooooooooooooooooOooo0oooooooooooooOoooooo',
+                'e': 'ooooooOooooooooooooo0oooooooooooooooooOooO0oooooooooooooOoooooo',
+                'F': 'ooooooOooooooooooooo0oooooooooooooooooOoOo0oooooooooooooOoooooo',
+                'f': 'ooooooOooooooooooooo0oooooooooooooooooOoOO0oooooooooooooOoooooo',
+                'G': 'ooooooOooooooooooooo0oooooooooooooooooOOoo0oooooooooooooOoooooo',
+                'g': 'ooooooOooooooooooooo0oooooooooooooooooOOoO0oooooooooooooOoooooo',
+                'H': 'ooooooOooooooooooooo0oooooooooooooooooOOOo0oooooooooooooOoooooo',
+                'h': 'ooooooOooooooooooooo0oooooooooooooooooOOOO0oooooooooooooOoooooo',
+                'I': 'ooooooOooooooooooooo0ooooooooooooooooOoooo0oooooooooooooOoooooo',
+                'i': 'ooooooOooooooooooooo0ooooooooooooooooOoooO0oooooooooooooOoooooo',
+                'J': 'ooooooOooooooooooooo0ooooooooooooooooOooOo0oooooooooooooOoooooo',
+                'j': 'ooooooOooooooooooooo0ooooooooooooooooOooOO0oooooooooooooOoooooo',
+                'K': 'ooooooOooooooooooooo0ooooooooooooooooOoOoO0oooooooooooooOoooooo',
+                'k': 'ooooooOooooooooooooo0ooooooooooooooooOoOOo0oooooooooooooOoooooo',
+                'L': 'ooooooOooooooooooooo0ooooooooooooooooOoOOO0oooooooooooooOoooooo',
+                'l': 'ooooooOooooooooooooo0ooooooooooooooooOOooo0oooooooooooooOoooooo',
+                'M': 'ooooooOooooooooooooo0ooooooooooooooooOOooO0oooooooooooooOoooooo',
+                'm': 'ooooooOooooooooooooo0ooooooooooooooooOOoOo0oooooooooooooOoooooo',
+                'N': 'ooooooOooooooooooooo0ooooooooooooooooOOoOO0oooooooooooooOoooooo',
+                'n': 'ooooooOooooooooooooo0ooooooooooooooooOOOoo0oooooooooooooOoooooo',
+                'O': 'ooooooOooooooooooooo0ooooooooooooooooOOOoO0oooooooooooooOoooooo',
+                'o': 'ooooooOooooooooooooo0ooooooooooooooooOOOOo0oooooooooooooOoooooo',
+                'P': 'ooooooOooooooooooooo0ooooooooooooooooOOOOO0oooooooooooooOoooooo',
+                'p': 'ooooooOooooooooooooo0oooooooooooooooOooooo0oooooooooooooOoooooo',
+                'Q': 'ooooooOooooooooooooo0oooooooooooooooOooooO0oooooooooooooOoooooo',
+                'q': 'ooooooOooooooooooooo0oooooooooooooooOoooOo0oooooooooooooOoooooo',
+                'R': 'ooooooOooooooooooooo0oooooooooooooooOoooOO0oooooooooooooOoooooo',
+                'r': 'ooooooOooooooooooooo0oooooooooooooooOooOoO0oooooooooooooOoooooo',
+                'S': 'ooooooOooooooooooooo0oooooooooooooooOooOOo0oooooooooooooOoooooo',
+                's': 'ooooooOooooooooooooo0oooooooooooooooOooOOO0oooooooooooooOoooooo',
+                'T': 'ooooooOooooooooooooo0oooooooooooooooOoOooo0oooooooooooooOoooooo',
+                't': 'ooooooOooooooooooooo0oooooooooooooooOoOooO0oooooooooooooOoooooo',
+                'U': 'ooooooOooooooooooooo0oooooooooooooooOoOoOo0oooooooooooooOoooooo',
+                'u': 'ooooooOooooooooooooo0oooooooooooooooOoOoOO0oooooooooooooOoooooo',
+                'V': 'ooooooOooooooooooooo0oooooooooooooooOoOOoo0oooooooooooooOoooooo',
+                'v': 'ooooooOooooooooooooo0oooooooooooooooOoOOoO0oooooooooooooOoooooo',
+                'W': 'ooooooOooooooooooooo0oooooooooooooooOoOOOo0oooooooooooooOoooooo',
+                'w': 'ooooooOooooooooooooo0oooooooooooooooOoOOOO0oooooooooooooOoooooo',
+                'X': 'ooooooOooooooooooooo0oooooooooooooooOOoooo0oooooooooooooOoooooo',
+                'x': 'ooooooOooooooooooooo0oooooooooooooooOOoooO0oooooooooooooOoooooo',
+                'Y': 'ooooooOooooooooooooo0oooooooooooooooOOooOo0oooooooooooooOoooooo',
+                'y': 'ooooooOooooooooooooo0oooooooooooooooOOooOO0oooooooooooooOoooooo',
+                'Z': 'ooooooOooooooooooooo0oooooooooooooooOOoOoo0oooooooooooooOoooooo',
+                'z': 'ooooooOooooooooooooo0oooooooooooooooOOoOoO0oooooooooooooOoooooo',
+                'Ä': 'ooooooOooooooooooooo0oooooooooooooooOOoOOo0oooooooooooooOoooooo',
+                'ä': 'ooooooOooooooooooooo0oooooooooooooooOOoOOO0oooooooooooooOoooooo',
+                'Ö': 'ooooooOooooooooooooo0oooooooooooooooOOOooo0oooooooooooooOoooooo',
+                'ö': 'ooooooOooooooooooooo0oooooooooooooooOOOooO0oooooooooooooOoooooo',
+                'Ü': 'ooooooOooooooooooooo0oooooooooooooooOOOoOo0oooooooooooooOoooooo',
+                'ü': 'ooooooOooooooooooooo0oooooooooooooooOOOoOO0oooooooooooooOoooooo',
+                'ß': 'ooooooOooooooooooooo0oooooooooooooooOOOOOo0oooooooooooooOoooooo', // IGNORE CASE
+                
+                
+                // -- Symbols & Special characters --
+                ' ': 'ooooooOoooooooooooooooooooooooooooooooooooooooooooooooooOoooooo',
+                '.': 'ooooooOooooooooooooooooooooooooooooooooooOooooooooooooooOoooooo',
+                ',': 'ooooooOoooooooooooooooooooooooooooooooooOoooooooooooooooOoooooo',
+                '!': 'ooooooOoooooooooooooooooooooooooooooooooOOooooooooooooooOoooooo',
+                '?': 'ooooooOooooooooooooooooooooooooooooooooOooooooooooooooooOoooooo',
+                ':': 'ooooooOooooooooooooooooooooooooooooooooOoOooooooooooooooOoooooo',
+                ';': 'ooooooOooooooooooooooooooooooooooooooooOOoooooooooooooooOoooooo',
+                '-': 'ooooooOooooooooooooooooooooooooooooooooOOOooooooooooooooOoooooo',
+                '_': 'ooooooOoooooooooooooooooooooooooooooooOoooooooooooooooooOoooooo',
+                "'": 'ooooooOoooooooooooooooooooooooooooooooOooOooooooooooooooOoooooo',
+                '"': 'ooooooOoooooooooooooooooooooooooooooooOoOoooooooooooooooOoooooo',
+                '(': 'ooooooOoooooooooooooooooooooooooooooooOoOOooooooooooooooOoooooo',
+                ')': 'ooooooOoooooooooooooooooooooooooooooooOOooooooooooooooooOoooooo',
+                '[': 'ooooooOoooooooooooooooooooooooooooooooOOoOooooooooooooooOoooooo',
+                ']': 'ooooooOoooooooooooooooooooooooooooooooOOOoooooooooooooooOoooooo',
+                '{': 'ooooooOoooooooooooooooooooooooooooooooOOOOooooooooooooooOoooooo',
+                '}': 'ooooooOooooooooooooooooooooooooooooooOooooooooooooooooooOoooooo',
+                '+': 'ooooooOooooooooooooooooooooooooooooooOoooOooooooooooooooOoooooo',
+                '=': 'ooooooOooooooooooooooooooooooooooooooOooOoooooooooooooooOoooooo',
+                '*': 'ooooooOooooooooooooooooooooooooooooooOooOOooooooooooooooOoooooo',
+                '/': 'ooooooOooooooooooooooooooooooooooooooOoOooooooooooooooooOoooooo',
+                '\\': 'ooooooOooooooooooooooooooooooooooooooOoOoOooooooooooooooOoooooo',
+                '%': 'ooooooOooooooooooooooooooooooooooooooOoOOoooooooooooooooOoooooo',
+                '&': 'ooooooOooooooooooooooooooooooooooooooOoOOOooooooooooooooOoooooo',
+                '|': 'ooooooOooooooooooooooooooooooooooooooOOoooooooooooooooooOoooooo',
+                '<': 'ooooooOooooooooooooooooooooooooooooooOOooOooooooooooooooOoooooo',
+                '>': 'ooooooOooooooooooooooooooooooooooooooOOoOoooooooooooooooOoooooo',
+                '@': 'ooooooOooooooooooooooooooooooooooooooOOoOOooooooooooooooOoooooo',
+                '#': 'ooooooOooooooooooooooooooooooooooooooOOOooooooooooooooooOoooooo',
+                '$': 'ooooooOooooooooooooooooooooooooooooooOOOoOooooooooooooooOoooooo',
+                '^': 'ooooooOooooooooooooooooooooooooooooooOOOOoooooooooooooooOoooooo',
+                '~': 'ooooooOooooooooooooooooooooooooooooooOOOOOooooooooooooooOoooooo',
+                '`': 'ooooooOoooooooooooooooooooooooooooooOoooooooooooooooooooOoooooo',
+                '´': 'ooooooOoooooooooooooooooooooooooooooOooooOooooooooooooooOoooooo',
+                '°': 'ooooooOoooooooooooooooooooooooooooooOoooOoooooooooooooooOoooooo',
+                '§': 'ooooooOoooooooooooooooooooooooooooooOoooOOooooooooooooooOoooooo',
+                'µ': 'ooooooOoooooooooooooooooooooooooooooOooOooooooooooooooooOoooooo',
+            };
 
-    <main id="content">
-      <div id="left">
-        <h2 id="knowledgeTitle" data-key="learningTextTitle"></h2>
-        <div id="knowledgeText" class="text-container"></div>
-        <h2 id="wordsTitle" data-key="vocabListTitle"></h2>
-        <div id="wordList"></div>
-      </div>
-      <div id="right">
-        <h2 id="native-lang-title"></h2>
-        <div id="native-lang-full-text" class="text-container"></div>
-        <h2 id="target-lang-title"></h2>
-        <div id="target-lang-full-text" class="text-container"></div>
-      </div>
-    </main>
-  </div>
+            const applyXorFold = (encodedString) => {
+                const cleanString = encodedString.replace(/\s/g, '');
+                const binary = cleanString.replace(/o/g, '0').replace(/O/g, '1');
+                const mid = Math.floor(binary.length / 2);
+                const firstHalf = binary.substring(0, mid);
+                const secondHalf = binary.substring(mid);
+                let xorResultBinary = '';
 
-  <script>
-    const translatedMenu = {
-      en: {
-        uiLanguageLabel: "mC",
-        topicLabel: ".",
-        yourLanguageLabel: "<<mC",
-        targetLanguageLabel: "mC>>",
-        errorMessageSameLanguage: "Two different mC's.",
-        errorTitle: "Error",
-        learningTextTitle: "words",
-        vocabListTitle: "[list of j]",
-        originalTextTitle: "seen?",
-        translationTextTitle: "soon!",
-      },
-      de: {
-        uiLanguageLabel: "mC",
-        topicLabel: ".",
-        yourLanguageLabel: "<<mC",
-        targetLanguageLabel: "mC>>",
-        errorMessageSameLanguage: "Zwei verschiedene mC's",
-        errorTitle: "Fehler",
-        learningTextTitle: "worte",
-        vocabListTitle: "[list der j]",
-        originalTextTitle: "gesehen?",
-        translationTextTitle: "bald!",
-      },
-      es: {
-        uiLanguageLabel: "mC",
-        topicLabel: ".",
-        yourLanguageLabel: "<<mC",
-        targetLanguageLabel: "mC>>",
-        errorMessageSameLanguage: "Dos mC's diferentes.",
-        errorTitle: "Error",
-        learningTextTitle: "palabras",
-        vocabListTitle: "[lista de j]",
-        originalTextTitle: "¿visto?",
-        translationTextTitle: "¡pronto!",
-      },
-      fr: {
-        uiLanguageLabel: "mC",
-        topicLabel: ".",
-        yourLanguageLabel: "<<mC",
-        targetLanguageLabel: "mC>>",
-        errorMessageSameLanguage: "Deux mC différents.",
-        errorTitle: "Erreur",
-        learningTextTitle: "mots",
-        vocabListTitle: "[liste de j]",
-        originalTextTitle: "vu?",
-        translationTextTitle: "bientôt!",
-      },
-      it: {
-        uiLanguageLabel: "mC",
-        topicLabel: ".",
-        yourLanguageLabel: "<<mC",
-        targetLanguageLabel: "mC>>",
-        errorMessageSameLanguage: "Due mC diversi.",
-        errorTitle: "Errore",
-        learningTextTitle: "parole",
-        vocabListTitle: "[elenco di j]",
-        originalTextTitle: "visto?",
-        translationTextTitle: "presto!",
-      },
-      mc: {
-        uiLanguageLabel: "mC",
-        topicLabel: ".",
-        yourLanguageLabel: "<<mC",
-        targetLanguageLabel: "mC>>",
-        errorMessageSameLanguage: "Two different mC's.",
-        errorTitle: "Error",
-        learningTextTitle: "words",
-        vocabListTitle: "[list of j]",
-        originalTextTitle: "seen?",
-        translationTextTitle: "soon!",
-      }
-    };
+                for (let i = 0; i < mid; i++) {
+                    const bit1 = parseInt(firstHalf[i], 10);
+                    const bit2 = parseInt(secondHalf[i], 10);
+                    xorResultBinary += (bit1 ^ bit2).toString();
+                }
 
-    const contentStructure = {};
-    const content = {
+                if (secondHalf.length > firstHalf.length) {
+                    xorResultBinary += secondHalf[secondHalf.length - 1];
+                }
+                return xorResultBinary.replace(/0/g, 'o').replace(/1/g, 'O');
+            };
 
-		book_flight: {
-			base: {
-			en: "Consider possible {routes}, offered {services}, and the {price} you choose.<br><br>Your tickets: {no_return_ticket} for single journeys or {round_trip_ticket} for return journeys. Specify if it's a {domestic_flight} within a country or an {international_flight} between countries.<br><br>Upon successful booking and payment, you will receive an {e_ticket}, which serves as your proof of purchase and contains all flight details.<br><br>",
-			de: "Berücksichtigen Sie mögliche {routes}, angebotene {services} und den von Ihnen gewählten {price}.<br><br>Ihre Tickets: {no_return_ticket} für einfache Reisen oder {round_trip_ticket} für Hin- und Rückreisen. Geben Sie an, ob es sich um einen {domestic_flight} innerhalb eines Landes oder einen {international_flight} zwischen Ländern handelt.<br><br>Nach erfolgreicher Buchung und Zahlung erhalten Sie ein {e_ticket}, das als Kaufbeleg dient und alle Flugdetails enthält.<br><br>",
-			it: "Considera le possibili {routes}, i {services} offerti e il {price} che scegli.<br><br>I tuoi biglietti: {no_return_ticket} per viaggi di sola andata o {round_trip_ticket} per viaggi di andata e ritorno. Specifica se si tratta di un {domestic_flight} all'interno di un paese o di un {international_flight} tra paesi.<br><br>Dopo la prenotazione e il pagamento andati a buon fine, riceverai un {e_ticket}, che serve come prova d'acquisto e contiene tutti i dettagli del volo.<br><br>",
-			es: "Considere posibles {routes}, {services} ofrecidos y el {price} que elija.<br><br>Sus billetes: {no_return_ticket} para viajes de ida o {round_trip_ticket} para viajes de ida y vuelta. Especifique si es un {domestic_flight} dentro de un país o un {international_flight} entre países.<br><br>Tras la reserva y el pago exitosos, recibirá un {e_ticket}, que sirve como prueba de compra y contiene todos los detalles del vuelo.<br><br>",
-			fr: "Considérez les {routes} possibles, les {services} offerts et le {price} que vous choisissez.<br><br>Vos billets : {no_return_ticket} pour les trajets simples ou {round_trip_ticket} pour les trajets aller-retour. Précisez s'il s'agit d'un {domestic_flight} à l'intérieur d'un pays ou d'un {international_flight} entre pays.<br><br>Après la réservation et le paiement réussis, vous recevrez un {e_ticket}, qui sert de preuve d'achat et contient tous les détails du vol.<br><br>"
-			},
-			vocab: {
-			routes: {
-				de: "Fluglinie",
-				en: "airline",
-				es: "aerolínea",
-				fr: "compagnie aérienne",
-				it: "compagnia aerea",
-			},
-			services: {
-				de: "Dienstleistungen",
-				en: "services",
-				es: "servicios",
-				fr: "services",
-				it: "servizi",
-			},
-			price: {
-				de: "Preis",
-				en: "price",
-				es: "precio",
-				fr: "prix",
-				it: "prezzo",
-			},
-			no_return_ticket: {
-				de: "Einzelticket",
-				en: "one-way ticket",
-				es: "billete de ida",
-				fr: "billet simple",
-				it: "biglietto di sola andata",
-			},
-			round_trip_ticket: {
-				de: "Hin- und Rückflugticket",
-				en: "round-trip ticket",
-				es: "billete de ida y vuelta",
-				fr: "billet aller-retour",
-				it: "biglietto di andata e ritorno",
-			},
-			domestic_flight: {
-				de: "Inlandsflug",
-				en: "domestic flight",
-				es: "vuelo nacional",
-				fr: "vol intérieur",
-				it: "volo nazionale",
-			},
-			international_flight: {
-				de: "internationaler Flug",
-				en: "international flight",
-				es: "vuelo internacional",
-				fr: "vol international",
-				it: "volo internazionale",
-			},
-			e_ticket: {
-				de: "E-Ticket",
-				en: "e-ticket",
-				es: "billete electrónico",
-				fr: "billet électronique",
-				it: "biglietto elettronico",
-			},
+            const simplifyOutput = (text) => {
+                return text.replace(/o{2,}/g, '-').replace(/O{2,}/g, '0').replace(/ /g, '');
+            };
 
-			},
-		},
+            const translateText = () => {
+                const text = inputText.value;
+                const useXor = xorCheckbox.checked;
+                const useSimplify = simplifyCheckbox.checked;
+                
+                const translatedParts = [];
 
-		airport: {
-			base: {
-			en: "At the airport {terminal}, travelers proceed to the {check_in_counter_desk} to {check_in} for their flights. They present {ID_identification} and receive their {boarding_pass}.<br><br>{luggage_baggage} consists of either {checked_baggage} or a {carry_on_bag}. Passengers must adhere to the {baggage_allowance} to avoid {overweight_oversized} fees.<br><br>After check-in, everyone goes through {security_check_screening} to ensure no {prohibited_items} are brought on board. International travel requires passing through {passport_control} and {customs}, where passengers may need to {declare} certain goods.<br><br>",
-			de: "Am Flughafen {terminal} begeben sich Reisende zum {check_in_counter_desk}, um für ihre Flüge {check_in} zu machen. Sie legen ihren {ID_identification} vor und erhalten ihre {boarding_pass}.<br><br>{luggage_baggage} besteht entweder aus {checked_baggage} oder einem {carry_on_bag}. Passagiere müssen die {baggage_allowance} einhalten, um Gebühren für {overweight_oversized} zu vermeiden.<br><br>Nach dem Check-in durchlaufen alle die {security_check_screening}, um sicherzustellen, dass keine {prohibited_items} an Bord gebracht werden. Internationale Reisen erfordern die Passage durch die {passport_control} und den {customs}, wo Passagiere möglicherweise bestimmte Waren {declare} müssen.<br><br>",
-			it: "Al {terminal} dell'aeroporto, i viaggiatori si recano al {check_in_counter_desk} per effettuare il {check_in} per i loro voli. Presentano il loro {ID_identification} e ricevono la loro {boarding_pass}.<br><br>Il {luggage_baggage} consiste in {checked_baggage} o in un {carry_on_bag}. I passeggeri devono rispettare la {baggage_allowance} per evitare costi per {overweight_oversized}.<br><br>Dopo il check-in, tutti passano attraverso il {security_check_screening} per assicurarsi che non vengano portati a bordo {prohibited_items}. I viaggi internazionali richiedono il passaggio attraverso il {passport_control} e la {customs}, dove i passeggeri potrebbero dover {declare} determinate merci.<br><br>",
-			es: "En la {terminal} del aeropuerto, los viajeros se dirigen al {check_in_counter_desk} para {check_in} sus vuelos. Presentan su {ID_identification} y reciben su {boarding_pass}.<br><br>El {luggage_baggage} consiste en {checked_baggage} o un {carry_on_bag}. Los pasajeros deben cumplir con la {baggage_allowance} para evitar tarifas por {overweight_oversized}.<br><br>Después del check-in, todos pasan por el {security_check_screening} para asegurarse de que no se introduzcan {prohibited_items} a bordo. Los viajes internacionales requieren pasar por el {passport_control} y la {customs}, donde los pasajeros pueden necesitar {declare} ciertos bienes.<br><br>",
-			fr: "Au {terminal} de l'aéroport, les voyageurs se rendent au {check_in_counter_desk} pour {check_in} leurs vols. Ils présentent leur {ID_identification} et reçoivent leur {boarding_pass}.<br><br>Les {luggage_baggage} se composent soit de {checked_baggage}, soit d'un {carry_on_bag}. Les passagers doivent respecter la {baggage_allowance} pour éviter les frais de {overweight_oversized}.<br><br>Après l'enregistrement, tout le monde passe par le {security_check_screening} pour s'assurer qu'aucun {prohibited_items} n'est introduit à bord. Les voyages internationaux nécessitent de passer par le {passport_control} et la {customs}, où les passagers peuvent avoir besoin de {declare} certaines marchandises.<br><br>"
-			},
-			vocab: {
-			terminal: {
-				de: "Terminal",
-				en: "terminal",
-				es: "terminal",
-				fr: "terminal",
-				it: "terminale",
-			},
-			check_in_counter_desk: {
-				de: "Check-in-Schalter",
-				en: "check-in counter/desk",
-				es: "mostrador de facturación",
-				fr: "comptoir d'enregistrement",
-				it: "banco del check-in",
-			},
-			check_in: {
-				de: "einchecken",
-				en: "checking in",
-				es: "facturar",
-				fr: "enregistrement",
-				it: "check-in",
-			},
-			ID_identification: {
-				de: "Ausweis",
-				en: "ID/identification",
-				es: "identificación",
-				fr: "carte d'identité/identification",
-				it: "carta d'identità/identificazione",
-			},
-			boarding_pass: {
-				de: "Boardingpass",
-				en: "boarding pass",
-				es: "tarjeta de embarque",
-				fr: "carte d'embarquement",
-				it: "carta d'imbarco",
-			},
-			checking: {
-				de: "einchecken",
-				en: "checking",
-				es: "facturando",
-				fr: "enregistrement",
-				it: "check-in",
-			},
-			luggage_baggage: {
-				de: "Gepäck",
-				en: "luggage/baggage",
-				es: "equipaje",
-				fr: "bagages",
-				it: "bagaglio",
-			},
-			checked_baggage: {
-				de: "aufgegebenes Gepäck",
-				en: "checked baggage",
-				es: "equipaje facturado",
-				fr: "bagages enregistrés",
-				it: "bagaglio registrato",
-			},
-			carry_on_bag: {
-				de: "Handgepäck",
-				en: "carry-on bag",
-				es: "equipaje de mano",
-				fr: "bagage à main",
-				it: "bagaglio a mano",
-			},
-			baggage_allowance: {
-				de: "Freigepäck",
-				en: "baggage allowance",
-				es: "franquicia de equipaje",
-				fr: "franchise de bagages",
-				it: "franchigia bagaglio",
-			},
-			overweight_oversized: {
-				de: "Übergewicht/Übergröße",
-				en: "overweight/oversized",
-				es: "sobrecarga/sobredimensionado",
-				fr: "surdimensionné/surpoids",
-				it: "sovrappeso/sovradimensionato",
-			},
-			security_check_screening: {
-				de: "Sicherheitskontrolle",
-				en: "security check/screening",
-				es: "control de seguridad",
-				fr: "contrôle de sécurité",
-				it: "controllo di sicurezza",
-			},
-			prohibited_items: {
-				de: "verbotene Gegenstände",
-				en: "prohibited items",
-				es: "objetos prohibidos",
-				fr: "objets interdits",
-				it: "oggetti proibiti",
-			},
-			passport_control: {
-				de: "Passkontrolle",
-				en: "passport control",
-				es: "control de pasaportes",
-				fr: "contrôle des passeports",
-				it: "controllo passaporti",
-			},
-			customs: {
-				de: "Zoll",
-				en: "customs",
-				es: "aduana",
-				fr: "douane",
-				it: "dogana",
-			},
-			declare: {
-				de: "anmelden",
-				en: "declare",
-				es: "declarar",
-				fr: "déclarer",
-				it: "dichiarare",
-			},
-			},
-		},
+                for (let i = 0; i < text.length; i++) {
+                    const char = text[i];
+                    let encodedChar = encodingMap[char];
 
-		departure_boarding: {
-			base: {
-			en: "At the airport, check the {departures} board for your flight status. It will display your {depart_departure_time} and {gate} number.<br><br>Be aware of potential updates, such as a {gate_change}. Head to the {departure_lounge} near your assigned gate well before your {board_boarding_time}.<br><br>Listen for announcements, including the {final_call} for boarding. Flight statuses can vary: your flight might be {on_time}, {delayed}, or, in unfortunate cases, {cancelled}.<br><br>",
-			de: "Am Flughafen überprüfen Sie die {departures}-Anzeigetafel für den Status Ihres Fluges. Sie zeigt Ihre {depart_departure_time} und die {gate}-Nummer an.<br><br>Achten Sie auf mögliche Aktualisierungen, wie z.B. einen {gate_change}. Begeben Sie sich rechtzeitig vor Ihrer {board_boarding_time} zur {departure_lounge} in der Nähe Ihres zugewiesenen Gates.<br><br>Achten Sie auf Durchsagen, einschließlich des {final_call} zum Boarding. Flugstatus können variieren: Ihr Flug könnte {on_time}, {delayed} oder, in unglücklichen Fällen, {cancelled} sein.<br><br>",
-			it: "In aeroporto, controlla il tabellone delle {departures} per lo stato del tuo volo. Verranno visualizzati l'orario di {depart_departure_time} e il numero del {gate}.<br><br>Sii consapevole di potenziali aggiornamenti, come un {gate_change}. Recati alla {departure_lounge} vicino al tuo gate assegnato ben prima dell'orario di {board_boarding_time}.<br><br>Ascolta gli annunci, incluso l'ultimo {final_call} per l'imbarco. Gli stati dei voli possono variare: il tuo volo potrebbe essere {on_time}, {delayed} o, in casi sfortunati, {cancelled}.<br><br>",
-			es: "En el aeropuerto, consulte el panel de {departures} para conocer el estado de su vuelo. Mostrará su {depart_departure_time} y el número de {gate}.<br><br>Esté atento a posibles actualizaciones, como un {gate_change}. Diríjase a la {departure_lounge} cerca de su puerta asignada mucho antes de su {board_boarding_time}.<br><br>Escuche los anuncios, incluida la {final_call} para el embarque. Los estados de los vuelos pueden variar: su vuelo podría estar {on_time}, {delayed} o, en casos desafortunados, {cancelled}.<br><br>",
-			fr: "À l'aéroport, consultez le tableau des {departures} pour connaître le statut de votre vol. Il affichera votre {depart_departure_time} et le numéro de votre {gate}.<br><br>Soyez attentif aux mises à jour potentielles, telles qu'un {gate_change}. Rendez-vous au {departure_lounge} près de votre porte d'embarquement bien avant votre {board_boarding_time}.<br><br>Écoutez les annonces, y compris le {final_call} pour l'embarquement. Les statuts des vols peuvent varier : votre vol pourrait être {on_time}, {delayed} ou, dans des cas malheureux, {cancelled}.<br><br>"
-			},
-			vocab: {     
-			departures: {
-				de: "Abflugtafel",
-				en: "departures",
-				es: "salidas",
-				fr: "départs",
-				it: "partenze"
-			},
-			depart_departure_time: {
-				de: "Abflugzeit",
-				en: "departure time",
-				es: "hora de salida",
-				fr: "heure de départ",
-				it: "orario di partenza"
-			},
-			gate: {
-				de: "Flugsteig",
-				en: "gate",
-				es: "puerta de embarque",
-				fr: "porte d'embarquement",
-				it: "gate"
-			},
-			gate_change: {
-				de: "Gate-Änderung",
-				en: "gate change",
-				es: "cambio de puerta",
-				fr: "changement de porte",
-				it: "cambio gate"
-			},
-			departure_lounge: {
-				de: "Abflug-Lounge",
-				en: "departure lounge",
-				es: "sala de embarque",
-				fr: "salle d'embarquement",
-				it: "sala d'attesa"
-			},
-			board_boarding_time: {
-				de: "Boarding-Zeit",
-				en: "boarding time",
-				es: "hora de embarque",
-				fr: "heure d'embarquement",
-				it: "orario d'imbarco"
-			},
-			final_call: {
-				de: "letzter Aufruf",
-				en: "final call",
-				es: "última llamada",
-				fr: "dernier appel",
-				it: "ultima chiamata"
-			},
-			on_time: {
-				de: "pünktlich",
-				en: "on time",
-				es: "a tiempo",
-				fr: "à l'heure",
-				it: "in orario"
-			},
-			delayed: {
-				de: "verspätet",
-				en: "delayed",
-				es: "retrasado",
-				fr: "retardé",
-				it: "in ritardo"
-			},
-			cancelled: {
-				de: "annulliert",
-				en: "cancelled",
-				es: "cancelado",
-				fr: "annulé",
-				it: "cancellato"
-			}
-			},
-		},
+                    if (encodedChar) {
+                        if (useXor) {
+                            encodedChar = applyXorFold(encodedChar);
+                        }
+                        translatedParts.push(encodedChar);
+                    } else if (char === '\n') {
+                        translatedParts.push('\n');
+                    } else {
+                        translatedParts.push(char);
+                    }
+                }
 
-		on_plane: {
-        base: {
-          en: "Once on board, find your assigned {cabin_seat}, whether it's an {aisle_seat} or a {window_seat}. Store your belongings in the {overhead_bin_locker}.<br><br>The {cabin_crew_flight_attendant} will provide safety instructions and service throughout the flight. The pilots operate the aircraft from the {cockpit}. Remember to {fasten_your_seatbelt} when instructed, especially during {turbulence}.<br><br>If your journey involves a {connecting_flight}, you'll have a {layover_stopover} at an intermediate airport before continuing to your final destination.<br><br>",
-          de: "Sobald Sie an Bord sind, finden Sie Ihren zugewiesenen {cabin_seat}, sei es ein {aisle_seat} oder ein {window_seat}. Verstauen Sie Ihr Gepäck im {overhead_bin_locker}.<br><br>Das {cabin_crew_flight_attendant} wird während des gesamten Fluges Sicherheitsanweisungen und Service bieten. Die Piloten steuern das Flugzeug vom {cockpit} aus. Denken Sie daran, sich auf Anweisung {fasten_your_seatbelt} anzuschnallen, besonders bei {turbulence}.<br><br>Wenn Ihre Reise einen {connecting_flight} beinhaltet, haben Sie einen {layover_stopover} an einem Zwischenflughafen, bevor Sie zu Ihrem endgültigen Ziel weiterfliegen.<br><br>",
-          it: "Una volta a bordo, trova il tuo {cabin_seat} assegnato, che sia un {aisle_seat} o un {window_seat}. Riponi i tuoi effetti personali nel {overhead_bin_locker}.<br><br>Il {cabin_crew_flight_attendant} fornirà istruzioni di sicurezza e servizio durante tutto il volo. I piloti operano l'aereo dal {cockpit}. Ricorda di {fasten_your_seatbelt} quando richiesto, specialmente durante la {turbulence}.<br><br>Se il tuo viaggio prevede un {connecting_flight}, avrai uno {layover_stopover} in un aeroporto intermedio prima di proseguire verso la tua destinazione finale.<br><br>",
-          es: "Una vez a bordo, encuentre su {cabin_seat} asignado, ya sea un {aisle_seat} o un {window_seat}. Guarde sus pertenencias en el {overhead_bin_locker}.<br><br>El {cabin_crew_flight_attendant} proporcionará instrucciones de seguridad y servicio durante todo el vuelo. Los pilotos operan la aeronave desde la {cockpit}. Recuerde {fasten_your_seatbelt} cuando se le indique, especialmente durante la {turbulence}.<br><br>Si su viaje implica un {connecting_flight}, tendrá una {layover_stopover} en un aeropuerto intermedio antes de continuar a su destino final.<br><br>",
-          fr: "Une fois à bord, trouvez votre {cabin_seat} attribué, qu'il s'agisse d'un {aisle_seat} ou d'un {window_seat}. Rangez vos affaires dans le {overhead_bin_locker}.<br><br>Le {cabin_crew_flight_attendant} fournira les consignes de sécurité et le service tout au long du vol. Les pilotes opèrent l'avion depuis le {cockpit}. N'oubliez pas de {fasten_your_seatbelt} lorsque cela vous est demandé, surtout en cas de {turbulence}.<br><br>Si votre voyage implique un {connecting_flight}, vous aurez une {layover_stopover} dans un aéroport intermédiaire avant de continuer vers votre destination finale.<br><br>"
-        },
-        vocab: {
-          cabin_seat: {
-            de: "Sitzplatz",
-            en: "cabin seat",
-            es: "asiento de cabina",
-            fr: "siège en cabine",
-            it: "posto in cabina"
-          },
-          aisle_seat: {
-            de: "Gangplatz",
-            en: "aisle seat",
-            es: "asiento de pasillo",
-            fr: "siège côté couloir",
-            it: "posto corridoio"
-          },
-          window_seat: {
-            de: "Fensterplatz",
-            en: "window seat",
-            es: "asiento de ventanilla",
-            fr: "siège côté fenêtre",
-            it: "posto finestrino"
-          },
-          overhead_bin_locker: {
-            de: "Gepäckfach",
-            en: "overhead bin/locker",
-            es: "compartimento superior",
-            fr: "casier à bagages",
-            it: "cappelliere"
-          },
-          cabin_crew_flight_attendant: {
-            de: "Flugbegleiter",
-            en: "cabin crew/flight attendant",
-            es: "tripulación de cabina/auxiliar de vuelo",
-            fr: "équipage de cabine/agent de bord",
-            it: "equipaggio di cabina/assistente di volo"
-          },
-          cockpit: {
-            de: "Cockpit",
-            en: "cockpit",
-            es: "cabina de mando",
-            fr: "cockpit",
-            it: "cabina di pilotaggio"
-          },
-          fasten_your_seatbelt: {
-            de: "schnallen Sie sich an",
-            en: "fasten your seatbelt",
-            es: "abróchese el cinturón",
-            fr: "attachez votre ceinture",
-            it: "allacciare la cintura"
-          },
-          turbulence: {
-            de: "Turbulenzen",
-            en: "turbulence",
-            es: "turbulencia",
-            fr: "turbulence",
-            it: "turbolenza"
-          },
-          connecting_flight: {
-            de: "Anschlussflug",
-            en: "connecting flight",
-            es: "vuelo de conexión",
-            fr: "vol de correspondance",
-            it: "volo in coincidenza"
-          },
-          layover_stopover: {
-            de: "Zwischenstopp",
-            en: "layover/stopover",
-            es: "escala/parada",
-            fr: "escale",
-            it: "scalo"
-          }
-        },
-      },
+                let translated = translatedParts.join(' ');
+                translated = translated.replace(/ \n /g, '\n');
 
-		plane_arrival: {
-			base: {
-			en: "Upon reaching your destination, proceed to the {arrivals} area. The {landed_arrival_time} will be displayed on screens.<br><br>Your next stop is {baggage_claim} to retrieve your checked luggage from the {carousel_conveyor_belt}. If you have multiple bags or heavy items, a {trolley_cart} can be very helpful.<br><br>In the unfortunate event that your baggage is missing, report it immediately to the {lost_and_found} office.<br><br>",
-			de: "Nach Erreichen Ihres Ziels begeben Sie sich zum Bereich {arrivals}. Die {landed_arrival_time} wird auf Bildschirmen angezeigt.<br><br>Ihre nächste Station ist die {baggage_claim}, um Ihr aufgegebenes Gepäck vom {carousel_conveyor_belt} abzuholen. Wenn Sie mehrere Taschen oder schwere Gegenstände haben, kann ein {trolley_cart} sehr hilfreich sein.<br><br>Im unglücklichen Fall, dass Ihr Gepäck fehlt, melden Sie dies sofort dem {lost_and_found}-Büro.<br><br>",
-			it: "Una volta raggiunta la destinazione, recati all'area {arrivals}. L'{landed_arrival_time} sarà visualizzato sugli schermi.<br><br>La tua prossima tappa è il {baggage_claim} per ritirare il tuo bagaglio registrato dal {carousel_conveyor_belt}. Se hai più borse o oggetti pesanti, un {trolley_cart} può essere molto utile.<br><br>Nel caso sfortunato in cui il tuo bagaglio sia smarrito, segnalalo immediatamente all'ufficio {lost_and_found}.<br><br>",
-			es: "Al llegar a su destino, diríjase a la zona de {arrivals}. La {landed_arrival_time} se mostrará en las pantallas.<br><br>Su próxima parada es la {baggage_claim} para recoger su equipaje facturado de la {carousel_conveyor_belt}. Si tiene varias maletas o artículos pesados, un {trolley_cart} puede ser muy útil.<br><br>En el desafortunado caso de que su equipaje falte, repórtelo inmediatamente a la oficina de {lost_and_found}.<br><br>",
-			fr: "À votre arrivée à destination, dirigez-vous vers la zone des {arrivals}. L'{landed_arrival_time} sera affichée sur les écrans.<br><br>Votre prochaine étape est la {baggage_claim} pour récupérer vos bagages enregistrés sur le {carousel_conveyor_belt}. Si vous avez plusieurs sacs ou des articles lourds, un {trolley_cart} peut être très utile.<br><br>Dans le cas malheureux où vos bagages seraient manquants, signalez-le immédiatement au bureau des {lost_and_found}.<br><br>"
-			},
-			vocab: {
-			arrivals: {
-				de: "Ankunft",
-				en: "arrivals",
-				es: "llegadas",
-				fr: "arrivées",
-				it: "arrivi"
-			},
-			landed_arrival_time: {
-				de: "Ankunftszeit",
-				en: "arrival time",
-				es: "hora de llegada",
-				fr: "heure d'arrivée",
-				it: "orario di arrivo"
-			},
-			baggage_claim: {
-				de: "Gepäckausgabe",
-				en: "baggage claim",
-				es: "recogida de equipajes",
-				fr: "livraison des bagages",
-				it: "ritiro bagagli"
-			},
-			carousel_conveyor_belt: {
-				de: "Gepäckband",
-				en: "carousel/conveyor belt",
-				es: "cinta de equipaje",
-				fr: "tapis roulant à bagages",
-				it: "nastro trasportatore"
-			},
-			trolley_cart: {
-				de: "Gepäckwagen",
-				en: "trolley/cart",
-				es: "carrito",
-				fr: "chariot",
-				it: "carrello"
-			},
-			lost_and_found: {
-				de: "Fundbüro",
-				en: "lost and found",
-				es: "objetos perdidos",
-				fr: "objets trouvés",
-				it: "oggetti smarriti"
-			}
-			},
-		},
+                if (useSimplify) {
+                    translated = simplifyOutput(translated);
+                }
+                outputText.textContent = translated;
+            };
+const copyToClipboard = () => {
+                if(outputText.textContent) {
+                    const textarea = document.createElement('textarea');
+                    textarea.value = outputText.textContent;
+                    document.body.appendChild(textarea);
+                    textarea.select();
+                    try {
+                        document.execCommand('copy');
+                        copyButton.textContent = 'Copied!';
+                        setTimeout(() => {
+                           copyButton.innerHTML = `<svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg> Copy`;
+                        }, 2000);
+                    } catch (err) {
+                        console.error('Failed to copy text: ', err);
+                    }
+                    document.body.removeChild(textarea);
+                }
+            };
 
-       	bus_locations : {
-			base: {
-				en: "Find your way around with {bus_stops} and {bus_stations}. Look for {timetables} to plan your journey and understand the {bus_routes} available. Some services offer {express_bus} for faster travel or {local_bus} for shorter distances within a city.<br><br>For intercity travel, consider {long_distance_bus} options. Always check for {accessibility_options} if needed.",
-				de: "Finden Sie sich zurecht mit {bus_stops} und {bus_stations}. Suchen Sie nach {timetables}, um Ihre Reise zu planen und die verfügbaren {bus_routes} zu verstehen. Einige Dienste bieten {express_bus} für schnellere Reisen oder {local_bus} für kürzere Strecken innerhalb einer Stadt an.<br><br>Für Überlandfahrten sollten Sie {long_distance_bus}-Optionen in Betracht ziehen. Überprüfen Sie immer die {accessibility_options}, falls erforderlich.",
-				it: "Orientati con le {bus_stops} e le {bus_stations}. Cerca gli {timetables} per pianificare il tuo viaggio e comprendere le {bus_routes} disponibili. Alcuni servizi offrono {express_bus} per viaggi più veloci o {local_bus} per distanze più brevi all'interno di una città.<br><br>Per i viaggi interurbani, considera le opzioni di {long_distance_bus}. Controlla sempre le {accessibility_options} se necessario.",
-				es: "Oriéntese con las {bus_stops} y las {bus_stations}. Busque los {timetables} para planificar su viaje y comprender las {bus_routes} disponibles. Algunos servicios ofrecen {express_bus} para viajes más rápidos o {local_bus} para distancias más cortas dentro de una ciudad.<br><br>Para viajes interurbanos, considere las opciones de {long_distance_bus}. Siempre verifique las {accessibility_options} si es necesario.",
-				fr: "Repérez-vous grâce aux {bus_stops} et aux {bus_stations}. Consultez les {timetables} pour planifier votre trajet et comprendre les {bus_routes} disponibles. Certains services proposent des {express_bus} pour des trajets plus rapides ou des {local_bus} pour des distances plus courtes au sein d'une ville.<br><br>Pour les trajets interurbains, envisagez les options de {long_distance_bus}. Vérifiez toujours les {accessibility_options} si nécessaire."
-			},
-			vocab: {
-				bus_stops: {
-					de: "Bushaltestellen",
-					en: "bus stops",
-					es: "paradas de autobús",
-					fr: "arrêts de bus",
-					it: "fermate dell'autobus"
-				},
-				bus_stations: {
-					de: "Busbahnhöfe",
-					en: "bus stations",
-					es: "estaciones de autobús",
-					fr: "gares routières",
-					it: "stazioni degli autobus"
-				},
-				timetables: {
-					de: "Fahrpläne",
-					en: "timetables",
-					es: "horarios",
-					fr: "horaires",
-					it: "orari"
-				},
-				bus_routes: {
-					de: "Buslinien",
-					en: "bus routes",
-					es: "rutas de autobús",
-					fr: "lignes de bus",
-					it: "percorsi degli autobus"
-				},
-				express_bus: {
-					de: "Expressbus",
-					en: "express bus",
-					es: "autobús exprés",
-					fr: "bus express",
-					it: "autobus espresso"
-				},
-				local_bus: {
-					de: "Ortsbus",
-					en: "local bus",
-					es: "autobús local",
-					fr: "bus local",
-					it: "autobus locale"
-				},
-				long_distance_bus: {
-					de: "Fernbus",
-					en: "long-distance bus",
-					es: "autobús de larga distancia",
-					fr: "autocar",
-					it: "autobus a lunga percorrenza"
-				},
-				accessibility_options: {
-					de: "Barrierefreiheitsoptionen",
-					en: "accessibility options",
-					es: "opciones de accesibilidad",
-					fr: "options d'accessibilité",
-					it: "opzioni di accessibilità"
-				}
-			}
-		},
+            // --- Encoder Event Listeners ---
+            if(inputText) inputText.addEventListener('input', translateText);
+            if(xorCheckbox) xorCheckbox.addEventListener('change', translateText);
+            if(simplifyCheckbox) simplifyCheckbox.addEventListener('change', translateText);
+            if(copyButton) copyButton.addEventListener('click', copyToClipboard);
 
-		bus_tickets_fares: {
-			base: {
-				en: "Purchase your {bus_ticket} at the station or online. Understand the different {fare_types} available, such as {single_fare} for one journey or {return_fare} for a round trip. Some regions offer {day_pass} or {weekly_pass} for unlimited travel within a period. Look out for {discounts} for students or seniors. Payment can often be made with {cash_payment} or {card_payment}.",
-				de: "Kaufen Sie Ihr {bus_ticket} am Bahnhof oder online. Informieren Sie sich über die verschiedenen verfügbaren {fare_types}, wie z.B. {single_fare} für eine Fahrt oder {return_fare} für eine Hin- und Rückfahrt. Einige Regionen bieten {day_pass} oder {weekly_pass} für unbegrenzte Fahrten innerhalb eines Zeitraums an. Achten Sie auf {discounts} für Studenten oder Senioren. Die Zahlung kann oft mit {cash_payment} oder {card_payment} erfolgen.",
-				it: "Acquista il tuo {bus_ticket} in stazione o online. Comprendi i diversi {fare_types} disponibili, come il {single_fare} per un viaggio o il {return_fare} per un viaggio di andata e ritorno. Alcune regioni offrono {day_pass} o {weekly_pass} per viaggi illimitati entro un certo periodo. Cerca {discounts} per studenti o anziani. Il pagamento può essere effettuato con {cash_payment} o {card_payment}.",
-				es: "Compre su {bus_ticket} en la estación o en línea. Comprenda los diferentes {fare_types} disponibles, como {single_fare} para un solo viaje o {return_fare} para un viaje de ida y vuelta. Algunas regiones ofrecen {day_pass} o {weekly_pass} para viajes ilimitados dentro de un período. Busque {discounts} para estudiantes o personas mayores. El pago a menudo se puede realizar con {cash_payment} o {card_payment}.",
-				fr: "Achetez votre {bus_ticket} à la gare ou en ligne. Comprenez les différents {fare_types} disponibles, tels que le {single_fare} pour un trajet simple ou le {return_fare} pour un aller-retour. Certaines régions proposent des {day_pass} ou des {weekly_pass} pour des trajets illimités sur une période donnée. Recherchez les {discounts} pour les étudiants ou les seniors. Le paiement peut souvent être effectué en {cash_payment} ou par {card_payment}."
-			},
-			vocab: {
-				bus_ticket: {
-					de: "Busticket",
-					en: "bus ticket",
-					es: "billete de autobús",
-					fr: "ticket de bus",
-					it: "biglietto dell'autobus"
-				},
-				fare_types: {
-					de: "Tarifarten",
-					en: "fare types",
-					es: "tipos de tarifa",
-					fr: "types de tarifs",
-					it: "tipi di tariffa"
-				},
-				single_fare: {
-					de: "Einzelfahrpreis",
-					en: "single fare",
-					es: "tarifa única",
-					fr: "tarif simple",
-					it: "tariffa singola"
-				},
-				return_fare: {
-					de: "Rückfahrpreis",
-					en: "return fare",
-					es: "tarifa de ida y vuelta",
-					fr: "tarif aller-retour",
-					it: "tariffa di andata e ritorno"
-				},
-				day_pass: {
-					de: "Tageskarte",
-					en: "day pass",
-					es: "pase de un día",
-					fr: "pass journalier",
-					it: "pass giornaliero"
-				},
-				weekly_pass: {
-					de: "Wochenkarte",
-					en: "weekly pass",
-					es: "pase semanal",
-					fr: "pass hebdomadaire",
-					it: "pass settimanale"
-				},
-				discounts: {
-					de: "Ermäßigungen",
-					en: "discounts",
-					es: "descuentos",
-					fr: "réductions",
-					it: "sconti"
-				},
-				cash_payment: {
-					de: "Barzahlung",
-					en: "cash payment",
-					es: "pago en efectivo",
-					fr: "paiement en espèces",
-					it: "pagamento in contanti"
-				},
-				card_payment: {
-					de: "Kartenzahlung",
-					en: "card payment",
-					es: "pago con tarjeta",
-					fr: "paiement par carte",
-					it: "pagamento con carta"
-				}
-			}
-		},
+            
+            // --- Donation Logic (from DOnation.html, modified) ---
+            const web3DonateButton = document.getElementById('web3DonateButton');
+            const copyAddressButton = document.getElementById('copyAddressButton');
+            const donationAmountInput = document.getElementById('donationAmount');
+            const donationMessage = document.getElementById('donationMessage');
+            
+            // Donation address without 0x prefix, which we add for copy/web3 actions
+            const walletAddress = "0x57600Eb8a5558cc503225CE9662f0E2E2541D404"; 
+            //const walletAddress = "0x" + rawWalletAddress; // Always use 0x for web3 calls and copying
 
-		on_the_bus: {
-			base: {
-				en: "Once on board, find your {seat} and store your {luggage} safely. Be aware of {bus_etiquette}, such as offering your seat to those in need. Listen for {announcements} about upcoming stops. If you need to get off, use the {stop_request_button}. Enjoy the {scenic_views} if available, and remember to keep your {belongings_safe}.",
-				de: "Sobald Sie an Bord sind, suchen Sie Ihren {seat} und verstauen Sie Ihr {luggage} sicher. Beachten Sie die {bus_etiquette}, wie z.B. das Anbieten Ihres Sitzplatzes an Bedürftige. Achten Sie auf {announcements} über bevorstehende Haltestellen. Wenn Sie aussteigen müssen, benutzen Sie den {stop_request_button}. Genießen Sie die {scenic_views}, falls vorhanden, und denken Sie daran, Ihre {belongings_safe} zu halten.",
-				it: "Una volta a bordo, trova il tuo {seat} e riponi i tuoi {luggage} in sicurezza. Sii consapevole del {bus_etiquette}, come offrire il tuo posto a chi ne ha bisogno. Ascolta gli {announcements} sulle prossime fermate. Se devi scendere, usa il {stop_request_button}. Goditi le {scenic_views} se disponibili e ricorda di tenere i tuoi {belongings_safe}.",
-				es: "Una vez a bordo, encuentre su {seat} y guarde su {luggage} de forma segura. Tenga en cuenta la {bus_etiquette}, como ofrecer su asiento a quienes lo necesiten. Esté atento a los {announcements} sobre las próximas paradas. Si necesita bajarse, use el {stop_request_button}. Disfrute de las {scenic_views} si están disponibles y recuerde mantener sus {belongings_safe}.",
-				fr: "Une fois à bord, trouvez votre {seat} et rangez vos {luggage} en toute sécurité. Soyez conscient de l'{bus_etiquette}, comme offrir votre siège aux personnes dans le besoin. Écoutez les {announcements} concernant les arrêts à venir. Si vous devez descendre, utilisez le {stop_request_button}. Profitez des {scenic_views} si disponibles, et n'oubliez pas de garder vos {belongings_safe}."
-			},
-			vocab: {
-				seat: {
-					de: "Sitzplatz",
-					en: "seat",
-					es: "asiento",
-					fr: "siège",
-					it: "posto"
-				},
-				luggage: {
-					de: "Gepäck",
-					en: "luggage",
-					es: "equipaje",
-					fr: "bagages",
-					it: "bagaglio"
-				},
-				bus_etiquette: {
-					de: "Bus-Etikette",
-					en: "bus etiquette",
-					es: "etiqueta del autobús",
-					fr: "étiquette du bus",
-					it: "galateo dell'autobus"
-				},
-				announcements: {
-					de: "Durchsagen",
-					en: "announcements",
-					es: "anuncios",
-					fr: "annonces",
-					it: "annunci"
-				},
-				stop_request_button: {
-					de: "Halteknopf",
-					en: "stop request button",
-					es: "botón de solicitud de parada",
-					fr: "bouton d'arrêt demandé",
-					it: "pulsante di richiesta fermata"
-				},
-				scenic_views: {
-					de: "Aussicht",
-					en: "scenic views",
-					es: "vistas panorámicas",
-					fr: "vues panoramiques",
-					it: "panorami"
-				},
-				belongings_safe: {
-					de: "Eigentum sicher",
-					en: "belongings safe",
-					es: "pertenencias seguras",
-					fr: "affaires en sécurité",
-					it: "effetti personali al sicuro"
-				}
-			}
-		},
-
-		train_Station: {
-			base: {
-				en: "Navigate the {train_station} to find your {platform}. Check the {departure_boards} for your train's schedule and track number. Look for {ticket_counters} or {ticket_machines} to purchase or validate your {train_ticket}. Many stations offer {waiting_areas}, {restrooms}, and {food_stalls}. For assistance, locate the {information_desk}.",
-				de: "Navigieren Sie durch den {train_station}, um Ihr {platform} zu finden. Überprüfen Sie die {departure_boards} für den Fahrplan und die Gleisnummer Ihres Zuges. Suchen Sie nach {ticket_counters} oder {ticket_machines}, um Ihr {train_ticket} zu kaufen oder zu entwerten. Viele Bahnhöfe bieten {waiting_areas}, {restrooms} und {food_stalls}. Für Hilfe suchen Sie den {information_desk} auf.",
-				it: "Naviga nella {train_station} per trovare il tuo {platform}. Controlla i {departure_boards} per l'orario e il numero del binario del tuo treno. Cerca i {ticket_counters} o le {ticket_machines} per acquistare o convalidare il tuo {train_ticket}. Molte stazioni offrono {waiting_areas}, {restrooms} e {food_stalls}. Per assistenza, individua il {information_desk}.",
-				es: "Navegue por la {train_station} para encontrar su {platform}. Consulte los {departure_boards} para conocer el horario y el número de vía de su tren. Busque las {ticket_counters} o las {ticket_machines} para comprar o validar su {train_ticket}. Muchas estaciones ofrecen {waiting_areas}, {restrooms} y {food_stalls}. Para obtener ayuda, localice el {information_desk}.",
-				fr: "Naviguez dans la {train_station} pour trouver votre {platform}. Vérifiez les {departure_boards} pour l'horaire et le numéro de voie de votre train. Cherchez les {ticket_counters} ou les {ticket_machines} pour acheter ou valider votre {train_ticket}. De nombreuses gares proposent des {waiting_areas}, des {restrooms} et des {food_stalls}. Pour obtenir de l'aide, localisez le {information_desk}."
-			},
-			vocab: {
-				train_statio: {
-					de: "Bahnhof",
-					en: "train station",
-					es: "estación de tren",
-					fr: "gare",
-					it: "stazione ferroviaria"
-				},
-				platform: {
-					de: "Bahnsteig",
-					en: "platform",
-					es: "andén",
-					fr: "quai",
-					it: "binario"
-				},
-				departure_boards: {
-					de: "Abfahrtstafeln",
-					en: "departure boards",
-					es: "tableros de salida",
-					fr: "panneaux d'affichage des départs",
-					it: "tabelloni delle partenze"
-				},
-				ticket_counters: {
-					de: "Fahrkartenschalter",
-					en: "ticket counters",
-					es: "taquillas",
-					fr: "guichets",
-					it: "biglietterie"
-				},
-				ticket_machines: {
-					de: "Fahrkartenautomaten",
-					en: "ticket machines",
-					es: "máquinas expendedoras de billetes",
-					fr: "distributeurs de billets",
-					it: "biglietterie automatiche"
-				},
-				train_ticket: {
-					de: "Zugticket",
-					en: "train ticket",
-					es: "billete de tren",
-					fr: "billet de train",
-					it: "biglietto del treno"
-				},
-				waiting_areas: {
-					de: "Wartebereiche",
-					en: "waiting areas",
-					es: "zonas de espera",
-					fr: "zones d'attente",
-					it: "aree di attesa"
-				},
-				restrooms: {
-					de: "Toiletten",
-					en: "restrooms",
-					es: "aseos",
-					fr: "toilettes",
-					it: "servizi igienici"
-				},
-				food_stalls: {
-					de: "Imbissstände",
-					en: "food stalls",
-					es: "puestos de comida",
-					fr: "stands de nourriture",
-					it: "bancarelle di cibo"
-				},
-				information_desk: {
-					de: "Informationsschalter",
-					en: "information desk",
-					es: "mostrador de información",
-					fr: "bureau d'information",
-					it: "sportello informazioni"
-				}
-			}
-		},
-
-		train_tickets_fares: {
-			base: {
-				en: "Choose your {train_ticket_type} from {standard_class} to {first_class} for enhanced comfort. Consider {peak_fares} during busy times or {off_peak_fares} for cheaper travel. Many networks offer {rail_passes} for extensive travel or {season_tickets} for regular commuters. Always check for {seat_reservations} if you want a guaranteed spot. Payment options include {online_booking} or purchasing at the station.",
-				de: "Wählen Sie Ihren {train_ticket_type} von der {standard_class} bis zur {first_class} für erhöhten Komfort. Berücksichtigen Sie {peak_fares} während der Stoßzeiten oder {off_peak_fares} für günstigere Reisen. Viele Netze bieten {rail_passes} für ausgedehnte Reisen oder {season_tickets} für regelmäßige Pendler an. Überprüfen Sie immer die {seat_reservations}, wenn Sie einen garantierten Platz wünschen. Zu den Zahlungsoptionen gehören {online_booking} oder der Kauf am Bahnhof.",
-				it: "Scegli il tuo {train_ticket_type} dalla {standard_class} alla {first_class} per un maggiore comfort. Considera le {peak_fares} durante le ore di punta o le {off_peak_fares} per viaggi più economici. Molte reti offrono {rail_passes} per viaggi estesi o {season_tickets} per i pendolari abituali. Controlla sempre le {seat_reservations} se desideri un posto garantito. Le opzioni di pagamento includono la {online_booking} o l'acquisto in stazione.",
-				es: "Elija su {train_ticket_type} desde {standard_class} hasta {first_class} para mayor comodidad. Considere las {peak_fares} durante las horas punta o las {off_peak_fares} para viajes más económicos. Muchas redes ofrecen {rail_passes} para viajes extensos o {season_tickets} para viajeros habituales. Siempre verifique las {seat_reservations} si desea un asiento garantizado. Las opciones de pago incluyen la {online_booking} o la compra en la estación.",
-				fr: "Choisissez votre {train_ticket_type} de la {standard_class} à la {first_class} pour un confort accru. Considérez les {peak_fares} pendant les heures de pointe ou les {off_peak_fares} pour des trajets moins chers. De nombreux réseaux proposent des {rail_passes} pour des voyages étendus ou des {season_tickets} pour les navetteurs réguliers. Vérifiez toujours les {seat_reservations} si vous souhaitez une place garantie. Les options de paiement incluent la {online_booking} ou l'achat en gare."
-			},
-			vocab: {
-				train_ticket_type: {
-					de: "Zugticket-Typ",
-					en: "train ticket type",
-					es: "tipo de billete de tren",
-					fr: "type de billet de train",
-					it: "tipo di biglietto del treno"
-				},
-				standard_class: {
-					de: "Standardklasse",
-					en: "standard class",
-					es: "clase estándar",
-					fr: "classe standard",
-					it: "classe standard"
-				},
-				first_class: {
-					de: "Erste Klasse",
-					en: "first class",
-					es: "primera clase",
-					fr: "première classe",
-					it: "prima classe"
-				},
-				peak_fares: {
-					de: "Hauptverkehrszeiten-Tarife",
-					en: "peak fares",
-					es: "tarifas punta",
-					fr: "tarifs de pointe",
-					it: "tariffe di punta"
-				},
-				off_peak_fares: {
-					de: "Nebensaison-Tarife",
-					en: "off-peak fares",
-					es: "tarifas fuera de punta",
-					fr: "tarifs hors pointe",
-					it: "tariffe fuori punta"
-				},
-				rail_passes: {
-					de: "Bahnkarten",
-					en: "rail passes",
-					es: "pases de tren",
-					fr: "pass ferroviaires",
-					it: "pass ferroviari"
-				},
-				season_tickets: {
-					de: "Zeitkarten",
-					en: "season tickets",
-					es: "abonos de temporada",
-					fr: "abonnements",
-					it: "abbonamenti"
-				},
-				seat_reservations: {
-					de: "Sitzplatzreservierungen",
-					en: "seat reservations",
-					es: "reservas de asiento",
-					fr: "réservations de siège",
-					it: "prenotazioni di posti"
-				},
-				online_booking: {
-					de: "Online-Buchung",
-					en: "online booking",
-					es: "reserva en línea",
-					fr: "réservation en ligne",
-					it: "prenotazione online"
-				}
-			}
-		},
-
-		on_the_train: {
-			base: {
-				en: "Find your {carriage} and {seat_number} as indicated on your ticket. Store your {luggage_compartment} in the designated areas. Be mindful of {train_etiquette}, such as keeping noise levels down. Enjoy the {onboard_services} like {wifi_access} or a {dining_car}. Listen for {station_announcements} and prepare to alight at your {destination_station}. Keep your {personal_belongings} secure.",
-				de: "Finden Sie Ihren {carriage} und Ihre {seat_number}, wie auf Ihrem Ticket angegeben. Verstauen Sie Ihr {luggage_compartment} in den dafür vorgesehenen Bereichen. Beachten Sie die {train_etiquette}, wie z.B. die Einhaltung der Lautstärke. Genießen Sie die {onboard_services} wie {wifi_access} oder einen {dining_car}. Achten Sie auf {station_announcements} und bereiten Sie sich darauf vor, an Ihrem {destination_station} auszusteigen. Bewahren Sie Ihre {personal_belongings} sicher auf.",
-				it: "Trova la tua {carriage} e il {seat_number} come indicato sul tuo biglietto. Riponi il tuo {luggage_compartment} nelle aree designate. Sii consapevole del {train_etiquette}, come mantenere bassi i livelli di rumore. Goditi i {onboard_services} come l'{wifi_access} o un {dining_car}. Ascolta gli {station_announcements} e preparati a scendere alla tua {destination_station}. Tieni i tuoi {personal_belongings} al sicuro.",
-				es: "Encuentre su {carriage} y {seat_number} como se indica en su billete. Guarde su {luggage_compartment} en las áreas designadas. Tenga en cuenta la {train_etiquette}, como mantener bajos los niveles de ruido. Disfrute de los {onboard_services} como el {wifi_access} o un {dining_car}. Esté atento a los {station_announcements} y prepárese para bajar en su {destination_station}. Mantenga sus {personal_belongings} seguros.",
-				fr: "Trouvez votre {carriage} et votre {seat_number} comme indiqué sur votre billet. Rangez vos {luggage_compartment} dans les zones désignées. Soyez attentif à l'{train_etiquette}, comme maintenir le niveau sonore bas. Profitez des {onboard_services} comme l'{wifi_access} ou un {dining_car}. Écoutez les {station_announcements} et préparez-vous à descendre à votre {destination_station}. Gardez vos {personal_belongings} en sécurité."
-			},
-			vocab: {
-				carriage: {
-					de: "Wagen",
-					en: "carriage",
-					es: "vagón",
-					fr: "voiture",
-					it: "carrozza"
-				},
-				seat_number: {
-					de: "Sitzplatznummer",
-					en: "seat number",
-					es: "número de asiento",
-					fr: "numéro de siège",
-					it: "numero di posto"
-				},
-				luggage_compartment: {
-					de: "Gepäckfach",
-					en: "luggage compartment",
-					es: "compartimento de equipaje",
-					fr: "compartiment à bagages",
-					it: "compartimento bagagli"
-				},
-				train_etiquette: {
-					de: "Zug-Etikette",
-					en: "train etiquette",
-					es: "etiqueta del tren",
-					fr: "étiquette du train",
-					it: "galateo del treno"
-				},
-				onboard_services: {
-					de: "Borddienste",
-					en: "onboard services",
-					es: "servicios a bordo",
-					fr: "services à bord",
-					it: "servizi a bordo"
-				},
-				wifi_access: {
-					de: "WLAN-Zugang",
-					en: "Wi-Fi access",
-					es: "acceso Wi-Fi",
-					fr: "accès Wi-Fi",
-					it: "accesso Wi-Fi"
-				},
-				dining_car: {
-					de: "Speisewagen",
-					en: "dining car",
-					es: "vagón restaurante",
-					fr: "voiture-restaurant",
-					it: "vagone ristorante"
-				},
-				station_announcements: {
-					de: "Stationsdurchsagen",
-					en: "station announcements",
-					es: "anuncios de estación",
-					fr: "annonces de gare",
-					it: "annunci della stazione"
-				},
-				destination_station: {
-					de: "Zielbahnhof",
-					en: "destination station",
-					es: "estación de destino",
-					fr: "gare de destination",
-					it: "stazione di destinazione"
-				},
-				personal_belongings: {
-					de: "persönliche Gegenstände",
-					en: "personal belongings",
-					es: "pertenencias personales",
-					fr: "effets personnels",
-					it: "effetti personali"
-				}
-			}
-		},
-
-		restaurant: {
-			base: {
-				en: "Choose from various {restaurant_types}, from casual {cafes} to elegant {fine_dining}. Look for {local_cuisine} to experience authentic flavors. Consider the {ambiance} and {dress_code}. Make a {reservation} for popular spots, especially for {dinner}. Check for {opening_hours} and {payment_methods} accepted.",
-				de: "Wählen Sie aus verschiedenen {restaurant_types}, von zwanglosen {cafes} bis hin zu eleganten {fine_dining}. Suchen Sie nach {local_cuisine}, um authentische Aromen zu erleben. Berücksichtigen Sie das {ambiance} und den {dress_code}. Reservieren Sie für beliebte Lokale, besonders zum {dinner}. Überprüfen Sie die {opening_hours} und die akzeptierten {payment_methods}.",
-				it: "Scegli tra vari {restaurant_types}, dai {cafes} informali ai {fine_dining} eleganti. Cerca la {local_cuisine} per sperimentare sapori autentici. Considera l'{ambiance} e il {dress_code}. Effettua una {reservation} per i locali più popolari, specialmente per la {dinner}. Controlla gli {opening_hours} e i {payment_methods} accettati.",
-				es: "Elija entre varios {restaurant_types}, desde {cafes} informales hasta {fine_dining} elegantes. Busque la {local_cuisine} para experimentar sabores auténticos. Considere el {ambiance} y el {dress_code}. Haga una {reservation} para los lugares populares, especialmente para la {dinner}. Verifique los {opening_hours} y los {payment_methods} aceptados.",
-				fr: "Choisissez parmi différents {restaurant_types}, des {cafes} décontractés aux {fine_dining} élégants. Recherchez la {local_cuisine} pour découvrir des saveurs authentiques. Tenez compte de l'{ambiance} et du {dress_code}. Faites une {reservation} pour les endroits populaires, surtout pour le {dinner}. Vérifiez les {opening_hours} et les {payment_methods} acceptés."
-			},
-			vocab: {
-				restaurant_types: {
-					de: "Restauranttypen",
-					en: "restaurant types",
-					es: "tipos de restaurante",
-					fr: "types de restaurants",
-					it: "tipi di ristorante"
-				},
-				cafes: {
-					de: "Cafés",
-					en: "cafes",
-					es: "cafeterías",
-					fr: "cafés",
-					it: "caffè"
-				},
-				fine_dining: {
-					de: "Feine Küche",
-					en: "fine dining",
-					es: "alta cocina",
-					fr: "gastronomie",
-					it: "alta cucina"
-				},
-				local_cuisine: {
-					de: "Lokale Küche",
-					en: "local cuisine",
-					es: "cocina local",
-					fr: "cuisine locale",
-					it: "cucina locale"
-				},
-				ambiance: {
-					de: "Ambiente",
-					en: "ambiance",
-					es: "ambiente",
-					fr: "ambiance",
-					it: "ambiente"
-				},
-				dress_code: {
-					de: "Kleiderordnung",
-					en: "dress code",
-					es: "código de vestimenta",
-					fr: "code vestimentaire",
-					it: "codice di abbigliamento"
-				},
-				reservation: {
-					de: "Reservierung",
-					en: "reservation",
-					es: "reserva",
-					fr: "réservation",
-					it: "prenotazione"
-				},
-				dinner: {
-					de: "Abendessen",
-					en: "dinner",
-					es: "cena",
-					fr: "dîner",
-					it: "cena"
-				},
-				opening_hours: {
-					de: "Öffnungszeiten",
-					en: "opening hours",
-					es: "horario de apertura",
-					fr: "heures d'ouverture",
-					it: "orari di apertura"
-				},
-				payment_methods: {
-					de: "Zahlungsmethoden",
-					en: "payment methods",
-					es: "métodos de pago",
-					fr: "méthodes de paiement",
-					it: "metodi di pagamento"
-				}
-			}
-		},
-
-		ordering_meal: {
-			base: {
-				en: "Upon arrival, you'll be presented with a {menu}. Ask about {daily_specials} or {vegetarian_options}. If you have {food_allergies}, inform your {waiter_waitress}. Order your {appetizer}, {main_course}, and {dessert}. Don't forget to choose a {drink}. If unsure, ask for {recommendations}. Enjoy your {meal}!",
-				de: "Bei Ihrer Ankunft erhalten Sie eine {menu}. Fragen Sie nach {daily_specials} oder {vegetarian_options}. Wenn Sie {food_allergies} haben, informieren Sie Ihren {waiter_waitress}. Bestellen Sie Ihre {appetizer}, {main_course} und {dessert}. Vergessen Sie nicht, ein {drink} zu wählen. Wenn Sie unsicher sind, fragen Sie nach {recommendations}. Genießen Sie Ihr {meal}!",
-				it: "All'arrivo, ti verrà presentato un {menu}. Chiedi informazioni sui {daily_specials} o sulle {vegetarian_options}. Se hai {food_allergies}, informa il tuo {waiter_waitress}. Ordina il tuo {appetizer}, {main_course} e {dessert}. Non dimenticare di scegliere un {drink}. Se non sei sicuro, chiedi {recommendations}. Goditi il tuo {meal}!",
-				es: "A su llegada, se le presentará un {menu}. Pregunte por los {daily_specials} o las {vegetarian_options}. Si tiene {food_allergies}, informe a su {waiter_waitress}. Pida su {appetizer}, {main_course} y {dessert}. No olvide elegir una {drink}. Si no está seguro, pida {recommendations}. ¡Disfrute de su {meal}!",
-				fr: "À votre arrivée, on vous présentera un {menu}. Renseignez-vous sur les {daily_specials} ou les {vegetarian_options}. Si vous avez des {food_allergies}, informez votre {waiter_waitress}. Commandez votre {appetizer}, {main_course} et {dessert}. N'oubliez pas de choisir une {drink}. En cas de doute, demandez des {recommendations}. Bon {meal}!"
-			},
-			vocab: {
-				menu: {
-					de: "Speisekarte",
-					en: "menu",
-					es: "menú",
-					fr: "menu",
-					it: "menu"
-				},
-				daily_specials: {
-					de: "Tagesgerichte",
-					en: "daily specials",
-					es: "especiales del día",
-					fr: "suggestions du jour",
-					it: "specialità del giorno"
-				},
-				vegetarian_options: {
-					de: "vegetarische Optionen",
-					en: "vegetarian options",
-					es: "opciones vegetarianas",
-					fr: "options végétariennes",
-					it: "opzioni vegetariane"
-				},
-				food_allergies: {
-					de: "Nahrungsmittelallergien",
-					en: "food allergies",
-					es: "alergias alimentarias",
-					fr: "allergies alimentaires",
-					it: "allergie alimentari"
-				},
-				waiter_waitress: {
-					de: "Kellner/Kellnerin",
-					en: "waiter/waitress",
-					es: "camarero/camarera",
-					fr: "serveur/serveuse",
-					it: "cameriere/cameriera"
-				},
-				appetizer: {
-					de: "Vorspeise",
-					en: "appetizer",
-					es: "entrante",
-					fr: "entrée",
-					it: "antipasto"
-				},
-				main_course: {
-					de: "Hauptgericht",
-					en: "main course",
-					es: "plato principal",
-					fr: "plat principal",
-					it: "piatto principale"
-				},
-				dessert: {
-					de: "Dessert",
-					en: "dessert",
-					es: "postre",
-					fr: "dessert",
-					it: "dessert"
-				},
-				drink: {
-					de: "Getränk",
-					en: "drink",
-					es: "bebida",
-					fr: "boisson",
-					it: "bevanda"
-				},
-				recommendations: {
-					de: "Empfehlungen",
-					en: "recommendations",
-					es: "recomendaciones",
-					fr: "recommandations",
-					it: "raccomandazioni"
-				},
-				meal: {
-					de: "Mahlzeit",
-					en: "meal",
-					es: "comida",
-					fr: "repas",
-					it: "pasto"
-				}
-			}
-		},
-
-		paying_leaving: {
-			base: {
-				en: "When you're ready, ask for the {bill}. Check the {total_amount} and any {service_charge}. It's customary to leave a {tip} for good service. You can pay with {cash}, {credit_card}, or sometimes {mobile_payment}. Once paid, you can {leave_restaurant}. Remember to say {thank_you} to the staff.",
-				de: "Wenn Sie bereit sind, fragen Sie nach der {bill}. Überprüfen Sie den {total_amount} und eventuelle {service_charge}. Es ist üblich, ein {tip} für guten Service zu hinterlassen. Sie können mit {cash}, {credit_card} oder manchmal {mobile_payment} bezahlen. Nach der Bezahlung können Sie das {leave_restaurant}. Denken Sie daran, dem Personal {thank_you} zu sagen.",
-				it: "Quando sei pronto, chiedi il {bill}. Controlla il {total_amount} e l'eventuale {service_charge}. È consuetudine lasciare una {tip} per un buon servizio. Puoi pagare con {cash}, {credit_card} o talvolta {mobile_payment}. Una volta pagato, puoi {leave_restaurant}. Ricorda di dire {thank_you} al personale.",
-				es: "Cuando esté listo, pida la {bill}. Verifique el {total_amount} y cualquier {service_charge}. Es costumbre dejar una {tip} por un buen servicio. Puede pagar con {cash}, {credit_card} o, a veces, {mobile_payment}. Una vez pagado, puede {leave_restaurant}. Recuerde decir {thank_you} al personal.",
-				fr: "Lorsque vous êtes prêt, demandez l'{bill}. Vérifiez le {total_amount} et les éventuels {service_charge}. Il est d'usage de laisser un {tip} pour un bon service. Vous pouvez payer en {cash}, par {credit_card} ou parfois par {mobile_payment}. Une fois payé, vous pouvez {leave_restaurant}. N'oubliez pas de dire {thank_you} au personnel."
-			},
-			vocab: {
-				bill: {
-					de: "Rechnung",
-					en: "bill",
-					es: "cuenta",
-					fr: "addition",
-					it: "conto"
-				},
-				total_amount: {
-					de: "Gesamtbetrag",
-					en: "total amount",
-					es: "importe total",
-					fr: "montant total",
-					it: "importo totale"
-				},
-				service_charge: {
-					de: "Servicegebühr",
-					en: "service charge",
-					es: "cargo por servicio",
-					fr: "frais de service",
-					it: "costo del servizio"
-				},
-				tip: {
-					de: "Trinkgeld",
-					en: "tip",
-					es: "propina",
-					fr: "pourboire",
-					it: "mancia"
-				},
-				cash: {
-					de: "Bargeld",
-					en: "cash",
-					es: "efectivo",
-					fr: "espèces",
-					it: "contanti"
-				},
-				credit_card: {
-					de: "Kreditkarte",
-					en: "credit card",
-					es: "tarjeta de crédito",
-					fr: "carte de crédit",
-					it: "carta di credito"
-				},
-				mobile_payment: {
-					de: "Mobile Zahlung",
-					en: "mobile payment",
-					es: "pago móvil",
-					fr: "paiement mobile",
-					it: "pagamento mobile"
-				},
-				leave_restaurant: {
-					de: "Restaurant verlassen",
-					en: "leave the restaurant",
-					es: "salir del restaurante",
-					fr: "quitter le restaurant",
-					it: "lasciare il ristorante"
-				},
-				thank_you: {
-					de: "Danke",
-					en: "thank you",
-					es: "gracias",
-					fr: "merci",
-					it: "grazie"
-				}
-			}
-		},
-
-		shops: {
-			base: {
-				en: "Explore various {shop_types}, from {boutiques} to large {department_stores}. Look for {souvenirs} to remember your trip or {local_products} for unique gifts. Check the {opening_hours} and {payment_options}. Be aware of {tax_refunds} for tourists. Don't hesitate to ask {shop_assistants} for help. Enjoy your {shopping_experience}!",
-				de: "Entdecken Sie verschiedene {shop_types}, von {boutiques} bis hin zu großen {department_stores}. Suchen Sie nach {souvenirs}, um sich an Ihre Reise zu erinnern, oder nach {local_products} für einzigartige Geschenke. Überprüfen Sie die {opening_hours} und {payment_options}. Informieren Sie sich über {tax_refunds} für Touristen. Zögern Sie nicht, {shop_assistants} um Hilfe zu bitten. Genießen Sie Ihr {shopping_experience}!",
-				it: "Esplora vari {shop_types}, dalle {boutiques} ai grandi {department_stores}. Cerca {souvenirs} per ricordare il tuo viaggio o {local_products} per regali unici. Controlla gli {opening_hours} e le {payment_options}. Sii consapevole dei {tax_refunds} per i turisti. Non esitare a chiedere aiuto agli {shop_assistants}. Goditi la tua {shopping_experience}!",
-				es: "Explore varios {shop_types}, desde {boutiques} hasta grandes {department_stores}. Busque {souvenirs} para recordar su viaje o {local_products} para regalos únicos. Verifique los {opening_hours} y las {payment_options}. Tenga en cuenta los {tax_refunds} para turistas. No dude en pedir ayuda a los {shop_assistants}. ¡Disfrute de su {shopping_experience}!",
-				fr: "Explorez différents {shop_types}, des {boutiques} aux grands {department_stores}. Recherchez des {souvenirs} pour vous souvenir de votre voyage ou des {local_products} pour des cadeaux uniques. Vérifiez les {opening_hours} et les {payment_options}. Soyez informé des {tax_refunds} pour les touristes. N'hésitez pas à demander de l'aide aux {shop_assistants}. Profitez de votre {shopping_experience}!"
-			},
-			vocab: {
-				shop_types: {
-					de: "Geschäftstypen",
-					en: "shop types",
-					es: "tipos de tiendas",
-					fr: "types de magasins",
-					it: "tipi di negozi"
-				},
-				boutiques: {
-					de: "Boutiquen",
-					en: "boutiques",
-					es: "boutiques",
-					fr: "boutiques",
-					it: "boutique"
-				},
-				department_stores: {
-					de: "Kaufhäuser",
-					en: "department stores",
-					es: "grandes almacenes",
-					fr: "grands magasins",
-					it: "grandi magazzini"
-				},
-				souvenirs: {
-					de: "Souvenirs",
-					en: "souvenirs",
-					es: "recuerdos",
-					fr: "souvenirs",
-					it: "souvenir"
-				},
-				local_products: {
-					de: "lokale Produkte",
-					en: "local products",
-					es: "productos locales",
-					fr: "produits locaux",
-					it: "prodotti locali"
-				},
-				opening_hours: {
-					de: "Öffnungszeiten",
-					en: "opening hours",
-					es: "horario de apertura",
-					fr: "heures d'ouverture",
-					it: "orari di apertura"
-				},
-				payment_options: {
-					de: "Zahlungsoptionen",
-					en: "payment options",
-					es: "opciones de pago",
-					fr: "options de paiement",
-					it: "opzioni di pagamento"
-				},
-				tax_refunds: {
-					de: "Steuererstattungen",
-					en: "tax refunds",
-					es: "reembolsos de impuestos",
-					fr: "remboursements de taxes",
-					it: "rimborsi fiscali"
-				},
-				shop_assistants: {
-					de: "Verkäufer",
-					en: "shop assistants",
-					es: "dependientes",
-					fr: "vendeurs",
-					it: "commessi"
-				},
-				shopping_experience: {
-					de: "Einkaufserlebnis",
-					en: "shopping experience",
-					es: "experiencia de compra",
-					fr: "expérience de shopping",
-					it: "esperienza di shopping"
-				}
-			}
-		},
-
-		hotel: {
-			base: {
-				en: "When booking, consider different {hotel_types} like {boutique_hotel} or {luxury_hotel}. Check for available {room_types} such as a {single_room} or {double_room}. Look into {hotel_amenities} like a {swimming_pool} or {fitness_center}. Confirm {check_in_time} and {check_out_time}. Read {guest_reviews} for insights and understand the {cancellation_policy}.",
-				de: "Bei der Buchung sollten Sie verschiedene {hotel_types} wie {boutique_hotel} oder {luxury_hotel} in Betracht ziehen. Überprüfen Sie die verfügbaren {room_types} wie ein {single_room} oder {double_room}. Informieren Sie sich über {hotel_amenities} wie einen {swimming_pool} oder {fitness_center}. Bestätigen Sie die {check_in_time} und {check_out_time}. Lesen Sie {guest_reviews} für Einblicke und verstehen Sie die {cancellation_policy}.",
-				it: "Al momento della prenotazione, considera diversi {hotel_types} come {boutique_hotel} o {luxury_hotel}. Controlla i {room_types} disponibili come una {single_room} o {double_room}. Informati sui {hotel_amenities} come una {swimming_pool} o {fitness_center}. Conferma l'{check_in_time} e l'{check_out_time}. Leggi le {guest_reviews} per avere un'idea e comprendi la {cancellation_policy}.",
-				es: "Al reservar, considere diferentes {hotel_types} como {boutique_hotel} o {luxury_hotel}. Verifique los {room_types} disponibles, como una {single_room} o {double_room}. Investigue las {hotel_amenities} como una {swimming_pool} o {fitness_center}. Confirme la {check_in_time} y la {check_out_time}. Lea las {guest_reviews} para obtener información y comprenda la {cancellation_policy}.",
-				fr: "Lors de la réservation, considérez différents {hotel_types} comme un {boutique_hotel} ou un {luxury_hotel}. Vérifiez les {room_types} disponibles, tels qu'une {single_room} ou une {double_room}. Renseignez-vous sur les {hotel_amenities} comme une {swimming_pool} ou un {fitness_center}. Confirmez l'{check_in_time} et l'{check_out_time}. Lisez les {guest_reviews} pour des informations et comprenez la {cancellation_policy}."
-			},
-			vocab: {
-				hotel_types: {
-					de: "Hoteltypen",
-					en: "hotel types",
-					es: "tipos de hotel",
-					fr: "types d'hôtels",
-					it: "tipi di hotel"
-				},
-				boutique_hotel: {
-					de: "Boutique-Hotel",
-					en: "boutique hotel",
-					es: "hotel boutique",
-					fr: "hôtel-boutique",
-					it: "hotel boutique"
-				},
-				luxury_hotel: {
-					de: "Luxushotel",
-					en: "luxury hotel",
-					es: "hotel de lujo",
-					fr: "hôtel de luxe",
-					it: "hotel di lusso"
-				},
-				room_types: {
-					de: "Zimmertypen",
-					en: "room types",
-					es: "tipos de habitación",
-					fr: "types de chambres",
-					it: "tipologie di camere"
-				},
-				single_room: {
-					de: "Einzelzimmer",
-					en: "single room",
-					es: "habitación individual",
-					fr: "chambre simple",
-					it: "camera singola"
-				},
-				double_room: {
-					de: "Doppelzimmer",
-					en: "double room",
-					es: "habitación doble",
-					fr: "chambre double",
-					it: "camera doppia"
-				},
-				hotel_amenities: {
-					de: "Hotelausstattung",
-					en: "hotel amenities",
-					es: "servicios del hotel",
-					fr: "équipements de l'hôtel",
-					it: "servizi dell'hotel"
-				},
-				swimming_pool: {
-					de: "Schwimmbad",
-					en: "swimming pool",
-					es: "piscina",
-					fr: "piscine",
-					it: "piscina"
-				},
-				fitness_center: {
-					de: "Fitnesscenter",
-					en: "fitness center",
-					es: "gimnasio",
-					fr: "centre de fitness",
-					it: "centro fitness"
-				},
-				check_in_time: {
-					de: "Check-in-Zeit",
-					en: "check-in time",
-					es: "hora de entrada",
-					fr: "heure d'arrivée",
-					it: "orario di check-in"
-				},
-				check_out_time: {
-					de: "Check-out-Zeit",
-					en: "check-out time",
-					es: "hora de salida",
-					fr: "heure de départ",
-					it: "orario di check-out"
-				},
-				guest_reviews: {
-					de: "Gästebewertungen",
-					en: "guest reviews",
-					es: "opiniones de huéspedes",
-					fr: "avis des clients",
-					it: "recensioni degli ospiti"
-				},
-				cancellation_policy: {
-					de: "Stornierungsbedingungen",
-					en: "cancellation policy",
-					es: "política de cancelación",
-					fr: "politique d'annulation",
-					it: "politica di cancellazione"
-				}
-			},
-		},
-	}
-
-    // ---------------------------------------------------------------------------------------------------------------------------
-
-    const topicNames = {
-		//-- plane
-      travel_by_plane: {
-        en: "Travel by Plane",
-		de: "Reisen mit dem Flugzeug",
-		es: "Viajar en avión",
-		fr: "Voyager en avion",
-		it: "Viaggiare in aereo",
-        subcategory: {
-          book_flight: { en: "Book Flight", de: "Flug buchen", es: "Reservar vuelo", fr: "Réserver vol", it: "Prenotare volo" },
-          airport: { en: "At the Airport", de: "Am Flughafen", es: "En el aeropuerto", fr: "À l'aéroport", it: "All'aeroporto" },
-          departure_boarding: { en: "Departure & Boarding", de: "Abflug & Boarding", es: "Salida y embarque", fr: "Départ et embarquement", it: "Partenza e imbarco" },
-          on_plane: { en: "On the Plane", de: "Im Flugzeug", es: "En el avión", fr: "Dans l'avion", it: "Sull'aereo" },
-          plane_arrival: { en: "Plane Arrival", de: "Ankunft des Flugzeugs", es: "Llegada del avión", fr: "Arrivée de l'avion", it: "Arrivo dell'aereo" },
-        },
-      },
-	  //-- bus
-	  travel_by_bus: {
-        en: "Travel by Plane",
-		de: "Reisen mit dem Flugzeug",
-		es: "Viajar en avión",
-		fr: "Voyager en avion",
-		it: "Viaggiare in aereo",
-        subcategory: {
-          book_flight: { en: "Book Flight", de: "Flug buchen", es: "Reservar vuelo", fr: "Réserver vol", it: "Prenotare volo" },
-          airport: { en: "At the Airport", de: "Am Flughafen", es: "En el aeropuerto", fr: "À l'aéroport", it: "All'aeroporto" },
-          departure_boarding: { en: "Departure & Boarding", de: "Abflug & Boarding", es: "Salida y embarque", fr: "Départ et embarquement", it: "Partenza e imbarco" },
-          on_plane: { en: "On the Plane", de: "Im Flugzeug", es: "En el avión", fr: "Dans l'avion", it: "Sull'aereo" },
-          plane_arrival: { en: "Plane Arrival", de: "Ankunft des Flugzeugs", es: "Llegada del avión", fr: "Arrivée de l'avion", it: "Arrivo dell'aereo" },
-        },
-      },
-	  //-- train
-	  travel_by_bus: {
-        en: "Travel by Bus",
-		de: "Reisen mit dem Flugzeug",
-		es: "Viajar en avión",
-		fr: "Voyager en avion",
-		it: "Viaggiare in aereo",
-        subcategory: {
-          book_flight: { en: "Book Flight", de: "Flug buchen", es: "Reservar vuelo", fr: "Réserver vol", it: "Prenotare volo" },
-          airport: { en: "At the Airport", de: "Am Flughafen", es: "En el aeropuerto", fr: "À l'aéroport", it: "All'aeroporto" },
-          departure_boarding: { en: "Departure & Boarding", de: "Abflug & Boarding", es: "Salida y embarque", fr: "Départ et embarquement", it: "Partenza e imbarco" },
-          on_plane: { en: "On the Plane", de: "Im Flugzeug", es: "En el avión", fr: "Dans l'avion", it: "Sull'aereo" },
-          plane_arrival: { en: "Plane Arrival", de: "Ankunft des Flugzeugs", es: "Llegada del avión", fr: "Arrivée de l'avion", it: "Arrivo dell'aereo" },
-        },
-      },
-	  //-- restaurant
-	  travel_by_plane: {
-        en: "Travel by Plane",
-		de: "Reisen mit dem Flugzeug",
-		es: "Viajar en avión",
-		fr: "Voyager en avion",
-		it: "Viaggiare in aereo",
-        subcategory: {
-          book_flight: { en: "Book Flight", de: "Flug buchen", es: "Reservar vuelo", fr: "Réserver vol", it: "Prenotare volo" },
-          airport: { en: "At the Airport", de: "Am Flughafen", es: "En el aeropuerto", fr: "À l'aéroport", it: "All'aeroporto" },
-          departure_boarding: { en: "Departure & Boarding", de: "Abflug & Boarding", es: "Salida y embarque", fr: "Départ et embarquement", it: "Partenza e imbarco" },
-          on_plane: { en: "On the Plane", de: "Im Flugzeug", es: "En el avión", fr: "Dans l'avion", it: "Sull'aereo" },
-          plane_arrival: { en: "Plane Arrival", de: "Ankunft des Flugzeugs", es: "Llegada del avión", fr: "Arrivée de l'avion", it: "Arrivo dell'aereo" },
-        },
-      },
-	  //-- shops
-	  travel_by_plane: {
-        en: "Travel by Plane",
-		de: "Reisen mit dem Flugzeug",
-		es: "Viajar en avión",
-		fr: "Voyager en avion",
-		it: "Viaggiare in aereo",
-        subcategory: {
-          book_flight: { en: "Book Flight", de: "Flug buchen", es: "Reservar vuelo", fr: "Réserver vol", it: "Prenotare volo" },
-          airport: { en: "At the Airport", de: "Am Flughafen", es: "En el aeropuerto", fr: "À l'aéroport", it: "All'aeroporto" },
-          departure_boarding: { en: "Departure & Boarding", de: "Abflug & Boarding", es: "Salida y embarque", fr: "Départ et embarquement", it: "Partenza e imbarco" },
-          on_plane: { en: "On the Plane", de: "Im Flugzeug", es: "En el avión", fr: "Dans l'avion", it: "Sull'aereo" },
-          plane_arrival: { en: "Plane Arrival", de: "Ankunft des Flugzeugs", es: "Llegada del avión", fr: "Arrivée de l'avion", it: "Arrivo dell'aereo" },
-        },
-      },
-	  //-- hotel
-	  travel_by_plane: {
-        en: "Travel by Plane",
-		de: "Reisen mit dem Flugzeug",
-		es: "Viajar en avión",
-		fr: "Voyager en avion",
-		it: "Viaggiare in aereo",
-        subcategory: {
-          book_flight: { en: "Book Flight", de: "Flug buchen", es: "Reservar vuelo", fr: "Réserver vol", it: "Prenotare volo" },
-          airport: { en: "At the Airport", de: "Am Flughafen", es: "En el aeropuerto", fr: "À l'aéroport", it: "All'aeroporto" },
-          departure_boarding: { en: "Departure & Boarding", de: "Abflug & Boarding", es: "Salida y embarque", fr: "Départ et embarquement", it: "Partenza e imbarco" },
-          on_plane: { en: "On the Plane", de: "Im Flugzeug", es: "En el avión", fr: "Dans l'avion", it: "Sull'aereo" },
-          plane_arrival: { en: "Plane Arrival", de: "Ankunft des Flugzeugs", es: "Llegada del avión", fr: "Arrivée de l'avion", it: "Arrivo dell'aereo" },
-        },
-      },
-    };
-
-    const languageNames = {
-      de: { de: "Deutsch", en: "Englisch", es: "Spanisch", fr: "Französisch", it: "Italienisch" },
-      en: { de: "German", en: "English", es: "Spanish", fr: "French", it: "Italian" },
-      es: { de: "Alemán", en: "Inglés", es: "Español", fr: "Francés", it: "Italiano" },
-      fr: { de: "Allemand", en: "Anglais", es: "Espagnol", fr: "Français", it: "Italien" },
-      it: { de: "Tedesco", en: "Inglese", es: "Spagnolo", fr: "Francese", it: "Italiano" },
-    };
-
-    document.addEventListener("DOMContentLoaded", function () {
-      const simplifyCheckbox = document.getElementById('simplifyCheckbox'); // Get the new checkbox
-      const uiLangSelect = document.getElementById("chooseOption");
-      const topicSelect = document.getElementById("chooseTopic");
-      const nativeLangSelect = document.getElementById("selectionOne");
-      const targetLangSelect = document.getElementById("selectionTwo");
-      const topicTitle = document.getElementById("topicTitle");
-      const learningText = document.getElementById("knowledgeText");
-      const vocabList = document.getElementById("wordList");
-      const nativeLangTitle = document.getElementById("native-lang-title");
-      const nativeLangFullText = document.getElementById("native-lang-full-text");
-      const targetLangTitle = document.getElementById("target-lang-title");
-      const targetLangFullText = document.getElementById("target-lang-full-text");
-      const errorMessage = document.getElementById("errorMessage");
-      const contentDisplay = document.getElementById("content");
-      const swapBtn = document.getElementById("dyorButton");
-      const menuBox = document.getElementById("menuBox");
-      const rollBox = document.getElementById("roll-box");
-      const toggleMenuBtn = document.getElementById("mehNo-butThen");
-
-      function speakText(text, lang, buttonEl) {
-        if (!'speechSynthesis' in window) {
-          alert("Sorry, your browser doesn't support text-to-speech.");
-          return;
-        }
-        const utter = new SpeechSynthesisUtterance(text);
-        utter.lang = lang;
-
-        const wasSpeaking = speechSynthesis.speaking;
-        speechSynthesis.cancel();
-
-        document.querySelectorAll('.tts-active').forEach(btn => togglePlayStop(btn, false));
-
-        if (wasSpeaking && buttonEl && buttonEl.classList.contains('tts-active')) {
-          return;
-        }
-
-        if (buttonEl) {
-          togglePlayStop(buttonEl, true);
-          utter.onend = () => togglePlayStop(buttonEl, false);
-          utter.onerror = () => {
-            console.error("Speech synthesis error");
-            togglePlayStop(buttonEl, false);
-          };
-        }
-
-        speechSynthesis.speak(utter);
-      }
-
-      function togglePlayStop(btn, isPlaying) {
-        const svg = btn.querySelector("svg");
-        const soundwave = btn.querySelector(".soundwave");
-        if (!svg) return;
-
-        if (isPlaying) {
-          btn.classList.add('tts-active');
-          svg.style.display = 'none';
-          if (soundwave) soundwave.style.display = 'inline-block';
-        } else {
-          btn.classList.remove('tts-active');
-          svg.style.display = 'inline-block';
-          if (soundwave) soundwave.style.display = 'none';
-        }
-      }
-
-      if (swapBtn) {
-        swapBtn.addEventListener("click", function () {
-          const temp = nativeLangSelect.value;
-          nativeLangSelect.value = targetLangSelect.value;
-          targetLangSelect.value = temp;
-          // rotate the swap button when pressed (toggle)
-          swapBtn.classList.toggle('menu-rotated');
-          generateText();
-        });
-      }
-
-      let menuVisible = true;
-      toggleMenuBtn.onclick = function () {
-        menuVisible = !menuVisible;
-        menuBox.style.display = menuVisible ? "" : "none";
-        // Toggle rotated class to animate the button rotation
-        toggleMenuBtn.classList.toggle('menu-rotated', !menuVisible);
-        // Remove the white background from the roll-box when the menu is hidden
-        if (rollBox) rollBox.classList.toggle('no-bg', !menuVisible);
-        toggleMenuBtn.innerHTML = "<ü>";
-      };
-      toggleMenuBtn.innerHTML = "<ü>";
-
-      function populateSelect(selectElement, data, selectedValue) {
-        const currentVal = selectElement.value;
-        selectElement.innerHTML = "";
-        const currentUi = uiLangSelect.value || "en";
-
-        if (selectElement.id === "chooseTopic") {
-          for (const key in data) {
-            const category = data[key];
-            if (category.subcategory) {
-              const optgroup = document.createElement("optgroup");
-              optgroup.label = category[currentUi] || category.en;
-              for (const subKey in category.subcategory) {
-                const option = document.createElement("option");
-                option.value = subKey;
-                option.textContent = category.subcategory[subKey][currentUi] || category.subcategory[subKey].en;
-                optgroup.appendChild(option);
-              }
-              selectElement.appendChild(optgroup);
+            // Helper for donation messages
+            function showDonationMessage(msg, type = 'info') {
+                if (!donationMessage) return;
+                donationMessage.textContent = msg;
+                donationMessage.classList.remove('text-blue-400', 'text-red-400', 'text-green-400');
+                
+                if (type === 'error') {
+                    donationMessage.classList.add('text-red-400');
+                } else if (type === 'success') {
+                    donationMessage.classList.add('text-green-400');
+                } else {
+                    donationMessage.classList.add('text-blue-400');
+                }
             }
-          }
-        } else {
-          for (const key in data) {
-            const option = document.createElement("option");
-            option.value = key;
-            if (selectElement.id === "selectionOne" || selectElement.id === "selectionTwo") {
-              option.textContent = languageNames[currentUi][key];
-            } else if (selectElement.id === "chooseOption") {
-              option.textContent = languageNames[key][key];
-            } else {
-              option.textContent = data[key];
+
+            // --- Donation Button Listener ---
+            if (web3DonateButton) {
+                web3DonateButton.addEventListener('click', async () => {
+                    showDonationMessage('Connecting...', 'info');
+
+                    if (typeof window.ethereum === 'undefined') {
+                        showDonationMessage('Please install a Web3 wallet (like MetaMask).', 'error');
+                        return;
+                    }
+                    
+                    const amount = donationAmountInput.value;
+                    if (!amount || parseFloat(amount) <= 0) {
+                        showDonationMessage('Please enter a valid amount.', 'error');
+                        return;
+                    }
+
+                    // Convert ETH to Wei, then to Hexadecimal
+                    const amountInWei = BigInt(Math.floor(parseFloat(amount) * 1e18));
+                    const hexAmount = '0x' + amountInWei.toString(16);
+
+                    const transactionParameters = {
+                        to: walletAddress, // uses 0x prefixed address
+                        from: window.ethereum.selectedAddress,
+                        value: hexAmount,
+                    };
+
+                    try {
+                        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                        transactionParameters.from = accounts[0];
+
+                        showDonationMessage('Please approve the transaction...', 'info');
+
+                        const txHash = await window.ethereum.request({
+                            method: 'eth_sendTransaction',
+                            params: [transactionParameters],
+                        });
+
+                        showDonationMessage('Donation sent! Thank you!', 'success');
+                        console.log('Transaction Hash:', txHash);
+                        donationAmountInput.value = '';
+
+                    } catch (error) {
+                        console.error(error);
+                        if (error.code === 4001) {
+                            showDonationMessage('Transaction cancelled by user.', 'error');
+                        } else {
+                            showDonationMessage('Transaction failed. See console.', 'error');
+                        }
+                    }
+                });
             }
-            selectElement.appendChild(option);
-          }
-        }
-        selectElement.value = selectedValue || currentVal;
-      }
 
-      function updateUIText(lang) {
-        const translations = translatedMenu[lang];
-        if (!translations) return;
+            // --- Copy Address Button Listener ---
+            if (copyAddressButton) {
+                copyAddressButton.addEventListener('click', () => {
+                    // Use the 0x prefixed address for copying
+                    const addressToCopy = walletAddress; 
 
-        document.querySelectorAll("[data-key]").forEach((element) => {
-          const key = element.getAttribute("data-key");
-          if (translations[key]) {
-            element.textContent = translations[key];
-          }
+                    const tempTextArea = document.createElement('textarea');
+                    tempTextArea.value = addressToCopy;
+                    document.body.appendChild(tempTextArea);
+                    tempTextArea.select();
+                    tempTextArea.setSelectionRange(0, 99999); // For mobile
+                    try {
+                        document.execCommand('copy');
+                        showDonationMessage('Address copied to clipboard!', 'success');
+                        copyAddressButton.textContent = 'Copied!';
+                        setTimeout(() => {
+                            copyAddressButton.textContent = 'Copy Address';
+                            showDonationMessage(''); // Clear message
+                        }, 2000);
+                    } catch (err) {
+                        console.error('Failed to copy text: ', err);
+                        showDonationMessage('Failed to copy address.', 'error');
+                    }
+                    document.body.removeChild(tempTextArea);
+                });
+            }
         });
-
-        document.querySelector('label[for="chooseOption"]').textContent = translations.uiLanguageLabel;
-        document.querySelector('label[for="chooseTopic"]').textContent = translations.topicLabel;
-        document.querySelector('label[for="selectionOne"]').textContent = translations.yourLanguageLabel;
-        document.querySelector('label[for="selectionTwo"]').textContent = translations.targetLanguageLabel;
-
-        populateSelect(uiLangSelect, languageNames, uiLangSelect.value);
-        populateSelect(topicSelect, topicNames, topicSelect.value);
-        populateSelect(nativeLangSelect, languageNames, nativeLangSelect.value);
-        populateSelect(targetLangSelect, languageNames, targetLangSelect.value);
-
-        generateText();
-      }
-
-      function generateText() {
-        if (speechSynthesis.speaking) speechSynthesis.cancel();
-
-        const selectedTopicKey = topicSelect.value;
-        const selectedNativeLang = nativeLangSelect.value;
-        const selectedTargetLang = targetLangSelect.value;
-        const currentUi = uiLangSelect.value || "en";
-
-        if (!selectedTopicKey || !selectedNativeLang || !selectedTargetLang) return;
-
-        if (selectedNativeLang === selectedTargetLang) {
-          errorMessage.textContent = translatedMenu[currentUi].errorMessageSameLanguage;
-          contentDisplay.style.display = "none";
-          topicTitle.style.display = "none";
-          return;
-        } else {
-          errorMessage.textContent = "";
-          contentDisplay.style.display = "";
-          topicTitle.style.display = "block";
-        }
-
-        let topicDisplayName = '';
-        let topicData = content[selectedTopicKey];
-
-        for (const catKey in topicNames) {
-          if (topicNames[catKey].subcategory && topicNames[catKey].subcategory[selectedTopicKey]) {
-            topicDisplayName = topicNames[catKey].subcategory[selectedTopicKey][currentUi] || topicNames[catKey].subcategory[selectedTopicKey].en;
-            break;
-          }
-        }
-
-        topicTitle.textContent = topicDisplayName;
-
-        if (!topicData || !topicData.base) {
-          learningText.innerHTML = "Content not found.";
-          vocabList.innerHTML = "";
-          nativeLangFullText.innerHTML = "";
-          targetLangFullText.innerHTML = "";
-          return;
-        }
-
-        let mixedLangText = topicData.base[selectedNativeLang] || topicData.base.en;
-        let fullNativeText = topicData.base[selectedNativeLang] || topicData.base.en;
-        let fullTargetText = topicData.base[selectedTargetLang] || topicData.base.en;
-        const learnedWords = [];
-
-        for (const key in topicData.vocab) {
-          const nativeWord = topicData.vocab[key][selectedNativeLang];
-          const targetWord = topicData.vocab[key][selectedTargetLang];
-          if (nativeWord && targetWord) {
-            learnedWords.push({ target: targetWord, native: nativeWord });
-            const placeholder = new RegExp(`\\{${key}\\}`, "g");
-            mixedLangText = mixedLangText.replace(placeholder, `<strong class="highlight-word" title="${nativeWord}">${targetWord}</strong>`);
-            fullNativeText = fullNativeText.replace(placeholder, `<strong class="highlight-word">${nativeWord}</strong>`);
-            fullTargetText = fullTargetText.replace(placeholder, `<strong class="highlight-word">${targetWord}</strong>`);
-          }
-        }
-
-        const playButtonHTML = (id) => `<button id="${id}" title="Play" class="play-button"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M8 5v14l11-7z"/></svg><span class="soundwave"></span></button>`;
-
-        learningText.innerHTML = `<span class="text-content">${mixedLangText}</span>` + playButtonHTML('play-learning-text');
-        nativeLangFullText.innerHTML = `<span class="text-content">${fullNativeText}</span>` + playButtonHTML('play-native-text');
-        targetLangFullText.innerHTML = `<span class="text-content">${fullTargetText}</span>` + playButtonHTML('play-target-text');
-
-        document.getElementById('play-learning-text').addEventListener('click', (e) => speakText(learningText.querySelector('.text-content').innerText, selectedTargetLang, e.currentTarget));
-        document.getElementById('play-native-text').addEventListener('click', (e) => speakText(nativeLangFullText.querySelector('.text-content').innerText, selectedNativeLang, e.currentTarget));
-        document.getElementById('play-target-text').addEventListener('click', (e) => speakText(targetLangFullText.querySelector('.text-content').innerText, selectedTargetLang, e.currentTarget));
-
-        nativeLangTitle.textContent = `${translatedMenu[currentUi].originalTextTitle} (${languageNames[currentUi][selectedNativeLang]})`;
-        targetLangTitle.textContent = `${translatedMenu[currentUi].translationTextTitle} (${languageNames[currentUi][selectedTargetLang]})`;
-
-        vocabList.innerHTML = "";
-        learnedWords.forEach((word) => {
-          const item = document.createElement("div");
-          item.className = "vocab-item";
-          item.innerHTML = `
-              <span class="vocab-target-word">
-                ${word.target}
-              </span>
-              <span class="vocab-native-word">${word.native}</span>
-              <button title="Play" class="play-button vocab-play-button" data-word="${word.target}">
-                  <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
-                  <span class="soundwave"></span>
-              </button>
-            `;
-          vocabList.appendChild(item);
-        });
-
-        document.querySelectorAll('.vocab-play-button').forEach(btn => {
-          btn.addEventListener('click', (e) => {
-            const wordToSpeak = e.currentTarget.getAttribute('data-word');
-            speakText(wordToSpeak, selectedTargetLang, e.currentTarget);
-          });
-        });
-      }
-
-      function initializeApp() {
-        populateSelect(uiLangSelect, languageNames, "en");
-        populateSelect(topicSelect, topicNames, "book_flight");
-        populateSelect(nativeLangSelect, languageNames, "en");
-        populateSelect(targetLangSelect, languageNames, "de");
-
-        uiLangSelect.addEventListener("change", () => updateUIText(uiLangSelect.value));
-        topicSelect.addEventListener("change", generateText);
-        nativeLangSelect.addEventListener("change", generateText);
-        targetLangSelect.addEventListener("change", generateText);
-
-        updateUIText("en");
-      }
-
-      initializeApp();
-    });
-  </script>
+    </script>
 </body>
-
 </html>
